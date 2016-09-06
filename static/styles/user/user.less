@@ -1,0 +1,135 @@
+@import (reference) "../common/common.less";
+
+.navList{
+	background-color: #f8f8f8;
+	li{
+		/*display: inline-block;*/
+		background-color: #fff;
+		margin-top: 15px;
+	}
+	li:first-child{
+		margin-top: 0px;
+		padding: 10px 0px;
+	}
+	li:last-child{
+		margin-bottom: 60px;
+	}
+}
+.SetttingsBody{
+	height: 100%;
+	transform: translateX(@windowWidth);
+	background-color: #f8f8f8;
+}
+.userBody{
+    overflow-y:auto;
+    height: @windowHeight;
+}
+.userTop{
+	position: relative;
+	.userAvator{
+
+	}
+}
+.user{
+    position: absolute;
+    color: #fff;
+    bottom: 0px;
+    width: 100%;
+    padding: 8px 0px;
+    background-color: hsla(0,100%,99%,0.08);
+	.userData{
+		width: 100%;
+		position: relative;
+	}
+	.userState{
+		display: inline-block;
+		width: 60%;
+		border-right: 1px dashed #ccc;
+		img{
+			display: inline-block;
+		  width: 70px;
+		  height: 70px;
+		  border-radius: 50%;
+		  float: left;
+		  margin: 0 15px;
+		}
+	}
+}
+.State{
+	width: 50%;
+	display: inline-block;
+	span{
+		display: inline-block;
+		width: 100%;
+		float: left;
+		line-height: 21px;
+		font-size: 1.2em;
+	}
+	h5{
+		font-size: 15px;
+	}
+}
+.userData .userPoint{
+	display: inline-block;
+	text-align: center;
+	width: 40%;
+	position: absolute;
+  top: 50%;
+  transform: translateY(-10px);
+}
+.userPoint h4{
+	font-size: 1.4em;
+	height: 20px;
+	line-height: 20px;
+}
+.userOpreation{
+	width: 50%;
+	float: left;
+	display: inline-block;
+	text-align: center;
+	img{
+		display: inline-block;
+		margin: -15px 10px 0px 10px;
+	}
+	.operationText{
+		display: inline-block;
+	    width: 25%;
+	    margin-top: 5px;
+	    text-align: left;
+		span{
+			display: inline-block;
+			width: 100%;
+		}
+	}
+}
+.userOpreationBorder{
+	border-right: 1px dashed #ccc;
+}
+.PointOperation,.Operation{
+	padding: 15px;
+}
+.Operation{
+	border-bottom: 1px solid #ccc;
+}
+.PointOperation img,.Operation img{
+	margin-right:10px;
+}
+.setttingList{
+	overflow-y:auto;
+	height: @contentHeight;
+}
+.setttingLi{
+	background-color: #fff;
+}
+.setLiMarginTop{
+	margin-top: 20px;
+}
+.setLiMarginBottom{
+	margin-bottom: 20px;
+}
+.setloginOut{
+	text-align: center;
+	color:red;
+	padding: 15px;
+	cursor: pointer;
+}

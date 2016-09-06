@@ -1,0 +1,166 @@
+@import (reference) "../common/common.less";
+
+.InfoDetail{
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f8f8f8;
+    .InfoDetailBody{
+        height: 100%;
+        width: 100%;
+        padding: 0px 10px;
+    }
+    .InfoContent{
+        margin-top: 42px;
+        overflow-y: auto;
+        height: @communicationHeight ;
+        .InfoContentTitle{
+            text-align: center;
+            padding: 10px 0px;
+        }
+    }
+}
+
+.InfoTopCorperation{
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    height: 42px;
+    .InfoCpt{
+        flex: 1;
+        display: inline-block;
+        padding: 5px 0;
+        text-align: center;
+        font-size: 1.4em;
+    }
+    .InfoIcon{
+        border-radius: 50%;
+        height: 27px;
+        width: 27px;
+    }
+    .InfoIconBorder{
+        border-right: 1px solid #ccc;
+        height: 100%;
+        width: 100%;
+        display: inline-block;
+    }
+    .InfoIconNoneBorder{
+        height: 100%;
+        width: 100%;
+        display: inline-block;
+    }
+}
+.InfoBottomCorperation{
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    height: 50px;
+    .InfoCpt{
+        width: 12%;
+        text-align: center;
+        display: inline-block;
+        .InfoIcon{
+            width: 32px;
+            height: 32px;
+            display: inline-block;
+        }
+    }
+    .InfoInput{
+        width: 64%;
+        display: inline-block;
+        text-align: center;
+        height: 100%;
+        vertical-align: middle;
+        padding: 2% 2%;
+    }
+    .InfoInputBody{
+        height: 100%;
+        width: 100%;
+    }
+    .InfomationInput{
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid rgba(181, 179, 179, 0.66);
+    }
+}
+
+.InfoContentBody{
+    .InfoContentList{
+        margin: 2% auto;
+    }
+    .InfoState{
+        width: 9%;
+        display: inline-block;
+        float: left;
+        background-color: #3cdc66;
+        color: #fff;
+        text-align: center;
+        padding: 2px;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+    .InfoOtherState{
+        width: 9%;
+        display: inline-block;
+        float: right;
+        background-color: #3cdc66;
+        color: #fff;
+        text-align: center;
+        padding: 2px;
+        border-radius: 5px;
+        margin-top: 5px;
+    }
+    .InfoUserState{
+        width: 9%;
+        display: inline-block;
+        float: left;
+        background-color: #3cdc66;
+        color: #fff;
+        text-align: center;
+        padding: 2px;
+        border-radius: 5px;
+    }
+    .InfoContentText{
+        width: 75%;
+        margin: 0 2%;
+        display: inline-block;
+        border-radius: 5px;
+        background-color: #acece5;
+        padding: 10px 5px;
+        font-size: 1.1em;
+    }
+    .InfoAvator{
+        width: 12%;
+        display: inline-block;
+        float: right;
+        .InfoAvatorShow{
+            border-radius: 50%;
+            height: 45px;
+            width: 45px;
+        }
+    }
+    .InfoOtherAvator{
+        width: 12%;
+        display: inline-block;
+        float: left;
+        .InfoAvatorShow{
+            border-radius: 50%;
+            height: 45px;
+            width: 45px;
+        }
+    }
+}
+
+.InfoCorperation .InfoIcon{
+    display: inline-block;
+    border-radius: 50%;
+}
