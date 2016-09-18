@@ -1,20 +1,20 @@
-import api from '../api/companyApi'
-import constant from '../constants/informatioin'
+import api from '../api/informationApi'
+import constant from '../constants/information'
 
 let InformationAction = {
 
-    getPrivateMessageList(data,companytype) {
+    getPrivateMessageList(data,informationType) {
         return dispatch =>　{
             return api.getPrivateMessageList(data).then((res)=>{
-                dispatch(InformationAction.notic(constant.GET_COMPANYLINELIST,res,companytype));
+                dispatch(InformationAction.notic(constant.GET_PRIVATEMESSAGELIST,res,informationType));
             })
         }
     },
 
-    getPersonInfo(data,companytype) {
+    getPersonInfo(data,informationType) {
         return dispatch =>　{
             return api.getPersonInfo(data).then((res)=>{
-                dispatch(notic(constant.GET_COMPANYDETAIL,res,companytype));
+                dispatch(notic(constant.GET_PERSONINFO,res,informationType));
             })
         }
     },
@@ -22,13 +22,13 @@ let InformationAction = {
     getPrivateMessagePage(companyDetailtype) {
         return dispatch =>　{
             return api.getPrivateMessagePage(data).then((res)=>{
-                dispatch(notic(constant.GET_COMPANYDETAIL,res,companytype));
+                dispatch(notic(constant.GET_PRIVATEMESSAGEPAGE,res,informationType));
             })
         }
     },
 
-    notic(type,res,companytype){
-        return  { type:type, res ,companytype }
+    notic(type,res,informationType){
+        return  { type:type, res ,informationType }
     }
 
 }

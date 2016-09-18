@@ -1,24 +1,21 @@
 import { combineReducers } from 'redux'
 import constant from '../constants/information'
 
-function Information(state=null, action){
+function InformationData(state=null, action){
     switch (action.type) {
-        case constant.GET_COMPANYLINELIST:
+        case constant.GET_PRIVATEMESSAGELIST:
+            return  action.res
+            break;
+        case constant.GET_PERSONINFO:
             return Object.assign({}, state, {
-                CompanyData: action.res,
-                CompanyType: action.companytype
+                InformationData: action.res,
+                InformationType: action.informationType
             })
             break;
-        case constant.GET_COMPANYDETAIL:
+        case constant.GET_PRIVATEMESSAGEPAGE:
             return Object.assign({}, state, {
-                CompanyDetailData: action.res,
-                CompanyDetailType: action.companytype
-            })
-            break;
-        case constant.SHOW_COMPANYDETAIL:
-            return Object.assign({}, state, {
-                CompanyDetailData: action.res,
-                CompanyDetailType: action.companytype
+                InformationData: action.res,
+                InformationType: action.informationType
             })
             break;
         default:
@@ -38,8 +35,8 @@ function InformationType(state=null, action){
 }
 
 const todoApp = combineReducers({
-    Company,
-    CompanyType
+    InformationData,
+    InformationType
 })
 
 export default todoApp

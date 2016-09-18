@@ -76,6 +76,7 @@ class Position extends React.Component{
     }
 
     LeftBtnFunc(){
+        this.context.router.push("notice");
     }
 
     render() {
@@ -136,7 +137,6 @@ function select(state) {
         PositionType:state.PositionReducer
     }
 }
-
 
 // 包装 component ，注入 dispatch 和 state 到其默认的 connect(select)(App) 中；
 export default connect(select)(Position)

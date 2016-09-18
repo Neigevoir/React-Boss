@@ -10,21 +10,9 @@ export default class Loading extends React.Component{
         super(props);
     }
 
-    show(){
-        this.setState({
-            type:"block"
-        });
-    }
-
-    hidden(){
-        this.setState({
-            type:"none"
-        });
-    }
-
     render() {
         return (
-            <div id="loading-page" className={ this.state.type=="block" ? "loading animated fadeIn8" : "hidden" }>
+            <div id="loading-page" className={ this.props.type=="block" ? "loading animated fadeIn8" : "hidden" }>
                 <div className="loader-middle">
                     <div className="loader">Loading...</div>
                 </div>

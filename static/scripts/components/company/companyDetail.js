@@ -6,6 +6,7 @@ import Header from '../header/main'
 // import InfoDetail from '../information/infoDetail'
 
 import '../../../styles/company/companyDetail.less'
+import '../../../styles/information/information.less'
 
 class CompanyDetail extends React.Component{
 
@@ -45,7 +46,7 @@ class CompanyDetail extends React.Component{
 
     render() {
         let { DetailList,CompanyDetailData,CompanyDetailType } = this.props;
-        console.log(CompanyDetailType);
+        console.log(CompanyDetailData);
         CompanyDetailData= null;
         return (
             <div className={ CompanyDetailType=="hidden"? "hidden": "InfoDetail" }>
@@ -83,6 +84,11 @@ class CompanyDetail extends React.Component{
 
 function selectState(state,type) {
     switch (type) {
+        case 'CompanyDetailData':
+        if (state.Company) {
+            return state.Company.CompanyData
+        }
+        return state
         case 'CompanyDetailType':
         if (state.CompanyType)  {
             return  state.CompanyType
@@ -93,7 +99,7 @@ function selectState(state,type) {
 
 function select(state) {
     return {
-        CompanyDetailData:state.CompanyReducer,
+        CompanyDetailData:selectState(state.CompanyReducer,'CompanyDetailData'),
         CompanyDetailType:selectState(state.CompanyReducer,'CompanyDetailType')
     }
 }

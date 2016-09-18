@@ -1,9 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import Header from '../header/main'
+import Loading from '../ui/loading'
 
-import Fetch from '../../utils/fetch'
+import NoticeAction from '../../actions/noticeAction'
 
-export default class Notice extends React.Component{
+class Notice extends React.Component{
 
     static contextTypes = {
         router:React.PropTypes.object
@@ -18,7 +21,7 @@ export default class Notice extends React.Component{
     }
 
     componentDidMount(){
-        this.getNotice();
+        this.props.dispatch(NoticeAction.getNotice());
         this.onMounted=true;
     }
 
@@ -41,32 +44,60 @@ export default class Notice extends React.Component{
     }
 
     getNotice(){
-        Fetch({
-            type:'POST',
-            url:__Url__+"/app/message/list",
-            mode:"cors",
-            data:{
-                offset:"0",
-                num:"99"
-            }
-        }).then((res)=>{
-            if (!this.onMounted) return ;
-            this.setState({
-                noticeData:res.data.message
-            })
-        });
+
     }
 
     render() {
+        let { NoticeData,NoticeType } = this.props;
         return (
           <div>
             <Header title="广播" LeftBtn="返回" LeftBtnFunc={ this.context.router.goBack } />
+            <Loading type={NoticeType=="Fetching"?'block':'hidden'} />
             <div className="noticeBody">
                 <ul>
-                    12313212
+                    {
+                        NoticeData
+                            ?   NoticeData.message.map((v,i)=>{
+                                    return  <li key={i} className="noticeContent">
+                                                <div ref="view" className="noticeview">
+                                                    <div ref="content">
+                                                        <h4>{v.title}</h4>
+                                                        <p dangerouslySetInnerHTML={{__html:v.message}}></p>
+                                                        <h5 className="checkContent">
+                                                            管理员发表于<b>{ this.getNoticeDay(v.created_at) }</b>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </li>;
+                                })
+                            :   ""
+                    }
                 </ul>
             </div>
           </div>
         )
     }
 }
+
+function selectState(state,type) {
+    switch (type) {
+        case 'NoticeData':
+        if (state.Notice){
+            return  state.Notice.data
+        }
+        return null
+        case 'NoticeType':
+        if (state.Notice)  return  state.Notice.FetchType||state.Notice.status_code
+        return "hidden"
+    }
+}
+
+function select(state) {
+    return {
+        NoticeData:selectState(state.NoticeReducer,'NoticeData'),
+        NoticeType:selectState(state.NoticeReducer,'NoticeType')
+    }
+}
+
+// 包装 component ，注入 dispatch 和 state 到其默认的 connect(select)(App) 中；
+export default connect(select)(Notice)

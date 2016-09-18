@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import { getCompanyLineList,getCompanyDetail,changeCompanyDetail } from '../../actions/companyAction'
+
 import CompanyAction from '../../actions/companyAction'
 
 import CompanyDetail from './companyDetail'
@@ -101,7 +101,7 @@ class Company extends React.Component{
     }
 
     render() {
-        let { companyDetail,CompanyData,companyLineData } = this.props;
+        let { CompanyData } = this.props;
         return (
             <div>
                 <Header title="公司" LeftBtn="广播" LeftBtnFunc={this.LeftBtnFunc} />
@@ -146,7 +146,7 @@ function selectState(state,type) {
         return null
         case 'CompanyType':
         if (state.Company)  return  state.Company.CompanyType
-        return null
+        return "hidden"
     }
 }
 

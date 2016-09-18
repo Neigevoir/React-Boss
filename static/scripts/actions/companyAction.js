@@ -12,7 +12,7 @@ let CompanyAction = {
     },
 
     getCompanyDetail(data,companytype) {
-        return dispatch =>　{
+        return dispatch =>  {
             return api.getCompanyDetail(data).then((res)=>{
                 dispatch(notic(constant.GET_COMPANYDETAIL,res,companytype));
             })
@@ -20,11 +20,23 @@ let CompanyAction = {
     },
 
     changeCompanyDetail(companyDetailtype) {
-        return  { type:constant.SHOW_COMPANYDETAIL,companyDetailtype }
+        return { type:constant.SHOW_COMPANYDETAIL,companyDetailtype }
+    },
+
+    WillPosts(){
+        return { type:'will' }
+    },
+
+    FetchPosts(){
+        return { type:'Fetching' }
+    },
+
+    DidPosts(){
+        return { type:'Did' }
     },
 
     notic(type,res,companytype){
-        return  { type:type, res ,companytype }
+        return { type:type, res ,companytype }
     }
 
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import InformationAction from '../../actions/informationAction'
 import Header from '../header/main'
 
 class Information extends React.Component{
@@ -36,7 +37,7 @@ class Information extends React.Component{
     }
 
     getPrivateMessageList(){
-        // InfomationAction.getPrivateMessageList();
+        this.props.dispatch(InformationAction.getPrivateMessageList());
     }
 
     getFollowing(res){
@@ -67,7 +68,7 @@ class Information extends React.Component{
     }
 
     render() {
-        let {informationData} = this.props;
+        let {InformationData} = this.props;
         return (
           <div>
             <Header title="消息" LeftBtn="广播" LeftBtnFunc={this.LeftBtnFunc} />
@@ -80,10 +81,10 @@ class Information extends React.Component{
                         </div>
                         <div className="Tip">
                             <img className="avator"
-                                 src={informationData
-                                        ?__Url__+informationData[informationData.length-1].user.picture
+                                 src={InformationData
+                                        ?__Url__+InformationData[InformationData.length-1].user.picture
                                         :"../../../static/images/collect.png"} />
-                            <span className="Tip_text">{informationData?`${informationData.length}人看过我`:""}</span>
+                            <span className="Tip_text">{InformationData?`${InformationData.length}人看过我`:""}</span>
                         </div>
                         <div className="Tip">
                             <img className="avator" src="../../../static/images/collect.png" />
@@ -94,8 +95,8 @@ class Information extends React.Component{
                     <h4 className="TipTitle">最近联系的Boss</h4>
                     <ul className="Info">
                         {
-                            informationData
-                                ? informationData.map((v,k)=>{
+                            InformationData
+                                ? InformationData.map((v,k)=>{
                                     return  <li key={k} onClick={this.showInfoDetail.bind(null,v)}>
                                                 <div>
                                                     <img className="avator" src={v.user.picture?__Url__+v.user.picture:__Url__+"/sites/default/files/user-pictures/user-default-picture.jpg"} />
@@ -121,10 +122,23 @@ class Information extends React.Component{
     }
 }
 
+function selectState(state,type) {
+    switch (type) {
+        case 'InformationData':
+        if (state.InformationData){
+            return  state.InformationData.data
+        }
+        return null
+        case 'InformationType':
+        if (state.InformationType)  return  state.InformationType.status_code
+        return null
+    }
+}
+
 function select(state) {
     return {
-        InformationData:state.InformationReducer,
-        InformationType:state.InformationReducer
+        InformationData:selectState(state.InformationReducer,'InformationData'),
+        InformationType:selectState(state.InformationReducer,'InformationType')
     }
 }
 

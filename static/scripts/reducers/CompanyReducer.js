@@ -20,7 +20,7 @@ function Company(state=null, action){
     }
 }
 
-function CompanyType(state=null, action){
+function CompanyType(state='hidden', action){
 
     switch (action.type) {
         case constant.SHOW_COMPANYDETAIL:
