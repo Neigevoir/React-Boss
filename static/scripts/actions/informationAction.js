@@ -1,10 +1,12 @@
 import api from '../api/informationApi'
+import FetchAction from './FetchAction'
 import constant from '../constants/information'
 
 let InformationAction = {
 
     getPrivateMessageList(data,informationType) {
         return dispatch =>　{
+            dispatch(FetchAction.FetchPosts());
             return api.getPrivateMessageList(data).then((res)=>{
                 dispatch(InformationAction.notic(constant.GET_PRIVATEMESSAGELIST,res,informationType));
             })

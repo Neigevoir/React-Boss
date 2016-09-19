@@ -3,35 +3,35 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  //入口
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './static/scripts/main'
-  ],
-  devtool: 'eval-source-map',
-  //输入
-  output: {
-    path: __dirname,
-    filename: 'bundle.js',
-    publicPath: '/static/'
-  },
-  //插件项
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
-  //其他解决方案配置
-  resolve: {
-    modulesDirectories: ['node_modules'],
-    extensions: [ '', '.js', '.jsx', '.json', '.css', '.less' ]
-  },
-  //KEY给require使用，value作为全局使用
-  externals: {
-    "jquery": "jQuery"
-  },
-  //加载器配置
-  //每一个test使用什么loaders来进行处理
+    //入口
+    entry: [
+        'webpack-dev-server/client?http://localhost:3000',
+        'webpack/hot/only-dev-server',
+        './static/scripts/main'
+    ],
+    devtool: 'eval-source-map',
+    //输入
+    output: {
+        path: __dirname,
+        filename: 'bundle.js',
+        publicPath: '/static/'
+    },
+    //插件项
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+    ],
+    //其他解决方案配置
+    resolve: {
+        modulesDirectories: ['node_modules'],
+        extensions: [ '', '.js', '.jsx', '.json', '.css', '.less' ]
+    },
+    //KEY给require使用，value作为全局使用
+    externals: {
+        "jquery": "jQuery"
+    },
+    //加载器配置
+    //每一个test使用什么loaders来进行处理
     module: {
         noParse: [],
         loaders: [

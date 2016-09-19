@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import constant from '../constants/company'
+import FetchingConstant from '../constants/fetching'
 
 function Company(state=null, action){
     switch (action.type) {
@@ -13,6 +14,11 @@ function Company(state=null, action){
             return Object.assign({}, state, {
                 CompanyDetailData: action.res,
                 CompanyDetailType: action.companytype
+            })
+            break;
+        case FetchingConstant.FETCHING_POSTING:
+            return Object.assign({}, state, {
+                CompanyType: FetchingConstant.FETCHING_POSTING
             })
             break;
         default:

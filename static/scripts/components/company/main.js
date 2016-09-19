@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import CompanyAction from '../../actions/companyAction'
 
+import Loading from  '../ui/loading'
 import CompanyDetail from './companyDetail'
 import Header from '../header/main'
 
@@ -101,10 +102,11 @@ class Company extends React.Component{
     }
 
     render() {
-        let { CompanyData } = this.props;
+        let { CompanyData,CompanyType } = this.props;
         return (
             <div>
                 <Header title="公司" LeftBtn="广播" LeftBtnFunc={this.LeftBtnFunc} />
+                <Loading type={ CompanyType=="FETCHING_POSTING" ? 'block':'hidden'} />
         		<ul ref="companyList" className="companyList">
                 {
                     CompanyData

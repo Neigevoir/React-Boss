@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import InformationAction from '../../actions/informationAction'
+
+import Loading from '../ui/loading'
 import Header from '../header/main'
 
 class Information extends React.Component{
@@ -68,7 +70,7 @@ class Information extends React.Component{
     }
 
     render() {
-        let {InformationData} = this.props;
+        let { InformationData,InformationType } = this.props;
         return (
           <div>
             <Header title="消息" LeftBtn="广播" LeftBtnFunc={this.LeftBtnFunc} />
@@ -130,7 +132,7 @@ function selectState(state,type) {
         }
         return null
         case 'InformationType':
-        if (state.InformationType)  return  state.InformationType.status_code
+        if (state.InformationType)  return  state.InformationType
         return null
     }
 }
