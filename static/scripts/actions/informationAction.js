@@ -8,6 +8,7 @@ let InformationAction = {
         return dispatch =>　{
             dispatch(FetchAction.FetchPosts());
             return api.getPrivateMessageList(data).then((res)=>{
+                dispatch(FetchAction.DidPosts());
                 dispatch(InformationAction.notic(constant.GET_PRIVATEMESSAGELIST,res,informationType));
             })
         }

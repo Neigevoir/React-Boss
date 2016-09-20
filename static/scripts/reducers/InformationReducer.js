@@ -39,6 +39,9 @@ function InformationType(state=null, action){
         case FetchingConstant.FETCHING_POSTING:
             return FetchingConstant.FETCHING_POSTING
             break;
+        case FetchingConstant.FETCHING_DIDPOSIS:
+            return FetchingConstant.FETCHING_DIDPOSIS
+            break;
         default:
             return state
     }

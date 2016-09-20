@@ -38,14 +38,6 @@ export default class Header extends React.Component{
         this.addOpacity = this.addOpacity.bind(this);
     }
 
-    componentDidMount(){
-
-    }
-
-    componentWillUnmount(){
-
-    }
-
     addOpacity(num){
         this.refs.body.style = `background-color: rgba(83,202,189,${num})`;
     }

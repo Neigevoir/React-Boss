@@ -74,6 +74,7 @@ class Information extends React.Component{
         return (
           <div>
             <Header title="消息" LeftBtn="广播" LeftBtnFunc={this.LeftBtnFunc} />
+            <Loading type={ InformationType=="FETCHING_POSTING" ? 'block':'hidden'} />
             <div className="Infomation" ref="Infomation">
     			<ul className="InfoList">
     				<div className="InfoTip">

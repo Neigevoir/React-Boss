@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { is } from 'immutable';
 
 import CompanyAction from '../../actions/companyAction'
 
@@ -15,7 +16,6 @@ class Company extends React.Component{
 
     constructor(props){
         super(props);
-
         this.CompanyFromData = {
             offset:0,
             num:16,
@@ -39,6 +39,11 @@ class Company extends React.Component{
     componentDidMount(){
         this._initialize();
         this.props.dispatch(CompanyAction.getCompanyLineList(this.CompanyFromData));
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        return  !(this.props === nextProps || is(this.props, nextProps)) ||
+                !(this.state === nextState || is(this.state, nextState));
     }
 
     componentWillUnmount(){
