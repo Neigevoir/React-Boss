@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import reducers from '../reducers/reducers';
-import { routeActions } from 'react-router-redux';
 import { Router, Route, IndexRoute, Link, hashHistory,browserHistory  } from 'react-router'
 
-// import '../../styles/index/index.css'
 import '../../styles/index/index.less'
 
 class App extends Component {
@@ -18,9 +16,7 @@ class App extends Component {
     }
 
     render() {
-        // Injected by connect() call:
         const { dispatch, visibleTodos, visibilityFilter,lineData,routerPath } = this.props
-
         return (
             <div>
                 <section>
