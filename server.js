@@ -7,7 +7,7 @@ const server = new WebpackDevServer(webpack(config), {
     hot: true,
     // progress:true,
     inline: true,
-    // quiet: true,
+    quiet: true,
     // lazy: true,
     // noInfo:true,  //不用输出打包信息
     stats: {
@@ -22,7 +22,7 @@ const server = new WebpackDevServer(webpack(config), {
         '/app/*': {
             target: 'http://www.ih5.cn',
             changeOrigin: true,
-            // host:'localhost:3000',
+            host:'localhost:3333',
             secure: false
         }
     }

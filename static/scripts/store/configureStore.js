@@ -3,13 +3,13 @@ import thunkMiddleware from 'redux-thunk'
 // import createLogger from 'redux-logger'
 import AppReducers from '../reducers/reducers'
 
-export default function configureStore(preloadedState){
-    const store = createStore(
-        AppReducers,
-        preloadedState,
-        applyMiddleware(thunkMiddleware)
-    )
-    return store
+export default function configureStore(preloadedState) {
+  const store = createStore(
+    AppReducers,
+    preloadedState,
+    applyMiddleware(thunkMiddleware)
+  )
+  return store
 }
 
 // export default function configureStore(preloadedState) {

@@ -25,14 +25,14 @@ module.exports = {
     //插件项
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            comments: false,        //去掉注释
-            minimize: true,
-            sourceMap: true,
-            compress: {
-                warnings: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     comments: false,        //去掉注释
+        //     minimize: true,
+        //     sourceMap: true,
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
         }),
@@ -72,11 +72,11 @@ module.exports = {
     },
     //KEY给require使用，value作为全局使用,用作外部引入简化打包体积
     externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM',
+        // 'react': 'React',
+        // 'react-dom': 'ReactDOM',
         'axios': 'Axios',
-        'react-router':'ReactRouter',
-        'flux': 'Flux',
+        // 'react-router':'ReactRouter',
+        // 'flux': 'Flux',
         'immutable':'Immutable'
     },
     //加载器配置
