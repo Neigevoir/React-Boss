@@ -1,0 +1,23 @@
+{
+  "presets": ["react-app"],
+  "plugins": [
+    "transform-object-entries",
+    "transform-do-expressions",
+    "transform-decorators-legacy",
+    "syntax-dynamic-import"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "src": "./src"
+            }
+          }
+        ]
+      ]
+    }
+  }
+}
