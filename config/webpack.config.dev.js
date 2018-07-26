@@ -12,7 +12,6 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
 const getClientEnvironment = require('./env')
 const paths = require('./paths')
 const shouldUseSourceMap = true
-const vConsolePlugin = require('vconsole-webpack-plugin')
 
 // const React = require('react');
 
@@ -291,9 +290,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
       _: 'lodash'
-    }),
-    new vConsolePlugin({
-      enable: false // 发布代码前记得改回 false
     })
     // textExtractor
   ],

@@ -438,9 +438,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react',
       _: 'lodash'
-    }),
-    new vConsolePlugin({
-      enable: false // 发布代码前记得改回 false
     })
   ],
   // Some libraries import Node modules but don't use them in the browser.

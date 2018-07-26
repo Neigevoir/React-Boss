@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { ReactDOM, findDOMNode } from 'react-dom'
+import { findDOMNode } from 'react-dom'
 
 // import PasLogin from './pasLogin'
 import UserAction from '../../action/userAction'
@@ -8,10 +8,6 @@ import UserAction from '../../action/userAction'
 import '../../../styles/login/login.less'
 
 class Login extends React.Component {
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
-
   constructor(props) {
     super(props)
     this.passwordLogin = this.passwordLogin.bind(this)
@@ -147,19 +143,6 @@ class Login extends React.Component {
         </div>
       </div>
     )
-  }
-}
-
-function selectState(state, type) {
-  switch (type) {
-    case 'CompanyData':
-      if (state.Company) {
-        return state.Company.CompanyData
-      }
-      return null
-    case 'CompanyType':
-      if (state.Company) return state.Company.CompanyType
-      return null
   }
 }
 

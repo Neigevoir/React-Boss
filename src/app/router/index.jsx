@@ -8,6 +8,7 @@ import {
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import Store from 'src/app/store/store.js'
+import Layout from 'src/app/containers/App.js'
 // import { persistor } from 'src/app/store/store.js'
 // import { PersistGate } from 'redux-persist/es/integration/react'
 // import Tips from 'src/app/components/tips/tips'
@@ -57,11 +58,7 @@ class App extends React.PureComponent {
         {/* <PersistGate persistor={persistor} loading={<div>Loading...</div>}> */}
         <div>
           <Router history={history}>
-            <Route
-              path="/"
-              onUpdate={this.fetchCurrentCustomer}
-              onChange={this.onChangeHook}
-            >
+            <Route path="/" component={Layout} onChange={this.onChangeHook}>
               <IndexRoute component={AsyncComponents.AsyncPositionContainer} />
               <Route
                 path="/position"
