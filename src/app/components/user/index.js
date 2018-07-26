@@ -6,10 +6,6 @@ import Header from '../header/main'
 import '../../../styles/user/user.less'
 
 class User extends React.Component {
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
-
   constructor(props) {
     super(props)
     this.getUserInfo = this.getUserInfo.bind(this)

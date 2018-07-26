@@ -6,29 +6,12 @@ import Loading from '../ui/loading'
 
 import NoticeAction from '../../actions/noticeAction'
 
-class Notice extends React.Component {
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.onMounted
-    this.getNotice = this.getNotice.bind(this)
-    this.getNoticeDay = this.getNoticeDay.bind(this)
-  }
-
+class Notice extends React.PureComponent {
   componentDidMount() {
     this.props.dispatch(NoticeAction.getNotice())
-    this.onMounted = true
   }
 
-  componentWillUnmount() {
-    this.onMounted = false
-  }
-
-  getNoticeDay(date) {
+  getNoticeDay = date => {
     let nowDate = new Date().getTime()
     let creatDate = date * 1000
     if (nowDate - 7 * 86400000 < creatDate) {
@@ -41,8 +24,6 @@ class Notice extends React.Component {
       return Math.floor((nowDate - creatDate) / (30 * 86400000)) + '月前'
     }
   }
-
-  getNotice() {}
 
   render() {
     let { NoticeData, NoticeType } = this.props
@@ -91,6 +72,8 @@ function selectState(state, type) {
       if (state.Notice)
         return state.Notice.FetchType || state.Notice.status_code
       return 'hidden'
+    default:
+      return null
   }
 }
 

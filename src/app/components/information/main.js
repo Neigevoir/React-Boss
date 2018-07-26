@@ -7,10 +7,6 @@ import Loading from '../ui/loading'
 import Header from '../header/main'
 
 class Information extends React.Component {
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
-
   constructor(props) {
     super(props)
 
@@ -83,6 +79,7 @@ class Information extends React.Component {
             <div className="InfoTip">
               <div className="Tip" onClick={this.showUserFans}>
                 <img
+                  alt=""
                   className="avator"
                   src="../../../static/images/collect.png"
                 />
@@ -91,6 +88,7 @@ class Information extends React.Component {
               <div className="Tip">
                 <img
                   className="avator"
+                  alt=""
                   src={
                     InformationData
                       ? InformationData[InformationData.length - 1].user.picture
