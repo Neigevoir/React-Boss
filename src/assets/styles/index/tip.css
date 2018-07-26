@@ -1,0 +1,93 @@
+.tips,
+.tips-default {
+  color: #fff;
+  text-align: center;
+}
+
+.tips {
+  background: #000;
+  border-radius: 3px;
+  padding: 10px 20px;
+  z-index: 1001;
+  transform: translate(-50%, -160%);
+  -webkit-transform: translate(-50%, -160%);
+  left: 50%;
+}
+
+.tips,
+.tips-hook {
+  position: fixed;
+  bottom: 0;
+}
+
+.tips-hook {
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 0;
+  line-height: 0;
+}
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fadeIn8 {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.8;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.fadeIn8 {
+  -webkit-animation-name: fadeIn8;
+  animation-name: fadeIn8;
+}

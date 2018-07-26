@@ -1,0 +1,56 @@
+.SettingDetail {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 15;
+  height: 100%;
+  width: 100%;
+  background-color: #f8f8f8;
+}
+.SettingDetail .SetOperation {
+  padding: 5px 10px;
+  font-size: 1.1rem;
+}
+.SettingDetail .SettingBottom {
+  border-bottom: 1px solid #ccc;
+}
+.OperationName {
+  /*font-size: 12px;*/
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+}
+
+.SettingDetail .SetInput {
+  border: none;
+  display: inline-block;
+  height: 24px;
+  vertical-align: text-bottom;
+}
+.SettingDetail .SettingDetailBtn {
+  background-color: #53cabd;
+  padding: 7px 10px;
+  width: 86%;
+  margin: 0 auto;
+  border-radius: 5px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.SettingDetail .SetOperation input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #ccc;
+}
+.SettingDetail .SetOperation input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #ccc;
+}
+.SettingDetail .SetOperation input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #ccc;
+}
+.SettingDetail .SetOperation input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #ccc;
+}
