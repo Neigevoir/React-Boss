@@ -1,10 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PositionAction from 'src/app/actions/positionAction'
+import Actions from 'src/app/actions/actions'
 
 import PositionList from './positionList'
-
-import Header from '../header/main'
 
 class Position extends React.Component {
   constructor(props) {
@@ -29,7 +27,7 @@ class Position extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(
-      PositionAction.getLinePosition(this.getPositionFormData, 'recommend')
+      Actions.position.getLinePosition(this.getPositionFormData, 'recommend')
     )
   }
 
@@ -83,14 +81,6 @@ class Position extends React.Component {
       position = 'recommend'
     return (
       <div className="positionBody">
-        <Header
-          title="职位"
-          LeftBtn="广播"
-          LeftBtnFunc={this.LeftBtnFunc}
-          RightBtn="搜索"
-          RightBtnFunc={this.SearchShow}
-          ref="header"
-        />
         <section className="navSlideBody">
           <nav className="navSlide">
             <span

@@ -99,4 +99,4 @@ let userApi = {
   }
 }
 
-module.exports = userApi
+export default userApi

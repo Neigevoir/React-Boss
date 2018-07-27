@@ -8,13 +8,11 @@ function Position(state = null, action) {
         positiondata: action.res,
         positiontype: action.usertype
       })
-      break
     case constant.GET_SEARCHLIST:
       return Object.assign({}, state, {
         positiondata: action.res,
         positiontype: action.usertype
       })
-      break
     default:
       return state
   }

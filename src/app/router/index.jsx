@@ -1,20 +1,15 @@
-import {
-  Router,
-  Route,
-  Redirect,
-  IndexRoute,
-  browserHistory
-} from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
+import { Router, Route } from 'react-router-dom'
+// import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import Store from 'src/app/store/store.js'
-import Layout from 'src/app/containers/App.js'
+import Layout from './router.jsx'
 // import { persistor } from 'src/app/store/store.js'
 // import { PersistGate } from 'redux-persist/es/integration/react'
 // import Tips from 'src/app/components/tips/tips'
-import * as AsyncComponents from './ImportComponents'
+// import * as AsyncComponents from './ImportComponents'
 // import WithErrorHandle from 'src/app/components/HOC/with_errorhandle/witherrorhandle'
-const history = syncHistoryWithStore(browserHistory, Store)
+import createBrowserHistory from 'history/createBrowserHistory'
+const history = createBrowserHistory()
 
 class App extends React.PureComponent {
   componentWillMount() {
@@ -58,14 +53,7 @@ class App extends React.PureComponent {
         {/* <PersistGate persistor={persistor} loading={<div>Loading...</div>}> */}
         <div>
           <Router history={history}>
-            <Route path="/" component={Layout} onChange={this.onChangeHook}>
-              <IndexRoute component={AsyncComponents.AsyncPositionContainer} />
-              <Route
-                path="/position"
-                component={AsyncComponents.AsyncPositionContainer}
-              />
-            </Route>
-            <Redirect from="*" to="/home" />
+            <Route path="/" component={Layout} onChange={this.onChangeHook} />
           </Router>
           {/* <Tips /> */}
         </div>

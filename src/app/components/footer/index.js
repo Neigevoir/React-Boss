@@ -1,46 +1,45 @@
 import React, { PureComponent } from 'react'
-import { Link } from 'react-router'
+import { NavLink } from 'react-router-dom'
 export default class Footer extends PureComponent {
   constructor(props) {
     super(props)
-    this.footer = []
+    this.footer = [
+      {
+        title: '职位',
+        link: 'position'
+      },
+      {
+        title: '公司',
+        link: 'company'
+      },
+      {
+        title: '消息',
+        link: 'information'
+      },
+      {
+        title: '我的',
+        link: 'user'
+      }
+    ]
   }
 
   render() {
     return (
       <ul id="nav" className="navigation">
-        <li>
-          <Link
-            className="active"
-            activeClassName="RouterActive"
-            to="/position"
-          >
-            <img alt="" src="../static/images/position.png" />
-            <span>职位</span>
-          </Link>
-        </li>
-        <li>
-          <Link className="active" activeClassName="RouterActive" to="/company">
-            <img alt="" src="../static/images/company.png" />
-            <span>公司</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="active"
-            activeClassName="RouterActive"
-            to="/information"
-          >
-            <img alt="" src="../static/images/information.png" />
-            <span>消息</span>
-          </Link>
-        </li>
-        <li>
-          <Link className="active" activeClassName="RouterActive" to="/user">
-            <img alt="" src="../static/images/user.png" />
-            <span>我的</span>
-          </Link>
-        </li>
+        {_.map(this.footer, (v, k) => {
+          return (
+            <li key={k}>
+              <NavLink
+                className="active"
+                activeClassName="RouterActive"
+                to={`/${v.link}`}
+              >
+                <img alt="" src={require(`src/assets/images/${v.link}.png`)} />
+                <span>{v.title}</span>
+              </NavLink>
+            </li>
+          )
+        })}
       </ul>
     )
   }

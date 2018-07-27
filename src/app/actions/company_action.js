@@ -1,5 +1,5 @@
 import api from '../api/companyApi'
-import FetchAction from './FetchAction'
+import FetchAction from './fetch_action'
 import constant from '../constants/company'
 
 const getCompanyLineList = (data, companytype) => {

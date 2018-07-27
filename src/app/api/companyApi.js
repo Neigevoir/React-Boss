@@ -48,4 +48,4 @@ let companyApi = {
   }
 }
 
-module.exports = companyApi
+export default companyApi

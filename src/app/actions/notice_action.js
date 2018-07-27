@@ -1,5 +1,5 @@
 import api from '../api/noticeApi'
-import FetchAction from './FetchAction'
+import FetchAction from './fetch_action'
 import constant from '../constants/notice'
 
 const getNotice = (data, type) => {

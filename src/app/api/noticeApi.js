@@ -14,4 +14,4 @@ let noticeApi = {
   }
 }
 
-module.exports = noticeApi
+export default noticeApi
