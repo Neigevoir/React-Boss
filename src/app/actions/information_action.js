@@ -1,5 +1,5 @@
 import api from '../api/informationApi'
-import FetchAction from './FetchAction'
+import FetchAction from './fetch_action'
 import constant from '../constants/information'
 
 const getPrivateMessageList = (data, informationType) => {

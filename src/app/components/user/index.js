@@ -266,6 +266,8 @@ function selectState(state, type) {
     case 'UserType':
       if (state.UserType) return state.UserType.status_code
       return null
+    default:
+      return null
   }
 }
 

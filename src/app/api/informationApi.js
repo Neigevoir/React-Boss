@@ -43,4 +43,4 @@ let InformationApi = {
   }
 }
 
-module.exports = InformationApi
+export default InformationApi

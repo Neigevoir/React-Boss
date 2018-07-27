@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PositionAction from 'src/app/actions/positionAction'
+import Actions from 'src/app/actions/actions'
 
 class PositionList extends React.Component {
   constructor(props) {
@@ -71,7 +71,7 @@ class PositionList extends React.Component {
 
   getNewState(num, width, type) {
     this.refs.position.setAttribute('class', 'positionList transition')
-    if (type == 'x') {
+    if (type === 'x') {
       if (num > 0) {
         if (this.state.type === 'recommend') return
         if (num < width * 0.3) {
@@ -91,7 +91,7 @@ class PositionList extends React.Component {
         console.log('Silly B')
       }
     } else {
-      if (this.refs.body.scrollTop == 0) {
+      if (this.refs.body.scrollTop === 0) {
         this.refs.position.style.webkitTransform = 'translateY(' + 0 + 'px)'
       }
     }
@@ -174,14 +174,12 @@ class PositionList extends React.Component {
           let PostData = this.getPositionFormData
           PostData.num += 16
           PostData.type = this.state.type
-          // this.refs.loading.show();
           this.props.dispatch(
-            PositionAction.getLinePosition(
+            Actions.position.getLinePosition(
               this.getPositionFormData,
               'recommend'
             )
           )
-          // PositionAction.getLinePosition(PostData);
         }
       }
     })
@@ -192,7 +190,7 @@ class PositionList extends React.Component {
     this.getPositionFormData.type = state
     // this.refs.loading.show();
     this.props.dispatch(
-      PositionAction.getLinePosition(this.getPositionFormData, 'recommend')
+      Actions.position.getLinePosition(this.getPositionFormData, 'recommend')
     )
     // PositionAction.getLinePosition(this.getPositionFormData);
   }
