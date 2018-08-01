@@ -12,7 +12,12 @@ import createBrowserHistory from 'history/createBrowserHistory'
 const history = createBrowserHistory()
 
 class App extends React.PureComponent {
-  componentWillMount() {
+  constructor(props) {
+    super(props)
+    global.AvailWidth = window.screen.availWidth
+  }
+
+  componentDidMount() {
     window.addEventListener('pageshow', e => {
       // 通过persisted属性判断是否存在 BF Cache
       e.persisted && window.location.reload()
