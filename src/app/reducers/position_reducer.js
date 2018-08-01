@@ -1,25 +1,25 @@
-import { combineReducers } from 'redux'
 import constant from '../constants/position'
 
-function Position(state = null, action) {
+const initialState = {
+  type: '',
+  list: []
+}
+
+function reducer(state = initialState, action) {
   switch (action.type) {
     case constant.GET_LINEPOSITION:
-      return Object.assign({}, state, {
-        positiondata: action.res,
-        positiontype: action.usertype
-      })
+      return {
+        type: action.usertype,
+        list: [...state.list, ...action.res.data]
+      }
     case constant.GET_SEARCHLIST:
-      return Object.assign({}, state, {
-        positiondata: action.res,
-        positiontype: action.usertype
-      })
+      return {
+        type: action.usertype,
+        list: [...state.list, ...action.res.data]
+      }
     default:
       return state
   }
 }
 
-const todoApp = combineReducers({
-  Position
-})
-
-export default todoApp
+export default reducer

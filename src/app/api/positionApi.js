@@ -7,12 +7,12 @@ let PositionApi = {
       url: '/app/vxwork/list',
       mode: 'cors',
       data: {
-        offset: offset,
-        num: num,
-        fid: fid,
-        uid: uid,
-        like: like,
-        type: type
+        offset,
+        num,
+        fid,
+        uid,
+        like,
+        type
       }
     })
   },
@@ -27,10 +27,10 @@ let PositionApi = {
       url: '/app/vxwork/search',
       mode: 'cors',
       data: {
-        num: num,
-        offset: offset,
-        type: type,
-        keyword: keyword
+        num,
+        offset,
+        type,
+        keyword
       }
     })
   }

@@ -1,11 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import Actions from 'src/app/actions/actions'
 
-class PositionList extends React.Component {
+export default class PositionList extends React.Component {
   constructor(props) {
     super(props)
-
     this.getPositionFormData = {
       offset: 0,
       num: 16,
@@ -40,12 +38,11 @@ class PositionList extends React.Component {
     this.addScroll()
   }
 
-  componentWillUnmount() {}
-
-  getSearchList(res) {
+  getSearchList = res => {
     let newData = []
     Array.from(res.data).map((v, k) => {
       newData.push(v)
+      return null
     })
     this.setState({
       PositionLine: newData
@@ -185,7 +182,7 @@ class PositionList extends React.Component {
     })
   }
 
-  getLineData(state) {
+  getLineData = state => {
     this.getPositionFormData.num = 16
     this.getPositionFormData.type = state
     // this.refs.loading.show();
@@ -195,7 +192,7 @@ class PositionList extends React.Component {
     // PositionAction.getLinePosition(this.getPositionFormData);
   }
 
-  getLinePosition(res) {
+  getLinePosition = res => {
     this.setState(
       {
         PositionLine: res.data.reverse()
@@ -215,19 +212,13 @@ class PositionList extends React.Component {
   }
 
   render() {
-    let PositionLine, bobo
-    if (this.props.PositionLine) {
-      bobo = this.props.PositionLine.positiondata
-    }
-    if (bobo) {
-      PositionLine = bobo.data
-    }
+    const { listData } = this.props
     return (
       <div ref="body" className="positionListBody">
         <div ref="position" className="positionList">
           <ul className="positionUl">
-            {PositionLine
-              ? PositionLine.map((v, k) => {
+            {!_.isEmpty(listData)
+              ? listData.map((v, k) => {
                   return (
                     <li key={k} onClick={this.positionDetail.bind(null, v)}>
                       <div className="position_content">
@@ -280,12 +271,3 @@ class PositionList extends React.Component {
     )
   }
 }
-
-function select(state) {
-  return {
-    PositionData: state.PositionReducer,
-    PositionType: state.PositionReducer
-  }
-}
-
-export default connect(select)(PositionList)

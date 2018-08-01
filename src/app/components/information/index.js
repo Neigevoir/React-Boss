@@ -7,17 +7,6 @@ import Loading from '../ui/loading'
 import Header from '../header/main'
 
 class Information extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.getFollowing = this.getFollowing.bind(this)
-    this.showInfoDetail = this.showInfoDetail.bind(this)
-    this.LeftBtnFunc = this.LeftBtnFunc.bind(this)
-    this.showUserFans = this.showUserFans.bind(this)
-    this.getPrivateMessageList = this.getPrivateMessageList.bind(this)
-    this._initialize = this._initialize.bind(this)
-  }
-
   componentWillMount() {
     this.getPrivateMessageList()
   }
@@ -26,17 +15,15 @@ class Information extends React.Component {
     this._initialize()
   }
 
-  componentWillUnmount() {}
-
-  _initialize() {
+  _initialize = () => {
     this.refs.Infomation.style.height = window.screen.availHeight - 50 + 'px'
   }
 
-  getPrivateMessageList() {
+  getPrivateMessageList = () => {
     this.props.dispatch(InformationAction.getPrivateMessageList())
   }
 
-  getFollowing(res) {
+  getFollowing = res => {
     this.refs.loading.hidden()
     function sortData(a, b) {
       return b.message.created_at - a.message.created_at
@@ -58,11 +45,11 @@ class Information extends React.Component {
     )
   }
 
-  LeftBtnFunc() {
+  LeftBtnFunc = () => {
     this.context.router.push('notice')
   }
 
-  showUserFans() {
+  showUserFans = () => {
     this.refs.InformationOther.showUserFans()
   }
 
@@ -72,7 +59,7 @@ class Information extends React.Component {
       <div>
         <Header title="消息" LeftBtn="广播" LeftBtnFunc={this.LeftBtnFunc} />
         <Loading
-          type={InformationType == 'FETCHING_POSTING' ? 'block' : 'hidden'}
+          type={InformationType === 'FETCHING_POSTING' ? 'block' : 'hidden'}
         />
         <div className="Infomation" ref="Infomation">
           <ul className="InfoList">
