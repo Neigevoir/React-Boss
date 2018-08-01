@@ -1,10 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Actions from 'src/app/actions/actions'
-
 import PositionList from './positionList'
 
-class Position extends React.Component {
+function getState(state, props) {
+  const { list, type } = state.position
+  return {
+    list,
+    type
+  }
+}
+
+@connect(getState)
+export default class Position extends React.Component {
   constructor(props) {
     super(props)
 
@@ -16,13 +24,7 @@ class Position extends React.Component {
       like: 0,
       type: 'recommend'
     }
-
-    this.getPositionList = this.getPositionList.bind(this)
-    this.onScroll = this.onScroll.bind(this)
-    this.TitleChange = this.TitleChange.bind(this)
-    this.SearchShow = this.SearchShow.bind(this)
-    this.showSelectModal = this.showSelectModal.bind(this)
-    this.LeftBtnFunc = this.LeftBtnFunc.bind(this)
+    this.navRightSlide = React.createRef()
   }
 
   componentWillMount() {
@@ -33,7 +35,7 @@ class Position extends React.Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.onScroll)
-    this.refs.navRightSlide.style.webkitTransform =
+    this.navRightSlide.current.style.webkitTransform =
       'translateX(' + window.screen.availWidth + 'px)'
   }
 
@@ -41,72 +43,66 @@ class Position extends React.Component {
     window.removeEventListener('scroll', this.onScroll)
   }
 
-  TitleChange(type) {
+  TitleChange = type => () => {
     if (type === 'show') {
-      this.refs.navRightSlide.style.webkitTransform = 'translateX(' + 0 + 'px)'
+      this.navRightSlide.current.style.webkitTransform = `translateX(0px)`
     } else {
-      this.refs.navRightSlide.style.webkitTransform =
+      this.navRightSlide.current.style.webkitTransform =
         'translateX(' + window.screen.availWidth + 'px)'
     }
   }
 
-  onScroll() {
+  onScroll = () => {
     if (window.pageYOffset === 0) {
       console.log('已经到顶了！')
     }
   }
 
-  getPositionList(state) {
+  getPositionList = state => {
     if (this.refs.PositionList) {
       console.log(this.refs.PositionList.getNowState())
       // this.refs.PositionList.getNowState(state);
     }
   }
 
-  SearchShow() {
+  SearchShow = () => {
     this.refs.Search.SearchShow()
   }
 
-  showSelectModal(e) {
+  showSelectModal = e => {
     this.refs.SelectModal.changeType(e.target.innerHTML)
     this.refs.SelectModal.show()
   }
 
-  LeftBtnFunc() {
-    this.context.router.push('notice')
-  }
+  LeftBtnFunc = () => this.context.router.push('notice')
 
   render() {
-    const { PositionData } = this.props,
-      position = 'recommend'
+    const { list, type } = this.props
     return (
       <div className="positionBody">
         <section className="navSlideBody">
           <nav className="navSlide">
             <span
               className={
-                position === 'recommend' ? 'slideRemon select' : 'slideRemon'
+                type === 'recommend' ? 'slideRemon select' : 'slideRemon'
               }
               onClick={this.getPositionList.bind(null, 'recommend')}
             >
               推荐
             </span>
             <span
-              className={position === 'latest' ? 'slideNew select' : 'slideNew'}
+              className={type === 'latest' ? 'slideNew select' : 'slideNew'}
               onClick={this.getPositionList.bind(null, 'latest')}
             >
               最新
             </span>
             <span
-              className={position === 'class1' ? 'slideHot select' : 'slideHot'}
+              className={type === 'class1' ? 'slideHot select' : 'slideHot'}
               onClick={this.getPositionList.bind(null, 'class1')}
             >
               最热
             </span>
-            <span
-              className="slideSelect"
-              onClick={this.TitleChange.bind(null, 'show')}
-            >
+            <span className="slideSelect" onClick={this.TitleChange('show')}>
               <img
                 className="Select"
                 src="../../static/images/Speaker.png"
@@ -114,7 +110,7 @@ class Position extends React.Component {
               />
             </span>
           </nav>
-          <nav ref="navRightSlide" className="navRightSlide transition">
+          <nav ref={this.navRightSlide} className="navRightSlide transition">
             <span onClick={this.showSelectModal} className="slideRemon">
               薪水
             </span>
@@ -124,10 +120,7 @@ class Position extends React.Component {
             <span onClick={this.showSelectModal} className="slideHot">
               公司规模
             </span>
-            <span
-              className="slideSelect"
-              onClick={this.TitleChange.bind(null, 'hidden')}
-            >
+            <span className="slideSelect" onClick={this.TitleChange('hidden')}>
               <img
                 alt=""
                 className="arrow"
@@ -136,21 +129,8 @@ class Position extends React.Component {
             </span>
           </nav>
         </section>
-        <PositionList
-          ref="PositionList"
-          PositionLine={PositionData ? PositionData.Position : []}
-        />
+        <PositionList ref="PositionList" listData={list} />
       </div>
     )
   }
 }
-
-function select(state) {
-  return {
-    PositionData: state.PositionReducer,
-    PositionType: state.PositionReducer
-  }
-}
-
-// 包装 component ，注入 dispatch 和 state 到其默认的 connect(select)(App) 中；
-export default connect(select)(Position)

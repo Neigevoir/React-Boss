@@ -21,72 +21,11 @@
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
   <title>首页</title>
-  <script>
-    var _hmt = _hmt || [];
-  </script>
-  <!-- adhoc sdk -->
-  <script src=https://sdk.appadhoc.com/ab.plus.js></script>
-  <script>
-    function generateUUID() {
-      var d = new Date().getTime();
-      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = (d + Math.random() * 16) % 16 | 0;
-        d = Math.floor(d / 16);
-        return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-      });
-      return uuid;
-    }
-
-    function getCount(str, character) {
-      const regex = new RegExp(character, 'g')
-      const result = str.match(regex)
-      return !result ? 0 : result.length
-    }
-
-    let CLIENT_ID = null
-    for (let i = 0; i < localStorage.length; i++) {
-      localKey = localStorage.key(i)
-      if (localKey.length === 36 && localKey.indexOf('-') === 8 && getCount(localKey, '-') === 4) {
-        CLIENT_ID = localStorage.getItem(localKey)
-      }
-    }
-
-    if (!CLIENT_ID) {
-      const UUID = generateUUID()
-      CLIENT_ID = UUID
-      localStorage.setItem(UUID, UUID)
-    }
-    let appKey = 'ADHOC_a85fb758-f82d-44ce-845e-20f89af56b3f'
-    const locationHref = window.location.href
-    if (locationHref && locationHref.match('wechat.letote.cn')) {
-      appKey = 'ADHOC_946d1d52-5f6e-4282-8c0e-be7e346bf244'
-    }
-
-    //init ab test
-    window.adhoc('init', {
-      appKey: appKey,
-      clientId: CLIENT_ID,
-      defaultFlags: {
-        USE_CREDIT_OR_MOBILE: false
-      }
-    })
-  </script>
-  <!-- adhoc sdk end -->
-
 </head>
 
 <body>
   <div id="root"></div>
   <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
-  <script>
-    var _hmt = _hmt || [];
-    (function () {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?f10937653ce6a3e5f9def6a4654fb55f";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
 </body>
 
 </html>

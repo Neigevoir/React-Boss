@@ -13,12 +13,9 @@ const history = createBrowserHistory()
 
 class App extends React.PureComponent {
   componentWillMount() {
-    window._hmt.push(['_setAutoPageview', true])
     window.addEventListener('pageshow', e => {
       // 通过persisted属性判断是否存在 BF Cache
-      if (e.persisted) {
-        window.location.reload()
-      }
+      e.persisted && window.location.reload()
     })
   }
 
@@ -43,7 +40,7 @@ class App extends React.PureComponent {
     }
   }
 
-  onChangeHook = (preState, nextState, replace) => {
+  onChangeHook = (preState, nextState) => {
     this.scrollPosition(preState, nextState)
   }
 
