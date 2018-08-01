@@ -4,10 +4,11 @@ import Actions from 'src/app/actions/actions'
 import PositionList from './positionList'
 
 function getState(state, props) {
-  const { list, type } = state.position
+  const { list, filters, listType } = state.position
   return {
     list,
-    type
+    filters,
+    listType
   }
 }
 
@@ -27,16 +28,14 @@ export default class Position extends React.Component {
     this.navRightSlide = React.createRef()
   }
 
-  componentWillMount() {
-    this.props.dispatch(
-      Actions.position.getLinePosition(this.getPositionFormData, 'recommend')
-    )
-  }
-
   componentDidMount() {
+    this.props.dispatch(
+      Actions.position.getLinePosition(this.props.filters, 'recommend')
+    )
     window.addEventListener('scroll', this.onScroll)
-    this.navRightSlide.current.style.webkitTransform =
-      'translateX(' + window.screen.availWidth + 'px)'
+    this.navRightSlide.current.style.webkitTransform = `translateX(${
+      global.AvailWidth
+    }px)`
   }
 
   componentWillUnmount() {
@@ -58,11 +57,11 @@ export default class Position extends React.Component {
     }
   }
 
-  getPositionList = state => {
-    if (this.refs.PositionList) {
-      console.log(this.refs.PositionList.getNowState())
-      // this.refs.PositionList.getNowState(state);
-    }
+  getPositionList = state => () => {
+    const { filters } = this.props
+    const filter = { ...filters, type: state }
+    this.props.dispatch(Actions.position.setFilters(filter))
+    this.props.dispatch(Actions.position.getLinePosition(filter, state))
   }
 
   SearchShow = () => {
@@ -77,28 +76,28 @@ export default class Position extends React.Component {
   LeftBtnFunc = () => this.context.router.push('notice')
 
   render() {
-    const { list, type } = this.props
+    const { list, listType } = this.props
     return (
       <div className="positionBody">
         <section className="navSlideBody">
           <nav className="navSlide">
             <span
               className={
-                type === 'recommend' ? 'slideRemon select' : 'slideRemon'
+                listType === 'recommend' ? 'slideRemon select' : 'slideRemon'
               }
-              onClick={this.getPositionList.bind(null, 'recommend')}
+              onClick={this.getPositionList('recommend')}
             >
               推荐
             </span>
             <span
-              className={type === 'latest' ? 'slideNew select' : 'slideNew'}
-              onClick={this.getPositionList.bind(null, 'latest')}
+              className={listType === 'latest' ? 'slideNew select' : 'slideNew'}
+              onClick={this.getPositionList('latest')}
             >
               最新
             </span>
             <span
-              className={type === 'class1' ? 'slideHot select' : 'slideHot'}
-              onClick={this.getPositionList.bind(null, 'class1')}
+              className={listType === 'class1' ? 'slideHot select' : 'slideHot'}
+              onClick={this.getPositionList('class1')}
             >
               最热
             </span>
