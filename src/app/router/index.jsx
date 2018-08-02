@@ -5,7 +5,6 @@ import Store from 'src/app/store/store.js'
 import Layout from './router.jsx'
 // import { persistor } from 'src/app/store/store.js'
 // import { PersistGate } from 'redux-persist/es/integration/react'
-// import Tips from 'src/app/components/tips/tips'
 // import * as AsyncComponents from './ImportComponents'
 // import WithErrorHandle from 'src/app/components/HOC/with_errorhandle/witherrorhandle'
 import createBrowserHistory from 'history/createBrowserHistory'
@@ -57,7 +56,6 @@ class App extends React.PureComponent {
         <Router history={history}>
           <Route path="/" component={Layout} onChange={this.onChangeHook} />
         </Router>
-        {/* <Tips /> */}
         {/* </PersistGate> */}
       </Provider>
     )

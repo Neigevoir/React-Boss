@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Actions from 'src/app/actions/actions'
 import PositionList from './positionList'
-import PositionNav from 'src/app/components/position/components/nav.js'
+import PositionNav from 'src/app/containers/position/components/nav.js'
 
 function getState(state, props) {
   const { list, filters, listType } = state.position
