@@ -1,40 +1,37 @@
-import { combineReducers } from 'redux'
 import constant from '../constants/company'
-import FetchingConstant from '../constants/fetching'
 
-function Company(state = null, action) {
+const initialState = {
+  filters: {
+    offset: 0,
+    num: 16,
+    fid: 0,
+    uid: 0,
+    like: 0,
+    type: 'recommend'
+  },
+  list: []
+}
+
+const handleList = (state, action) => {
+  return {
+    filters: state.filters,
+    listType: action.listType,
+    list:
+      state.filters.type === action.usertype
+        ? [...state.list, ...action.res.data]
+        : action.res.data
+  }
+}
+
+function reducer(state = initialState, action) {
   switch (action.type) {
     case constant.GET_COMPANYLINELIST:
-      return Object.assign({}, state, {
-        CompanyData: action.res,
-        CompanyType: action.companytype
-      })
+      return handleList(state, action)
     case constant.GET_COMPANYDETAIL:
-      return Object.assign({}, state, {
-        CompanyDetailData: action.res,
-        CompanyDetailType: action.companytype
-      })
-    case FetchingConstant.FETCHING_POSTING:
-      return Object.assign({}, state, {
-        CompanyType: FetchingConstant.FETCHING_POSTING
-      })
+      return handleList(state, action)
     default:
       return state
   }
 }
 
-function CompanyType(state = 'hidden', action) {
-  switch (action.type) {
-    case constant.SHOW_COMPANYDETAIL:
-      return action.companyDetailtype
-    default:
-      return state
-  }
-}
-
-const todoApp = combineReducers({
-  Company,
-  CompanyType
-})
-
-export default todoApp
+export default reducer

@@ -1,0 +1,27 @@
+.navigation {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  .link {
+    flex: 1;
+    text-align: center;
+    &.active {
+      height: 100%;
+      display: inline-block;
+      width: 100%;
+      color: #fff;
+      background-color: #53cac6;
+    }
+  }
+  span {
+    display: block;
+  }
+  img {
+    width: 25px;
+    height: 22px;
+    display: inline-block;
+  }
+}

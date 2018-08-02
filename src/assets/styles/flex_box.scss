@@ -1,0 +1,37 @@
+$width: 750;
+$height: 1206;
+$percent: 1;
+/*
+* 将设计稿px转换成前端的尺寸vw
+*/
+@function flex_box($px) {
+  @return $px * ($percent / $width) * 100vw;
+}
+
+/*
+* 将设计稿pt转换成前端的尺寸
+*/
+@function flex_box_width($px) {
+  @return $px * ($percent / $width) * 100vw;
+}
+
+/*
+* 将设计稿px转换成前端的尺寸
+*/
+@function flex_box_height($px) {
+  @return $px * 0.5px;
+}
+
+/*
+* 将设计稿pt转换成前端的尺寸vw
+*/
+@function flex_pt($pt) {
+  @return $pt * ($percent / $width) * 2 * 100vw;
+}
+
+/*
+* 将设计稿转换成前端的尺寸vw
+*/
+@function px_pt($px) {
+  @return $px / 2 * 1px;
+}

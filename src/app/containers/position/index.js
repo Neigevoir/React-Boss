@@ -25,7 +25,7 @@ export default class Position extends React.PureComponent {
       Actions.position.getLinePosition(this.props.filters, 'recommend')
     )
     this.props.dispatch(
-      Actions.header.changeHeader({
+      Actions.common.changeHeader({
         title: '职位',
         leftBtn: '广告',
         handleLeft: this.gotoNotice,
@@ -63,6 +63,7 @@ export default class Position extends React.PureComponent {
 
   render() {
     const { list, listType, filters, dispatch } = this.props
+    const listData = !_.isEmpty(list) ? [...list] : []
     return (
       <div className="positionBody">
         <PositionNav listType={listType} handleClick={this.getPositionList} />
@@ -70,7 +71,7 @@ export default class Position extends React.PureComponent {
           ref="PositionList"
           dispatch={dispatch}
           filters={filters}
-          listData={list}
+          listData={listData.reverse()}
           listType={listType}
         />
       </div>

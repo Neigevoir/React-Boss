@@ -1,11 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import CompanyAction from '../../actions/companyAction'
-import Loading from '../ui/loading'
-import CompanyDetail from './companyDetail'
-import Header from '../header/main'
+import Actions from 'src/app/actions/actions'
+// import CompanyDetail from './companyDetail'
 
-class Company extends React.Component {
+function getState(state) {
+  const { list, filters } = state.company
+  return {
+    list,
+    filters
+  }
+}
+
+@connect(getState)
+export default class Company extends React.Component {
   constructor(props) {
     super(props)
     this.CompanyFromData = {
@@ -19,26 +26,29 @@ class Company extends React.Component {
 
     this.ScrollTop = 0
     this.ScrollHeight = window.screen.availHeight - 50 + 'px' //滑动列表的高度用作overflow
-
-    this.getCompanyLineList = this.getCompanyLineList.bind(this)
-    this.onScroll = this.onScroll.bind(this)
-    this.CorperationaddEvent = this.CorperationaddEvent.bind(this)
-    this.LeftBtnFunc = this.LeftBtnFunc.bind(this)
-    this.showCompanyDetail = this.showCompanyDetail.bind(this)
-    this._initialize = this._initialize.bind(this)
   }
 
   componentDidMount() {
-    this._initialize()
-    this.props.dispatch(CompanyAction.getCompanyLineList(this.CompanyFromData))
+    this.props.dispatch(
+      Actions.common.changeHeader({
+        title: '公司',
+        leftBtn: '广告',
+        handleLeft: this.gotoNotice,
+        rightBtn: '',
+        handleRight: () => {}
+      })
+    )
+    this.props.dispatch(Actions.company.getCompanyLineList(this.props.filters))
   }
 
-  _initialize() {
+  gotoNotice = () => {}
+
+  _initialize = () => {
     this.refs.companyList.style.height = this.ScrollHeight //用作overflow
     this.CorperationaddEvent() //增加Touch事件
   }
 
-  CorperationaddEvent() {
+  CorperationaddEvent = () => {
     let startY, moveY, endY
     this.refs.companyList.addEventListener('touchstart', e => {
       startY = e.touches[0].pageY
@@ -47,14 +57,14 @@ class Company extends React.Component {
     this.refs.companyList.addEventListener('touchmove', e => {
       endY = e.changedTouches[0].pageY
       moveY = endY - startY
-      if (moveY > 0 && this.ScrollTop == 0) {
+      if (moveY > 0 && this.ScrollTop === 0) {
         e.preventDefault()
         this.refs.companyList.style.webkitTransform =
           'translateY(' + moveY + 'px)'
       }
     })
     this.refs.companyList.addEventListener('touchend', e => {
-      if (moveY > 0 && this.ScrollTop == 0) {
+      if (moveY > 0 && this.ScrollTop === 0) {
         this.refs.companyList.setAttribute('class', 'companyList transition')
         this.refs.companyList.style.webkitTransform = 'translateY(' + 0 + 'px)'
       }
@@ -70,40 +80,36 @@ class Company extends React.Component {
     })
   }
 
-  onScroll() {
-    if (this.ScrollTop == 0) {
+  onScroll = () => {
+    if (this.ScrollTop === 0) {
       this.CompanyFromData.num += 16
-      CompanyAction.getCompanyLineList(this.CompanyFromData)
+      Actions.company.getCompanyLineList(this.CompanyFromData)
     }
   }
 
-  getCompanyLineList(res) {
+  getCompanyLineList = res => {
     this.setState({
       CompanyData: res.data.reverse()
     })
   }
 
-  LeftBtnFunc() {
+  LeftBtnFunc = () => {
     this.context.router.push('notice')
   }
 
-  showCompanyDetail(data) {
-    this.props.dispatch(CompanyAction.changeCompanyDetail('show'))
+  showCompanyDetail = () => {
+    this.props.dispatch(Actions.company.changeCompanyDetail('show'))
   }
 
   render() {
-    let { CompanyData, CompanyType } = this.props
+    let { list } = this.props
     return (
       <div>
-        <Header title="公司" LeftBtn="广播" LeftBtnFunc={this.LeftBtnFunc} />
-        <Loading
-          type={CompanyType === 'FETCHING_POSTING' ? 'block' : 'hidden'}
-        />
         <ul ref="companyList" className="companyList">
-          {CompanyData &&
-            CompanyData.data.map((v, k) => {
+          {!_.isEmpty(list) &&
+            list.map((v, k) => {
               return (
-                <li key={k} onClick={this.showCompanyDetail.bind(null, v)}>
+                <li key={k} onClick={this.showCompanyDetail}>
                   <div className="companys">
                     <img className="companyPic" src={v.image} alt="" />
                     <div className="companyPro">
@@ -130,32 +136,8 @@ class Company extends React.Component {
               )
             })}
         </ul>
-        <CompanyDetail />
+        {/* <CompanyDetail /> */}
       </div>
     )
   }
 }
-
-function selectState(state, type) {
-  switch (type) {
-    case 'CompanyData':
-      if (state.Company) {
-        return state.Company.CompanyData
-      }
-      return null
-    case 'CompanyType':
-      if (state.Company) return state.Company.CompanyType
-      return 'hidden'
-    default:
-      return null
-  }
-}
-
-function select(state) {
-  return {
-    CompanyData: selectState(state.CompanyReducer, 'CompanyData'),
-    CompanyType: selectState(state.CompanyReducer, 'CompanyType')
-  }
-}
-
-export default connect(select)(Company)
