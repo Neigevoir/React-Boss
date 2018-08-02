@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import Header from 'src/app/components/header'
 import Footer from 'src/app/components/footer'
+import 'src/assets/styles/all.scss'
 import 'src/assets/styles/index/index.scss'
 import { Route } from 'react-router-dom'
 import * as AsyncComponents from 'src/app/router/ImportComponents'

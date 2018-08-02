@@ -1,0 +1,74 @@
+/* // override bootstrap variables */
+$enable-flex: true;
+/*
+// override bootstrap grid, for now, to work with old navbar
+// this is going to get removed later
+//$grid-breakpoints: (sm: 992px);
+
+// this is for the header but it is in here so that
+// it does not get picked up by the old site
+*/
+body {
+  min-width: 100%;
+  padding-top: 0px;
+  font-variant-numeric: lining-nums;
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
+}
+
+input,
+select {
+  outline: none !important;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+html.modal-open {
+  body {
+    overflow: hidden;
+  }
+}
+
+.hide {
+  display: none !important;
+}
+.btn {
+  outline: none !important;
+}
+
+img {
+  max-width: 100%;
+}
+
+// FIXME:取消长按保存(dev-96)
+img{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+a {
+  text-decoration: none !important;
+  user-select: none !important;
+}
+
+.mid {
+  margin: 0 auto;
+}
+
+.btn-primary {
+  border-color: #fff !important;
+  background-color: #e85c40 !important;
+}
+
+.clear{
+  clear: both;
+}
+.hidden{
+  display: none;
+}
