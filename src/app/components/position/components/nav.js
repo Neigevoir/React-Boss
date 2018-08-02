@@ -6,7 +6,6 @@ export default class PositionNav extends React.Component {
     this.state = {
       isShow: false
     }
-    this.navSlide = React.createRef()
   }
 
   handleChange = () => {

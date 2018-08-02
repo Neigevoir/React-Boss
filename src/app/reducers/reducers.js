@@ -4,6 +4,7 @@ import loading from './loading_reducer'
 // import information from './information_reducer'
 // import user from './user_reducer'
 import notice from './notice_reducer'
+import header from './header_reducer'
 
 export default {
   position,
@@ -11,5 +12,6 @@ export default {
   // company,
   // information,
   // user,
-  notice
+  notice,
+  header
 }

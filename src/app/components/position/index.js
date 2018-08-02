@@ -14,7 +14,7 @@ function getState(state, props) {
 }
 
 @connect(getState)
-export default class Position extends React.Component {
+export default class Position extends React.PureComponent {
   constructor(props) {
     super(props)
     this.navSlide = React.createRef()
@@ -24,19 +24,19 @@ export default class Position extends React.Component {
     this.props.dispatch(
       Actions.position.getLinePosition(this.props.filters, 'recommend')
     )
+    this.props.dispatch(
+      Actions.header.changeHeader({
+        title: '职位',
+        leftBtn: '广告',
+        handleLeft: this.gotoNotice,
+        rightBtn: '搜索',
+        handleRight: this.showSelectModal
+      })
+    )
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.onScroll)
-  }
-
-  titleChange = type => () => {
-    const navSlide = this.navSlide.current
-    if (type === 'show') {
-      navSlide.style.webkitTransform = `translateX(0px)`
-    } else {
-      navSlide.style.webkitTransform = `translateX(${global.AvailWidth}px)`
-    }
+  gotoNotice = () => {
+    console.log(1)
   }
 
   onScroll = () => {

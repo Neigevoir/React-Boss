@@ -54,12 +54,10 @@ class App extends React.PureComponent {
     return (
       <Provider store={Store}>
         {/* <PersistGate persistor={persistor} loading={<div>Loading...</div>}> */}
-        <div>
-          <Router history={history}>
-            <Route path="/" component={Layout} onChange={this.onChangeHook} />
-          </Router>
-          {/* <Tips /> */}
-        </div>
+        <Router history={history}>
+          <Route path="/" component={Layout} onChange={this.onChangeHook} />
+        </Router>
+        {/* <Tips /> */}
         {/* </PersistGate> */}
       </Provider>
     )

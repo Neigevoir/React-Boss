@@ -1,17 +1,17 @@
 const initialState = {
-  isShow: false,
-  content: '',
-  timer: 3
-}
-
-const changeTips = (state, action) => {
-  return _.extend({}, initialState, action.data)
+  isShow: true,
+  title: '',
+  leftBtn: '',
+  handleLeft: () => {},
+  rightBtn: '',
+  handleRight: () => {},
+  opacity: 1
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'TIPS:CHANGETIP':
-      return changeTips(state, action)
+    case 'HEADER:SET_HEADER':
+      return { ...state, ...action.header }
     default:
       return state
   }

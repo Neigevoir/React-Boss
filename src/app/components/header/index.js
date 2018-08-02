@@ -1,45 +1,36 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-export default class Header extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      type: 'position',
-      content: '',
-      opacity: 0
-    }
+function getState(state) {
+  return {
+    ...state.header
   }
-
-  addOpacity = num => {
-    this.refs.body.style = `background-color: rgba(83,202,189,${num})`
-  }
-
-  setStateType(newType) {
-    this.setState({
-      type: newType
-    })
-  }
-
+}
+@connect(getState)
+export default class Header extends React.PureComponent {
   render() {
     const {
-      titleHidden,
-      LeftBtn,
-      LeftBtnFunc,
+      leftBtn,
+      handleLeft,
       title,
-      RightBtnFunc,
-      RightBtn
+      handleRight,
+      rightBtn,
+      isShow,
+      opacity
     } = this.props
     return (
       <div
-        ref="body"
-        className={titleHidden === 'true' ? 'titleFiexd titleHidden' : 'title'}
+        style={{
+          backgroundColor: `rgba(83,202,189,${opacity})`
+        }}
+        className={isShow ? 'title' : 'titleFiexd titleHidden'}
       >
-        <span className="notice" onClick={LeftBtnFunc}>
-          {LeftBtn}
+        <span className="notice" onClick={handleLeft}>
+          {leftBtn}
         </span>
         <span>{title}</span>
-        <span className="search" onClick={RightBtnFunc}>
-          <b>{RightBtn}</b>
+        <span className="search" onClick={handleRight}>
+          {rightBtn}
         </span>
       </div>
     )
