@@ -10,13 +10,6 @@ export default class PositionList extends React.Component {
     this.body = React.createRef()
   }
 
-  componentWillMount() {
-    // if(localStorage.getItem("token")){
-    //     this.context.router.push("login");
-    //     PositionAction.getLinePosition(this.getPositionFormData);
-    // }
-  }
-
   componentDidMount() {
     this.body.current.style.height = window.screen.availHeight - 85 + 'px' //用作overflow
     this.addScroll()

@@ -7,7 +7,6 @@ module.exports = [
   'react-router',
   'react-router-redux',
   'redux',
-  'swiper',
   'lodash',
   'whatwg-fetch'
 ]
