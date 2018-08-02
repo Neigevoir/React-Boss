@@ -4,7 +4,7 @@ import notice from './notice_action'
 import position from './position_action'
 import user from './user_action'
 import fetch from './fetch_action'
-import header from './header_action'
+import common from './common_action'
 
 const Actions = {
   company,
@@ -13,7 +13,7 @@ const Actions = {
   position,
   user,
   fetch,
-  header
+  common
 }
 
 export default Actions

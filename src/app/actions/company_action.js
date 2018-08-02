@@ -1,25 +1,26 @@
 import api from '../api/companyApi'
-import FetchAction from './fetch_action'
 import constant from '../constants/company'
 
 const getCompanyLineList = (data, companytype) => {
   return dispatch => {
-    dispatch(FetchAction.FetchPosts())
     return api.getCompanyLineList(data).then(res => {
-      dispatch(
-        FetchAction.ResData(constant.GET_COMPANYLINELIST, res, companytype)
-      )
+      dispatch({
+        type: constant.GET_COMPANYLINELIST,
+        res,
+        companytype
+      })
     })
   }
 }
 
 const getCompanyDetail = (data, companytype) => {
   return dispatch => {
-    dispatch(FetchAction.FetchPosts())
     return api.getCompanyDetail(data).then(res => {
-      dispatch(
-        FetchAction.ResData(constant.GET_COMPANYDETAIL, res, companytype)
-      )
+      dispatch({
+        type: constant.GET_COMPANYDETAIL,
+        res,
+        companytype
+      })
     })
   }
 }
