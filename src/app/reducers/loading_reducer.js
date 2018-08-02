@@ -4,10 +4,8 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'COMMOM:LOADING':
-      return {
-        isShow: action.isShow
-      }
+    case 'COMMOM:SET_LOADING':
+      return { ...state, ...action.loading }
     default:
       return state
   }
