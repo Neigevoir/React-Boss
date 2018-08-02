@@ -18,7 +18,6 @@ export default class Header extends React.PureComponent {
       isShow,
       opacity
     } = this.props
-    console.log(1345)
     return (
       <div
         style={{
