@@ -15,6 +15,7 @@ class App extends React.PureComponent {
   constructor(props) {
     super(props)
     global.AvailWidth = window.screen.availWidth
+    global.AvailHeight = window.screen.availWidth
   }
 
   componentDidMount() {

@@ -1,9 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { is } from 'immutable'
-
 import CompanyAction from '../../actions/companyAction'
-
 import Loading from '../ui/loading'
 import CompanyDetail from './companyDetail'
 import Header from '../header/main'
@@ -36,15 +33,6 @@ class Company extends React.Component {
     this.props.dispatch(CompanyAction.getCompanyLineList(this.CompanyFromData))
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      !(this.props === nextProps || is(this.props, nextProps)) ||
-      !(this.state === nextState || is(this.state, nextState))
-    )
-  }
-
-  componentWillUnmount() {}
-
   _initialize() {
     this.refs.companyList.style.height = this.ScrollHeight //用作overflow
     this.CorperationaddEvent() //增加Touch事件
@@ -73,7 +61,7 @@ class Company extends React.Component {
     })
     this.refs.companyList.addEventListener('webkitTransitionEnd', () => {
       this.refs.companyList.setAttribute('class', 'companyList')
-      if (moveY > parseInt(this.ScrollHeight) / 9) {
+      if (moveY > parseInt(this.ScrollHeight, 10) / 9) {
         this.onScroll()
       }
     })
@@ -109,42 +97,38 @@ class Company extends React.Component {
       <div>
         <Header title="公司" LeftBtn="广播" LeftBtnFunc={this.LeftBtnFunc} />
         <Loading
-          type={CompanyType == 'FETCHING_POSTING' ? 'block' : 'hidden'}
+          type={CompanyType === 'FETCHING_POSTING' ? 'block' : 'hidden'}
         />
         <ul ref="companyList" className="companyList">
-          {CompanyData
-            ? CompanyData.data.map((v, k) => {
-                return (
-                  <li key={k} onClick={this.showCompanyDetail.bind(null, v)}>
-                    <div className="companys">
-                      <img className="companyPic" src={v.image} />
-                      <div className="companyPro">
-                        <img
-                          className="companyLogo"
-                          src={
-                            v.image
-                              ? v.image
-                              : '../../../static/images/logo.jpg'
-                          }
-                        />
-                        <div className="companyContent">
-                          <span className="companyText">
-                            {v.user.nick_name ? v.user.nick_name : ''}
-                          </span>
-                          <span className="companyText">
-                            {v.title ? v.title : ''}
-                          </span>
-                          <span className="companyText">
-                            热招职位：<b className="position">前端开发</b>
-                          </span>
-                        </div>
-                        <div className="clearfix" />
+          {CompanyData &&
+            CompanyData.data.map((v, k) => {
+              return (
+                <li key={k} onClick={this.showCompanyDetail.bind(null, v)}>
+                  <div className="companys">
+                    <img className="companyPic" src={v.image} alt="" />
+                    <div className="companyPro">
+                      <img
+                        alt=""
+                        className="companyLogo"
+                        src={v.image || require('src/assets/images/logo.jpg')}
+                      />
+                      <div className="companyContent">
+                        <span className="companyText">
+                          {v.user.nick_name ? v.user.nick_name : ''}
+                        </span>
+                        <span className="companyText">
+                          {v.title ? v.title : ''}
+                        </span>
+                        <span className="companyText">
+                          热招职位：<b className="position">前端开发</b>
+                        </span>
                       </div>
+                      <div className="clearfix" />
                     </div>
-                  </li>
-                )
-              })
-            : ''}
+                  </div>
+                </li>
+              )
+            })}
         </ul>
         <CompanyDetail />
       </div>

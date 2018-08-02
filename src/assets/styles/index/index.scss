@@ -144,6 +144,26 @@ h4{
     line-height: 35px;
     background-color: #fff;
     font-size: 1.1em;
+    display: flex;
+    .slide{
+        flex:3;        
+        text-align: center;
+        display: inline-block;
+        height: 100%;
+    }
+    .slideSelect{
+        flex: 1;
+        text-align: center;
+        display: inline-block;
+        .Select{
+            width: 20px;
+            height: 20px;
+        }
+        .arrow{
+            width: 12px;
+            height: 18px;
+        }
+    }
 }
 .navSlide .select{
     border-bottom: 2px solid #53cac6;
@@ -155,25 +175,6 @@ h4{
     z-index: 5;
     width: 100%;
     transform: translateX(100%);
-}
-.slideRemon,.slideNew,.slideHot{
-    width: 30%;
-    text-align: center;
-    display: inline-block;
-    height: 100%;
-}
-.slideSelect{
-    width: 10%;
-    text-align: center;
-    display: inline-block;
-    .Select{
-        width: 20px;
-        height: 20px;
-    }
-    .arrow{
-        width: 12px;
-        height: 18px;
-    }
 }
 .positionTitle{
     border-bottom: 1px dashed #ccc;
