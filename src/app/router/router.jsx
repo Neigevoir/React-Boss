@@ -9,6 +9,7 @@ export default class App extends PureComponent {
     return (
       <div id="test">
         <Header />
+        <Route exact path="/" component={AsyncComponents.AsyncPosition} />
         <Route path="/position" component={AsyncComponents.AsyncPosition} />
         {/* <Route path="/company" component={AsyncComponents.AsyncCompany} /> */}
         <Footer />
