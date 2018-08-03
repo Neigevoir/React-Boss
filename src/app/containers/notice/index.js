@@ -1,14 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import NoticeAction from '../../actions/noticeAction'
+import Actions from 'src/app/actions/actions'
 
 function getState(state) {
-  return {}
+  const { list } = state.notice
+  return {
+    list
+  }
 }
 @connect(getState)
 export default class Notice extends React.PureComponent {
   componentDidMount() {
-    this.props.dispatch(NoticeAction.getNotice())
+    this.props.dispatch(Actions.notice.getNotice())
   }
 
   getNoticeDay = date => {
@@ -26,13 +29,13 @@ export default class Notice extends React.PureComponent {
   }
 
   render() {
-    let { NoticeData } = this.props
+    const { list } = this.props
     return (
       <div>
         <div className="noticeBody">
           <ul>
-            {NoticeData &&
-              NoticeData.message.map((v, i) => {
+            {list &&
+              list.map((v, i) => {
                 return (
                   <li key={i} className="noticeContent">
                     <div ref="view" className="noticeview">
