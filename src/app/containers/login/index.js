@@ -17,10 +17,6 @@ class Login extends React.Component {
     this.hadCode = this.hadCode.bind(this)
   }
 
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
   hadCode(res) {
     // console.log(res);
     // this.refs.Tip.stateChange(res);
@@ -31,13 +27,13 @@ class Login extends React.Component {
       UserAction.getLoginInfo()
       return
     }
-    if (res.status_code == '203') this.refs.Tip.stateChange('不存在该验证码')
+    if (res.status_code === '203') this.refs.Tip.stateChange('不存在该验证码')
   }
 
   getLogin() {
     if (
-      findDOMNode(this.refs.username).value == '' ||
-      findDOMNode(this.refs.code).value == ''
+      findDOMNode(this.refs.username).value === '' ||
+      findDOMNode(this.refs.code).value === ''
     ) {
       this.refs.Tip.stateChange('请确认输入手机号或验证码！')
       return
@@ -89,12 +85,12 @@ class Login extends React.Component {
     return (
       <div>
         <div className="login">
-          <img src="../../../static/images/loginBg.jpg" />
+          <img src="../../../static/images/loginBg.jpg" alt="" />
           <ul className="loginBtnList">
             <li>
               <div className="codeBtn">
                 <span className="btnLogo">
-                  <img src="../../../static/images/phone.png" />
+                  <img src="../../../static/images/phone.png" alt="" />
                 </span>
                 <input
                   ref="username"
@@ -110,7 +106,7 @@ class Login extends React.Component {
             <li>
               <div className="codeBtn">
                 <span className="btnLogo">
-                  <img src="../../../static/images/phone.png" />
+                  <img src="../../../static/images/phone.png" alt="" />
                 </span>
                 <input
                   ref="code"

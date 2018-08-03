@@ -196,31 +196,6 @@ h4{
 .position_content{
     padding: 0 3%;
 }
-.navigation{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    border-top: 1px solid #ccc;
-    background-color: rgba(255,255,255,1);
-    li{
-        width: 25%;
-        display: inline-block;
-        text-align: center;
-        font-size: 1rem;
-    }
-    a{
-        display: block;
-        padding: 1px 0px;
-    }
-    span{
-        display: block;
-    }
-    img{
-        width: 25px;
-        height: 22px;
-        display: inline-block;
-    }
-}
 .positionListBody{
     overflow-y: auto;
     background-color: rgba(248,248,248,1);

@@ -1,5 +1,14 @@
 import React, { PureComponent } from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import './index.scss'
+
+function getState(state) {
+  return {
+    ...state.footer
+  }
+}
+@connect(getState)
 export default class Footer extends PureComponent {
   constructor(props) {
     super(props)
@@ -21,23 +30,34 @@ export default class Footer extends PureComponent {
         link: 'user'
       }
     ]
+    this.state = {
+      pathname: ''
+    }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return nextProps.pathname !== prevState.pathname
+      ? {
+          pathname: nextProps.pathname
+        }
+      : null
   }
 
   render() {
+    const { isShow } = this.props
     return (
-      <ul id="nav" className="navigation">
+      <ul id="nav" className={isShow ? 'navigation' : 'hidden'}>
         {_.map(this.footer, (v, k) => {
           return (
-            <li key={k}>
-              <NavLink
-                className="active"
-                activeClassName="RouterActive"
-                to={`/${v.link}`}
-              >
-                <img alt="" src={require(`src/assets/images/${v.link}.png`)} />
-                <span>{v.title}</span>
-              </NavLink>
-            </li>
+            <NavLink
+              key={k}
+              className="link"
+              activeClassName="active"
+              to={`/${v.link}`}
+            >
+              <img alt="" src={require(`src/assets/images/${v.link}.png`)} />
+              <span>{v.title}</span>
+            </NavLink>
           )
         })}
       </ul>

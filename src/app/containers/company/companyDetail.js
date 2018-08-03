@@ -20,12 +20,8 @@ class CompanyDetail extends React.Component {
     this.getCompanyDetail = this.getCompanyDetail.bind(this)
   }
 
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
   getCompanyDetail(res) {
-    if (res.status_code == '200') {
+    if (res.status_code === '200') {
       this.setState({
         type: 'block',
         DetailList: res.data

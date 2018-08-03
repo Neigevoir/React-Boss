@@ -23,7 +23,7 @@ export default class Header extends React.PureComponent {
         style={{
           backgroundColor: `rgba(83,202,189,${opacity})`
         }}
-        className={isShow ? 'title' : 'titleFiexd titleHidden'}
+        className={isShow ? 'title' : 'hidden'}
       >
         <span className="notice" onClick={handleLeft}>
           {leftBtn}

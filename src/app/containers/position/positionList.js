@@ -180,7 +180,7 @@ export default class PositionList extends React.Component {
         <div ref={this.position} className="positionList">
           <ul className="positionUl">
             {!_.isEmpty(listData) &&
-              listData.reverse().map((v, k) => {
+              listData.map((v, k) => {
                 return (
                   <li key={k} onClick={this.positionDetail(v)}>
                     <div className="position_content">
