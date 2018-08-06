@@ -1,5 +1,6 @@
 import React from 'react'
 import Actions from 'src/app/actions/actions'
+import Tips from '../../components/tips/index'
 
 export default class PositionList extends React.Component {
   constructor(props) {
@@ -177,6 +178,7 @@ export default class PositionList extends React.Component {
     const { listData } = this.props
     return (
       <div ref={this.body} className="positionListBody">
+        <Tips />
         <div ref={this.position} className="positionList">
           <ul className="positionUl">
             {!_.isEmpty(listData) &&
@@ -208,7 +210,7 @@ export default class PositionList extends React.Component {
                               {this.getHandleText(v.title)} | CEO
                             </span>
                             <span className="company_text">
-                              {v.play_count}人以上
+                              {v.play_count} 人以上
                             </span>
                           </div>
                         </div>
