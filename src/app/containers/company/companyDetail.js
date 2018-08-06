@@ -1,10 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-  getCompanyLineList,
-  getCompanyDetail,
-  changeCompanyDetail
-} from 'src/app/actions/companyAction'
+import { changeCompanyDetail } from 'src/app/actions/companyAction'
 
 import Header from '../header/main'
 // import InfoDetail from '../information/infoDetail'
@@ -12,7 +8,8 @@ import Header from '../header/main'
 import '../../../styles/company/companyDetail.less'
 import '../../../styles/information/information.less'
 
-class CompanyDetail extends React.Component {
+@connect
+export default class CompanyDetail extends React.Component {
   constructor(props) {
     super(props)
 
@@ -75,9 +72,7 @@ class CompanyDetail extends React.Component {
               </span>
               <span>
                 {CompanyDetailData
-                  ? CompanyDetailData.priviledge == 'public'
-                    ? '公开'
-                    : '私密'
+                  ? CompanyDetailData.priviledge === 'public' ? '公开' : '私密'
                   : ''}
               </span>
               <span>
@@ -106,28 +101,3 @@ class CompanyDetail extends React.Component {
     )
   }
 }
-
-function selectState(state, type) {
-  switch (type) {
-    case 'CompanyDetailData':
-      if (state.Company) {
-        return state.Company.CompanyData
-      }
-      return state
-    case 'CompanyDetailType':
-      if (state.CompanyType) {
-        return state.CompanyType
-      }
-      return 'hidden'
-  }
-}
-
-function select(state) {
-  return {
-    CompanyDetailData: selectState(state.CompanyReducer, 'CompanyDetailData'),
-    CompanyDetailType: selectState(state.CompanyReducer, 'CompanyDetailType')
-  }
-}
-
-// 包装 component ，注入 dispatch 和 state 到其默认的 connect(select)(App) 中；
-export default connect(select)(CompanyDetail)

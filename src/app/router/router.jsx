@@ -25,7 +25,7 @@ export default class App extends PureComponent {
   }
 
   getInfoSuccess = () => {
-    this.props.history.replace('/position')
+    // this.props.history.replace('/position')
   }
 
   scrollPosition = (preState, nextState) => {
@@ -61,6 +61,7 @@ export default class App extends PureComponent {
           <Route path="/notice" component={AsyncComponents.AsyncNotice} />
           <Route path="/login" component={AsyncComponents.AsyncLogin} />
           <Route path="/password" component={AsyncComponents.AsyncPassword} />
+          <Route path="/user" component={AsyncComponents.AsyncUser} />
         </Switch>
         <Footer pathname={this.props.location.pathname} />
         <Loading />
