@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
 import PositionList from './positionList'
 import PositionNav from 'src/app/containers/position/components/nav.js'
@@ -14,6 +15,7 @@ function getState(state, props) {
 }
 
 @connect(getState)
+@withRouter
 export default class Position extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -36,7 +38,7 @@ export default class Position extends React.PureComponent {
   }
 
   gotoNotice = () => {
-    console.log(1)
+    this.props.history.push('/notice')
   }
 
   onScroll = () => {
@@ -68,7 +70,6 @@ export default class Position extends React.PureComponent {
       <div className="positionBody">
         <PositionNav listType={listType} handleClick={this.getPositionList} />
         <PositionList
-          ref="PositionList"
           dispatch={dispatch}
           filters={filters}
           listData={listData.reverse()}
