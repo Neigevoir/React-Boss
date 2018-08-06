@@ -11,7 +11,29 @@ function getState(state) {
 @connect(getState)
 export default class Notice extends React.PureComponent {
   componentDidMount() {
-    this.props.dispatch(Actions.notice.getNotice())
+    const { list, history, dispatch } = this.props
+    if (_.isEmpty(list)) {
+      dispatch(
+        Actions.notice.getNotice({
+          offset: '0',
+          num: '99'
+        })
+      )
+    }
+    dispatch(
+      Actions.common.changeHeader({
+        title: '广告',
+        leftBtn: '返回',
+        handleLeft: history.goBack,
+        rightBtn: '',
+        handleRight: () => {}
+      })
+    )
+    dispatch(
+      Actions.common.changeFooter({
+        isShow: false
+      })
+    )
   }
 
   getNoticeDay = date => {

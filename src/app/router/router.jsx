@@ -2,13 +2,30 @@ import React, { PureComponent } from 'react'
 import Header from 'src/app/components/header'
 import Footer from 'src/app/components/footer'
 import Loading from 'src/app/components/loading'
+import Actions from 'src/app/actions/actions'
+import * as AsyncComponents from 'src/app/router/ImportComponents'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import Store from 'src/app/store/store.js'
 import 'src/assets/styles/all.scss'
 import 'src/assets/styles/index/index.scss'
-import { Route, Switch } from 'react-router-dom'
-import * as AsyncComponents from 'src/app/router/ImportComponents'
+
+@withRouter
 export default class App extends PureComponent {
+  componentDidMount() {
+    const token = localStorage.getItem('token')
+    if (_.isEmpty(token)) {
+      this.props.history.replace('/password')
+    } else {
+      Store.dispatch(Actions.user.getLoginInfo(this.getInfoSuccess))
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     this.scrollPosition(prevProps, this.props)
+  }
+
+  getInfoSuccess = () => {
+    this.props.history.replace('/position')
   }
 
   scrollPosition = (preState, nextState) => {

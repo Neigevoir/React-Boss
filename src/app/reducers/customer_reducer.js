@@ -1,11 +1,11 @@
 const initialState = {
-  id: ''
+  uid: ''
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'SET:CUSTOMER':
-      return { ...state, ...action.footer }
+    case 'API:LOGININFO:GET:SUCCESS':
+      return { ...state, ...action.response.data }
     default:
       return state
   }

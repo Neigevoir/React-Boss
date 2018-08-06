@@ -2,24 +2,20 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
+import Input from './components/input'
 // import PasLogin from './pasLogin'
 // import UserAction from '../../action/userAction'
 
 import './index.scss'
 
-function getState(state, props) {
-  // const { list, filters, listType } = state.customer
-  return {}
-}
-@connect(getState)
+@connect
 @withRouter
 export default class Login extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
+    this.dataFrom = {
       tel: null,
-      password: null,
-      isShowPas: false
+      password: null
     }
   }
 
@@ -36,6 +32,10 @@ export default class Login extends React.Component {
     )
   }
 
+  changeTelephone = tel => (this.dataFrom.tel = tel)
+
+  changePassword = pas => (this.dataFrom.password = pas)
+
   setTips = content => {
     this.props.dispatch(
       Actions.common.changeTips({
@@ -46,7 +46,7 @@ export default class Login extends React.Component {
   }
 
   handleLogin = () => {
-    const { tel, password } = this.state
+    const { tel, password } = this.dataFrom
     if (_.isEmpty(tel) && _.isEmpty(password)) {
       this.setTips('手机号和密码不能为空')
     } else if (_.isEmpty(tel)) {
@@ -59,12 +59,25 @@ export default class Login extends React.Component {
   }
 
   getLogin = () => {
+    const { tel, password } = this.dataFrom
     this.props.dispatch(
-      Actions.user.getUserLogin({
-        username: this.state.tel,
-        password: this.state.password
-      })
+      Actions.user.getUserLogin(
+        {
+          username: tel,
+          password: password
+        },
+        this.getLoginSuccess
+      )
     )
+  }
+
+  getLoginSuccess = (dispatch, res) => {
+    localStorage.setItem('token', res.token)
+    this.props.dispatch(Actions.user.getLoginInfo(this.getLoginInfoSuccess))
+  }
+
+  getLoginInfoSuccess = () => {
+    this.props.history.replace('/position')
   }
 
   handleGoback = () => this.props.history.goBack()
@@ -79,45 +92,26 @@ export default class Login extends React.Component {
           <img src={require('src/assets/images/passwordBg.jpg')} alt="" />
           <ul className="loginBtnList">
             <li>
-              <div>
-                <span className="btnLogo">
-                  <img src={require('src/assets/images/phone.png')} alt="" />
-                </span>
-                <input
-                  type="tel"
-                  placeholder="手机号"
-                  autoComplete="unspecified"
-                  required=""
-                  pattern="^1[34578]\d{9}$"
-                  maxLength="11"
-                  onChange={this.changeTel}
-                />
-              </div>
+              <Input
+                type="tel"
+                placeholder="手机号"
+                autoComplete="unspecified"
+                required=""
+                pattern="^1[34578]\d{9}$"
+                maxLength="11"
+                onChange={this.changeTelephone}
+              />
             </li>
             <li>
-              <div className="codeBtn">
-                <span className="btnLogo">
-                  <img alt="" src={require('src/assets/images/phone.png')} />
-                </span>
-                <input
-                  type={this.state.isShowPas ? 'password' : 'text'}
-                  placeholder="6-25位字母、数字或下划线"
-                  required=""
-                  pattern="^\d{6}$"
-                  maxLength="6"
-                  onChange={this.changePassword}
-                />
-                <span className="getCode" onClick={this.lookCode}>
-                  {/* <img
-                    alt=""
-                    src={
-                      this.state.isShowPas
-                        ? require('src/assets/images/eye_closed.png')
-                        : require('src/assets/images/eye.png')
-                    }
-                  /> */}
-                </span>
-              </div>
+              <Input
+                // type={this.state.isShowPas ? 'password' : 'text'}
+                type="password"
+                placeholder="6-25位字母、数字或下划线"
+                required=""
+                pattern="^\d{6}$"
+                maxLength="6"
+                onChange={this.changePassword}
+              />
             </li>
             <li className="voice">
               <u>忘记密码</u>

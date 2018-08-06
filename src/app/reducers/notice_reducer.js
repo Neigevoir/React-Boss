@@ -1,13 +1,11 @@
-import constant from '../constants/notice'
-
 const initialState = {
   list: []
 }
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case constant.GET_NOTICEDATA:
-      return state
+    case 'API:GET_NOTICE:SUCCESS':
+      return { ...state, list: [...action.response.data.message] }
     default:
       return state
   }

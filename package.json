@@ -42,7 +42,7 @@
   },
   "proxy": {
     "/app/*": {
-      "target": "http://www.ih5.cn",
+      "target": "https://www.ih5.cn",
       "secure": false,
       "changeOrigin": true,
       "preserveHeaderKeyCase": true,
