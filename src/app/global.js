@@ -49,7 +49,9 @@ _global.currentEnv =
     ? 'dev'
     : host.indexOf('wechat-staging') !== -1
       ? 'staging'
-      : host.indexOf('wechat') !== -1 ? 'prod' : 'dev'
+      : host.indexOf('wechat') !== -1
+        ? 'prod'
+        : 'dev'
 
 //questionnaire address
 _global.questionnaireAddress = {

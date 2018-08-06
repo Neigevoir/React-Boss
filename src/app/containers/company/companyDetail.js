@@ -75,7 +75,9 @@ class CompanyDetail extends React.Component {
               </span>
               <span>
                 {CompanyDetailData
-                  ? CompanyDetailData.priviledge == 'public' ? '公开' : '私密'
+                  ? CompanyDetailData.priviledge == 'public'
+                    ? '公开'
+                    : '私密'
                   : ''}
               </span>
               <span>
@@ -84,7 +86,9 @@ class CompanyDetail extends React.Component {
             </div>
           </div>
           <div className="companydescription">
-            <div className="BottomHR" />公司介绍<div className="BottomHR" />
+            <div className="BottomHR" />
+            公司介绍
+            <div className="BottomHR" />
             <div className="companydescriptionBody">
               {CompanyDetailData ? CompanyDetailData.description : ''}
             </div>
