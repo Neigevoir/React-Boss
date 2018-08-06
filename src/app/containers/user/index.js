@@ -200,28 +200,12 @@ class User extends React.Component {
                   </div>
                   <div className="floatRight">
                     <span>
-                      拥有：<b>0</b>
+                      拥有：
+                      <b>0</b>
                     </span>
                     <span>
-                      使用中:<b>0</b>
-                    </span>
-                    <img src="../../../static/images/right.png" />
-                  </div>
-                  <div className="clearfix" />
-                </div>
-              </li>
-              <li>
-                <div className="Operation">
-                  <div className="floatLeft">
-                    <img src="../../../static/images/case.png" />
-                    <span>我的道具</span>
-                  </div>
-                  <div className="floatRight">
-                    <span>
-                      拥有：<b>0</b>
-                    </span>
-                    <span>
-                      使用中:<b>0</b>
+                      使用中:
+                      <b>0</b>
                     </span>
                     <img src="../../../static/images/right.png" />
                   </div>
@@ -236,10 +220,32 @@ class User extends React.Component {
                   </div>
                   <div className="floatRight">
                     <span>
-                      拥有：<b>0</b>
+                      拥有：
+                      <b>0</b>
                     </span>
                     <span>
-                      使用中:<b>0</b>
+                      使用中:
+                      <b>0</b>
+                    </span>
+                    <img src="../../../static/images/right.png" />
+                  </div>
+                  <div className="clearfix" />
+                </div>
+              </li>
+              <li>
+                <div className="Operation">
+                  <div className="floatLeft">
+                    <img src="../../../static/images/case.png" />
+                    <span>我的道具</span>
+                  </div>
+                  <div className="floatRight">
+                    <span>
+                      拥有：
+                      <b>0</b>
+                    </span>
+                    <span>
+                      使用中:
+                      <b>0</b>
                     </span>
                     <img src="../../../static/images/right.png" />
                   </div>

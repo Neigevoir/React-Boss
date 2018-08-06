@@ -130,7 +130,8 @@ export default class Login extends React.Component {
               </div>
             </li>
             <li className="voice">
-              长时间收不到验证码，可尝试<u>语音接听验证码</u>
+              长时间收不到验证码，可尝试
+              <u>语音接听验证码</u>
             </li>
             <li>
               <button className="loginBtn" onClick={this.getLogin}>

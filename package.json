@@ -28,13 +28,11 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "prettier":
-      "prettier --single-quote --no-semi --print-width 80 --write 'src/app/**/*.{js,jsx,css,scss,json}'",
+    "prettier": "prettier --single-quote --no-semi --print-width 80 --write 'src/app/**/*.{js,jsx,css,scss,json}'",
     "precommit": "lint-staged",
     "analyze": "source-map-explorer build/static/js/",
     "build": "node scripts/build.js",
-    "test":
-      "node scripts/test.js --env=jsdom  --setupTestFrameworkScriptFile=raf/polyfill --config=jest.config.json",
+    "test": "node scripts/test.js --env=jsdom  --setupTestFrameworkScriptFile=raf/polyfill --config=jest.config.json",
     "coverage": "yarn test --coverage"
   },
   "eslintConfig": {

@@ -65,7 +65,8 @@ export default class Notice extends React.PureComponent {
                         <h4>{v.title}</h4>
                         <p dangerouslySetInnerHTML={{ __html: v.message }} />
                         <h5 className="checkContent">
-                          管理员发表于<b>{this.getNoticeDay(v.created_at)}</b>
+                          管理员发表于
+                          <b>{this.getNoticeDay(v.created_at)}</b>
                         </h5>
                       </div>
                     </div>

@@ -126,7 +126,7 @@ export default class Company extends React.Component {
                           {v.title ? v.title : ''}
                         </span>
                         <span className="companyText">
-                          热招职位：<b className="position">前端开发</b>
+                          热招职位: <b className="position">前端开发</b>
                         </span>
                       </div>
                       <div className="clearfix" />
