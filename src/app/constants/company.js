@@ -1,7 +1,5 @@
-let Company = {
+export default {
   GET_COMPANYLINELIST: 'GET_COMPANYLINELIST',
   GET_COMPANYDETAIL: 'GET_COMPANYDETAIL',
   SHOW_COMPANYDETAIL: 'SHOW_COMPANYDETAIL'
 }
-
-module.exports = Company

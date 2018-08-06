@@ -12,3 +12,6 @@ export const AsyncNotice = asyncComponent(() =>
 export const AsyncLogin = asyncComponent(() =>
   import('src/app/containers/login')
 )
+export const AsyncPassword = asyncComponent(() =>
+  import('src/app/containers/login/password.js')
+)

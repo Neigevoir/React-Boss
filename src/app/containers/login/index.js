@@ -5,15 +5,11 @@ import Actions from 'src/app/actions/actions'
 // import PasLogin from './pasLogin'
 // import UserAction from '../../action/userAction'
 
-import 'src/assets/styles/login/login.scss'
+import './index.scss'
 
 function getState(state, props) {
-  const { list, filters, listType } = state.position
-  return {
-    list,
-    filters,
-    listType
-  }
+  // const { list, filters, listType } = state.customer
+  return {}
 }
 @connect(getState)
 export default class Login extends React.Component {
@@ -28,6 +24,7 @@ export default class Login extends React.Component {
         isShow: false
       })
     )
+    this.props.dispatch(Actions.user.getLoginInfo())
   }
 
   hadCode = res => {
@@ -98,12 +95,12 @@ export default class Login extends React.Component {
     return (
       <div>
         <div className="login">
-          <img src="../../../static/images/loginBg.jpg" alt="" />
+          <img src={require('src/assets/images/loginBg.jpg')} alt="" />
           <ul className="loginBtnList">
             <li>
               <div className="codeBtn">
                 <span className="btnLogo">
-                  <img src="../../../static/images/phone.png" alt="" />
+                  <img src={require('src/assets/images/phone.png')} alt="" />
                 </span>
                 <input
                   type="tel"
@@ -118,7 +115,7 @@ export default class Login extends React.Component {
             <li>
               <div className="codeBtn">
                 <span className="btnLogo">
-                  <img src="../../../static/images/phone.png" alt="" />
+                  <img src={require('src/assets/images/phone.png')} alt="" />
                 </span>
                 <input
                   type="tel"

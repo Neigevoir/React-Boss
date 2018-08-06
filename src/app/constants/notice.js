@@ -1,5 +1,3 @@
-let Notice = {
+export default {
   GET_NOTICEDATA: 'GET_NOTICEDATA'
 }
-
-module.exports = Notice

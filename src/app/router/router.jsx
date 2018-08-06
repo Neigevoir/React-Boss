@@ -1,4 +1,4 @@
-import React, { StrictMode, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import Header from 'src/app/components/header'
 import Footer from 'src/app/components/footer'
 import Loading from 'src/app/components/loading'
@@ -34,20 +34,21 @@ export default class App extends PureComponent {
 
   render() {
     return (
-      <StrictMode>
-        <div id="test">
-          <Header />
-          <Switch>
-            <Route exact path="/" component={AsyncComponents.AsyncPosition} />
-            <Route path="/position" component={AsyncComponents.AsyncPosition} />
-            <Route path="/company" component={AsyncComponents.AsyncCompany} />
-            <Route path="/notice" component={AsyncComponents.AsyncNotice} />
-            <Route path="/login" component={AsyncComponents.AsyncLogin} />
-          </Switch>
-          <Footer pathname={this.props.location.pathname} />
-          <Loading />
-        </div>
-      </StrictMode>
+      // <StrictMode>
+      <div id="test">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={AsyncComponents.AsyncPosition} />
+          <Route path="/position" component={AsyncComponents.AsyncPosition} />
+          <Route path="/company" component={AsyncComponents.AsyncCompany} />
+          <Route path="/notice" component={AsyncComponents.AsyncNotice} />
+          <Route path="/login" component={AsyncComponents.AsyncLogin} />
+          <Route path="/password" component={AsyncComponents.AsyncPassword} />
+        </Switch>
+        <Footer pathname={this.props.location.pathname} />
+        <Loading />
+      </div>
+      // </StrictMode>
     )
   }
 }

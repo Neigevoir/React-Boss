@@ -15,8 +15,8 @@ export default class Notice extends React.PureComponent {
   }
 
   getNoticeDay = date => {
-    let nowDate = new Date().getTime()
-    let creatDate = date * 1000
+    const nowDate = new Date().getTime(),
+      creatDate = date * 1000
     if (nowDate - 7 * 86400000 < creatDate) {
       return Math.floor((nowDate - creatDate) / 86400000) + '天前'
     }
