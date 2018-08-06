@@ -109,8 +109,12 @@ function wxInit(isFirstConfigUrl = true, bustConfigCache, isInit) {
 const whichUrl = isFirstConfigUrl => {
   const config_url = window.location.href.split('#')[0]
   return deviceType().isiOS
-    ? isFirstConfigUrl ? global.FIRST_URL : config_url
-    : isFirstConfigUrl ? config_url : global.FIRST_URL
+    ? isFirstConfigUrl
+      ? global.FIRST_URL
+      : config_url
+    : isFirstConfigUrl
+      ? config_url
+      : global.FIRST_URL
 }
 
 export default wxInit
