@@ -8,7 +8,13 @@ const changeFooter = footer => ({
   footer
 })
 
+const changeLoading = footer => ({
+  type: 'FOOTER:SET_LOADING',
+  footer
+})
+
 export default {
   changeHeader,
-  changeFooter
+  changeFooter,
+  changeLoading
 }

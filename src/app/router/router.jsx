@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react'
+import React, { StrictMode, PureComponent } from 'react'
 import Header from 'src/app/components/header'
 import Footer from 'src/app/components/footer'
+import Loading from 'src/app/components/loading'
 import 'src/assets/styles/all.scss'
 import 'src/assets/styles/index/index.scss'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import * as AsyncComponents from 'src/app/router/ImportComponents'
 export default class App extends PureComponent {
   componentDidUpdate(prevProps, prevState) {
@@ -33,13 +34,20 @@ export default class App extends PureComponent {
 
   render() {
     return (
-      <div id="test">
-        <Header />
-        <Route exact path="/" component={AsyncComponents.AsyncPosition} />
-        <Route path="/position" component={AsyncComponents.AsyncPosition} />
-        <Route path="/company" component={AsyncComponents.AsyncCompany} />
-        <Footer pathname={this.props.location.pathname} />
-      </div>
+      <StrictMode>
+        <div id="test">
+          <Header />
+          <Switch>
+            <Route exact path="/" component={AsyncComponents.AsyncPosition} />
+            <Route path="/position" component={AsyncComponents.AsyncPosition} />
+            <Route path="/company" component={AsyncComponents.AsyncCompany} />
+            <Route path="/notice" component={AsyncComponents.AsyncNotice} />
+            <Route path="/login" component={AsyncComponents.AsyncLogin} />
+          </Switch>
+          <Footer pathname={this.props.location.pathname} />
+          <Loading />
+        </div>
+      </StrictMode>
     )
   }
 }

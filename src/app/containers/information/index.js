@@ -7,11 +7,8 @@ import Loading from '../ui/loading'
 import Header from '../header/main'
 
 class Information extends React.Component {
-  componentWillMount() {
-    this.getPrivateMessageList()
-  }
-
   componentDidMount() {
+    this.getPrivateMessageList()
     this._initialize()
   }
 
