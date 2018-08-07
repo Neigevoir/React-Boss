@@ -18,3 +18,6 @@ export const AsyncPassword = asyncComponent(() =>
 export const AsyncUser = asyncComponent(() =>
   import('src/app/containers/user/index.js')
 )
+export const AsyncCompanyDetail = asyncComponent(() =>
+  import('src/app/containers/company/detail.js')
+)

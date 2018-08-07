@@ -1,23 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { changeCompanyDetail } from 'src/app/actions/companyAction'
+// import Actions from 'src/app/actions/actions'
+import withoutFooter from 'src/app/components/HOC/without_footer'
+import './index.scss'
+// import '../../../styles/information/information.less'
 
-import Header from '../header/main'
-// import InfoDetail from '../information/infoDetail'
-
-import '../../../styles/company/companyDetail.less'
-import '../../../styles/information/information.less'
-
-@connect
-export default class CompanyDetail extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.showDetail = this.showDetail.bind(this)
-    this.getCompanyDetail = this.getCompanyDetail.bind(this)
+function getState(state) {
+  const { list, filters } = state.company
+  return {
+    list,
+    filters
   }
-
-  getCompanyDetail(res) {
+}
+@connect(getState)
+@withoutFooter
+export default class CompanyDetail extends React.Component {
+  getCompanyDetail = res => {
     if (res.status_code === '200') {
       this.setState({
         type: 'block',
@@ -26,7 +24,7 @@ export default class CompanyDetail extends React.Component {
     }
   }
 
-  showDetail(data) {
+  showDetail = data => {
     this.setState(
       {
         DetailtData: data
@@ -38,27 +36,23 @@ export default class CompanyDetail extends React.Component {
   }
 
   closeModal() {
-    this.props.dispatch(changeCompanyDetail('hidden'))
+    // this.props.dispatch(changeCompanyDetail('hidden'))
   }
 
   render() {
-    let { DetailList, CompanyDetailData, CompanyDetailType } = this.props
-    console.log(CompanyDetailData)
+    let { CompanyDetailData, CompanyDetailType } = this.props
     CompanyDetailData = null
     return (
-      <div className={CompanyDetailType == 'hidden' ? 'hidden' : 'InfoDetail'}>
-        <Header
-          title="公司简介"
-          LeftBtn="x"
-          LeftBtnFunc={this.closeModal.bind(this)}
-        />
+      <div className={CompanyDetailType === 'hidden' ? 'hidden' : 'InfoDetail'}>
         <div className="companyDetailBody">
           <div className="companyDetailBodyImg">
             <img
+              alt=""
               className="Imgshow"
               src={CompanyDetailData ? CompanyDetailData.image : ''}
             />
             <img
+              alt=""
               className="ImgAvator"
               src={CompanyDetailData ? CompanyDetailData.user.picture : ''}
             />
@@ -91,10 +85,10 @@ export default class CompanyDetail extends React.Component {
           <video
             ref="video"
             className={
-              CompanyDetailType == 'hidden' ? 'hidden' : 'DetailBodyContent'
+              CompanyDetailType === 'hidden' ? 'hidden' : 'DetailBodyContent'
             }
             controls="controls"
-            src="http://file.ih5.cn/files/78655/17007/34cff1.mp4"
+            src="https://file.ih5.cn/files/78655/17007/34cff1.mp4"
           />
         </div>
       </div>

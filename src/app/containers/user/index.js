@@ -80,7 +80,7 @@ export default class User extends React.Component {
         <ul className="navList">
           <li>
             <div className="userOpreation userOpreationBorder">
-              <img src="../../../static/images/message.png" />
+              <img alt="" src={require('src/assets/images/message.png')} />
               <div className="operationText">
                 <span>{customer.contact}</span>
                 <span>沟通过</span>
@@ -88,7 +88,7 @@ export default class User extends React.Component {
               <div className="clearfix" />
             </div>
             <div className="userOpreation">
-              <img src="../../../static/images/collect.png" />
+              <img alt="" src={require('src/assets/images/collect.png')} />
               <div className="operationText">
                 <span>{customer.collect}</span>
                 <span>收藏过</span>
@@ -99,12 +99,12 @@ export default class User extends React.Component {
           <li>
             <div className="PointOperation">
               <div className="floatLeft">
-                <img src="../../../static/images/file.png" />
+                <img alt="" src={require('src/assets/images/file.png')} />
                 <span>上传附件简历</span>
               </div>
               <div className="floatRight">
                 <span>送20积分</span>
-                <img src="../../../static/images/right.png" />
+                <img alt="" src={require('src/assets/images/right.png')} />
               </div>
               <div className="clearfix" />
             </div>
@@ -112,45 +112,45 @@ export default class User extends React.Component {
           <li>
             <div className="Operation">
               <div className="floatLeft">
-                <img src="../../../static/images/task.png" />
+                <img alt="" src={require('src/assets/images/task.png')} />
                 <span>积分任务</span>
               </div>
               <div className="floatRight">
                 <span>获得积分越多，推荐排名越高</span>
-                <img src="../../../static/images/right.png" />
+                <img alt="" src={require('src/assets/images/right.png')} />
               </div>
               <div className="clearfix" />
             </div>
             <div className="Operation">
               <div className="floatLeft">
-                <img src="../../../static/images/trophy.png" />
+                <img alt="" src={require('src/assets/images/trophy.png')} />
                 <span>成就</span>
               </div>
               <div className="floatRight">
                 <span />
-                <img src="../../../static/images/right.png" />
+                <img alt="" src={require('src/assets/images/right.png')} />
               </div>
               <div className="clearfix" />
             </div>
             <div className="Operation">
               <div className="floatLeft">
-                <img src="../../../static/images/bean.png" />
+                <img alt="" src={require('src/assets/images/bean.png')} />
                 <span>真豆</span>
               </div>
               <div className="floatRight">
                 <span>0</span>
-                <img src="../../../static/images/right.png" />
+                <img alt="" src={require('src/assets/images/right.png')} />
               </div>
               <div className="clearfix" />
             </div>
             <div className="Operation">
               <div className="floatLeft">
-                <img src="../../../static/images/money.png" />
+                <img alt="" src={require('src/assets/images/money.png')} />
                 <span>零钱</span>
               </div>
               <div className="floatRight">
                 <span>0元</span>
-                <img src="../../../static/images/right.png" />
+                <img alt="" src={require('src/assets/images/right.png')} />
               </div>
               <div className="clearfix" />
             </div>
@@ -158,7 +158,7 @@ export default class User extends React.Component {
           <li>
             <div className="Operation">
               <div className="floatLeft">
-                <img src="../../../static/images/case.png" />
+                <img alt="" src={require('src/assets/images/case.png')} />
                 <span>我的道具</span>
               </div>
               <div className="floatRight">
@@ -170,7 +170,7 @@ export default class User extends React.Component {
                   使用中:
                   <b>0</b>
                 </span>
-                <img src="../../../static/images/right.png" />
+                <img alt="" src={require('src/assets/images/right.png')} />
               </div>
               <div className="clearfix" />
             </div>
@@ -178,7 +178,7 @@ export default class User extends React.Component {
           <li>
             <div className="Operation">
               <div className="floatLeft">
-                <img src="../../../static/images/case.png" />
+                <img alt="" src={require('src/assets/images/case.png')} />
                 <span>我的道具</span>
               </div>
               <div className="floatRight">
@@ -190,7 +190,7 @@ export default class User extends React.Component {
                   使用中:
                   <b>0</b>
                 </span>
-                <img src="../../../static/images/right.png" />
+                <img alt="" src={require('src/assets/images/right.png')} />
               </div>
               <div className="clearfix" />
             </div>
@@ -198,7 +198,7 @@ export default class User extends React.Component {
           <li>
             <div className="Operation">
               <div className="floatLeft">
-                <img src="../../../static/images/case.png" />
+                <img alt="" src={require('src/assets/images/case.png')} />
                 <span>我的道具</span>
               </div>
               <div className="floatRight">
@@ -210,7 +210,7 @@ export default class User extends React.Component {
                   使用中:
                   <b>0</b>
                 </span>
-                <img src="../../../static/images/right.png" />
+                <img alt="" src={require('src/assets/images/right.png')} />
               </div>
               <div className="clearfix" />
             </div>

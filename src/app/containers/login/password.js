@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
 import Input from './components/input'
+import withoutHeader from 'src/app/components/HOC/without_header'
+import withoutFooter from 'src/app/components/HOC/without_footer'
 // import PasLogin from './pasLogin'
 // import UserAction from '../../action/userAction'
 
@@ -10,6 +12,8 @@ import './index.scss'
 
 @connect
 @withRouter
+@withoutHeader
+@withoutFooter
 export default class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -17,19 +21,6 @@ export default class Login extends React.Component {
       tel: null,
       password: null
     }
-  }
-
-  componentDidMount() {
-    this.props.dispatch(
-      Actions.common.changeHeader({
-        isShow: false
-      })
-    )
-    this.props.dispatch(
-      Actions.common.changeFooter({
-        isShow: false
-      })
-    )
   }
 
   changeTelephone = tel => (this.dataFrom.tel = tel)

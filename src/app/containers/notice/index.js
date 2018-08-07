@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Actions from 'src/app/actions/actions'
+import WithoutFooter from 'src/app/components/HOC/without_footer'
 
 function getState(state) {
   const { list } = state.notice
@@ -9,6 +10,7 @@ function getState(state) {
   }
 }
 @connect(getState)
+@WithoutFooter
 export default class Notice extends React.PureComponent {
   componentDidMount() {
     const { list, history, dispatch } = this.props
@@ -27,11 +29,6 @@ export default class Notice extends React.PureComponent {
         handleLeft: history.goBack,
         rightBtn: '',
         handleRight: () => {}
-      })
-    )
-    dispatch(
-      Actions.common.changeFooter({
-        isShow: false
       })
     )
   }
@@ -53,28 +50,26 @@ export default class Notice extends React.PureComponent {
   render() {
     const { list } = this.props
     return (
-      <div>
-        <div className="noticeBody">
-          <ul>
-            {list &&
-              list.map((v, i) => {
-                return (
-                  <li key={i} className="noticeContent">
-                    <div ref="view" className="noticeview">
-                      <div ref="content">
-                        <h4>{v.title}</h4>
-                        <p dangerouslySetInnerHTML={{ __html: v.message }} />
-                        <h5 className="checkContent">
-                          管理员发表于
-                          <b>{this.getNoticeDay(v.created_at)}</b>
-                        </h5>
-                      </div>
+      <div className="noticeBody">
+        <ul>
+          {list &&
+            list.map((v, i) => {
+              return (
+                <li key={i} className="noticeContent">
+                  <div ref="view" className="noticeview">
+                    <div ref="content">
+                      <h4>{v.title}</h4>
+                      <p dangerouslySetInnerHTML={{ __html: v.message }} />
+                      <h5 className="checkContent">
+                        管理员发表于
+                        <b>{this.getNoticeDay(v.created_at)}</b>
+                      </h5>
                     </div>
-                  </li>
-                )
-              })}
-          </ul>
-        </div>
+                  </div>
+                </li>
+              )
+            })}
+        </ul>
       </div>
     )
   }
