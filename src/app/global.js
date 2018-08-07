@@ -44,14 +44,11 @@ _global.analytics = {
 
 //current env
 const host = window.location.host
-_global.currentEnv =
-  host.indexOf('wechat-dev') !== -1
-    ? 'dev'
-    : host.indexOf('wechat-staging') !== -1
-      ? 'staging'
-      : host.indexOf('wechat') !== -1
-        ? 'prod'
-        : 'dev'
+_global.currentEnv = host.includes('wechat-dev')
+  ? 'dev'
+  : host.includes('wechat-staging')
+    ? 'staging'
+    : host.includes('wechat') ? 'prod' : 'dev'
 
 //questionnaire address
 _global.questionnaireAddress = {

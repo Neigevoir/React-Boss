@@ -1,11 +1,14 @@
 import api from '../api/userApi'
 import constant from '../constants/user'
 
-const getUserLogin = data => {
-  return dispatch => {
-    return api.getUserLogin(data).then(res => {
-      dispatch({ type: constant.GET_LINEPOSITION, res })
-    })
+const getUserLogin = (data, success) => {
+  return {
+    type: constant.GET_UserLogin,
+    API: true,
+    method: 'POST',
+    url: '/app/user/login',
+    data,
+    success
   }
 }
 
@@ -25,11 +28,14 @@ const getUserVerify = data => {
   }
 }
 
-const getLoginInfo = () => {
-  return dispatch => {
-    return api.getLoginInfo().then(res => {
-      dispatch({ type: constant.GET_LINEPOSITION, res })
-    })
+const getLoginInfo = (success, error) => {
+  return {
+    type: 'API:LOGININFO:GET',
+    API: true,
+    method: 'POST',
+    url: '/app/user/logininfo',
+    success,
+    error
   }
 }
 

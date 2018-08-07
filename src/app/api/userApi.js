@@ -4,7 +4,7 @@ let userApi = {
   getUserVerify(data) {
     return Fetch({
       type: 'POST',
-      url: 'http://www.ih5.cn/app/user/password',
+      url: '/app/user/password',
       data: {
         phone: data.phone,
         code: data.code,
@@ -17,15 +17,14 @@ let userApi = {
     return Fetch({
       type: 'POST',
       mode: 'cors',
-      url: 'http://www.ih5.cn/app/user/logout'
+      url: '/app/user/logout'
     })
   },
 
   getUserLogin(data) {
     return Fetch({
       type: 'POST',
-      mode: 'cors',
-      url: 'http://www.ih5.cn/app/user/login',
+      url: '/app/user/login',
       data: {
         username: data.username,
         password: data.password
@@ -37,7 +36,7 @@ let userApi = {
     return Fetch({
       type: 'POST',
       mode: 'cors',
-      url: 'http://www.ih5.cn/app/sms/send',
+      url: '/app/sms/send',
       data: {
         phone: phone,
         type: type
@@ -49,7 +48,7 @@ let userApi = {
     return Fetch({
       type: 'POST',
       mode: 'cors',
-      url: 'http://www.ih5.cn/app/user/logininfo'
+      url: '/app/user/logininfo'
     })
   },
 
@@ -57,7 +56,7 @@ let userApi = {
     return Fetch({
       type: 'POST',
       mode: 'cors',
-      url: 'http://www.ih5.cn/app/user/editpassword',
+      url: '/app/user/editpassword',
       data: {
         old_password: oldpsd,
         new_password: newpsd
@@ -69,7 +68,7 @@ let userApi = {
     return Fetch({
       type: 'POST',
       mode: 'cors',
-      url: 'http://www.ih5.cn/app/user/follow',
+      url: '/app/user/follow',
       data: {
         uid: uid
       }
@@ -80,7 +79,7 @@ let userApi = {
     return Fetch({
       type: 'POST',
       mode: 'cors',
-      url: 'http://www.ih5.cn/app/vxwork/show',
+      url: '/app/vxwork/show',
       data: {
         nid: nid
       }
@@ -91,7 +90,7 @@ let userApi = {
     return Fetch({
       type: 'POST',
       mode: 'cors',
-      url: 'http://www.ih5.cn/app/user/list',
+      url: '/app/user/list',
       data: {
         type: type
       }

@@ -97,8 +97,13 @@ export default class Company extends React.Component {
     this.context.router.push('notice')
   }
 
-  showCompanyDetail = () => {
-    this.props.dispatch(Actions.company.changeCompanyDetail('show'))
+  showCompanyDetail = index => () => {
+    this.props.history.push({
+      pathname: '/company_detail',
+      state: {
+        index
+      }
+    })
   }
 
   render() {
@@ -109,7 +114,7 @@ export default class Company extends React.Component {
           {!_.isEmpty(list) &&
             list.map((v, k) => {
               return (
-                <li key={k} onClick={this.showCompanyDetail}>
+                <li key={k} onClick={this.showCompanyDetail(k)}>
                   <div className="companys">
                     <img className="companyPic" src={v.image} alt="" />
                     <div className="companyPro">

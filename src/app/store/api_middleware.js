@@ -3,6 +3,7 @@ import { stringify } from 'qs'
 
 const getHeaders = action => {
   let headers = {
+    Authorization: `Bearer { ${localStorage.getItem('token')} }`, // ih5 need auth
     Accept: 'application/json', // needed for request.format.json?
     'Content-Type': 'application/json',
     'X-REQUESTED-WITH': 'XMLHttpRequest' // needed for request.xhr? which sidesteps mobylette

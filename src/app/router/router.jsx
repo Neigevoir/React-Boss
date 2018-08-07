@@ -1,14 +1,31 @@
-import React, { StrictMode, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import Header from 'src/app/components/header'
 import Footer from 'src/app/components/footer'
 import Loading from 'src/app/components/loading'
+import Actions from 'src/app/actions/actions'
+import * as AsyncComponents from 'src/app/router/ImportComponents'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import Store from 'src/app/store/store.js'
 import 'src/assets/styles/all.scss'
 import 'src/assets/styles/index/index.scss'
-import { Route, Switch } from 'react-router-dom'
-import * as AsyncComponents from 'src/app/router/ImportComponents'
+
+@withRouter
 export default class App extends PureComponent {
+  componentDidMount() {
+    const token = localStorage.getItem('token')
+    if (_.isEmpty(token)) {
+      this.props.history.replace('/password')
+    } else {
+      Store.dispatch(Actions.user.getLoginInfo(this.getInfoSuccess))
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     this.scrollPosition(prevProps, this.props)
+  }
+
+  getInfoSuccess = () => {
+    // this.props.history.replace('/position')
   }
 
   scrollPosition = (preState, nextState) => {
@@ -34,20 +51,26 @@ export default class App extends PureComponent {
 
   render() {
     return (
-      <StrictMode>
-        <div id="test">
-          <Header />
-          <Switch>
-            <Route exact path="/" component={AsyncComponents.AsyncPosition} />
-            <Route path="/position" component={AsyncComponents.AsyncPosition} />
-            <Route path="/company" component={AsyncComponents.AsyncCompany} />
-            <Route path="/notice" component={AsyncComponents.AsyncNotice} />
-            <Route path="/login" component={AsyncComponents.AsyncLogin} />
-          </Switch>
-          <Footer pathname={this.props.location.pathname} />
-          <Loading />
-        </div>
-      </StrictMode>
+      // <StrictMode>
+      <div id="test">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={AsyncComponents.AsyncPosition} />
+          <Route path="/position" component={AsyncComponents.AsyncPosition} />
+          <Route path="/company" component={AsyncComponents.AsyncCompany} />
+          <Route
+            path="/company_detail"
+            component={AsyncComponents.AsyncCompanyDetail}
+          />
+          <Route path="/notice" component={AsyncComponents.AsyncNotice} />
+          <Route path="/login" component={AsyncComponents.AsyncLogin} />
+          <Route path="/password" component={AsyncComponents.AsyncPassword} />
+          <Route path="/user" component={AsyncComponents.AsyncUser} />
+        </Switch>
+        <Footer pathname={this.props.location.pathname} />
+        <Loading />
+      </div>
+      // </StrictMode>
     )
   }
 }

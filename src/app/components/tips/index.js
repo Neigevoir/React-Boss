@@ -2,12 +2,8 @@ import React from 'react'
 import './index.scss'
 
 export default class Tips extends React.PureComponent {
-  constructor() {
-    super()
-  }
-  isShow = arg => {
-    return arg
-  }
+  isShow = arg => arg
+
   render() {
     return (
       <div
