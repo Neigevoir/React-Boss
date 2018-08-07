@@ -5,12 +5,10 @@ import Actions from 'src/app/actions/actions'
 import Input from './components/input'
 import withoutHeader from 'src/app/components/HOC/without_header'
 import withoutFooter from 'src/app/components/HOC/without_footer'
-// import PasLogin from './pasLogin'
-// import UserAction from '../../action/userAction'
 
 import './index.scss'
 
-@connect
+@connect()
 @withRouter
 @withoutHeader
 @withoutFooter

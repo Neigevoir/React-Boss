@@ -58,6 +58,10 @@ export default class App extends PureComponent {
           <Route exact path="/" component={AsyncComponents.AsyncPosition} />
           <Route path="/position" component={AsyncComponents.AsyncPosition} />
           <Route path="/company" component={AsyncComponents.AsyncCompany} />
+          <Route
+            path="/company_detail"
+            component={AsyncComponents.AsyncCompanyDetail}
+          />
           <Route path="/notice" component={AsyncComponents.AsyncNotice} />
           <Route path="/login" component={AsyncComponents.AsyncLogin} />
           <Route path="/password" component={AsyncComponents.AsyncPassword} />
