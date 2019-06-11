@@ -6,7 +6,7 @@ import Layout from './router.jsx'
 import { persistor } from 'src/app/store/store.js'
 import { PersistGate } from 'redux-persist/es/integration/react'
 // import WithErrorHandle from 'src/app/components/HOC/with_errorhandle/witherrorhandle'
-import createBrowserHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 const history = createBrowserHistory()
 
 class App extends React.PureComponent {

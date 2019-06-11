@@ -41,7 +41,7 @@ export default class Company extends React.Component {
     this.props.dispatch(Actions.company.getCompanyLineList(this.props.filters))
   }
 
-  gotoNotice = () => {}
+  gotoNotice = () => this.props.history.push('/notice')
 
   _initialize = () => {
     this.refs.companyList.style.height = this.ScrollHeight //用作overflow
@@ -93,10 +93,6 @@ export default class Company extends React.Component {
     })
   }
 
-  LeftBtnFunc = () => {
-    this.context.router.push('notice')
-  }
-
   showCompanyDetail = index => () => {
     this.props.history.push({
       pathname: '/company_detail',
@@ -107,42 +103,35 @@ export default class Company extends React.Component {
   }
 
   render() {
-    let { list } = this.props
+    const { list } = this.props
     return (
-      <div>
-        <ul ref="companyList" className="companyList">
-          {!_.isEmpty(list) &&
-            list.map((v, k) => {
-              return (
-                <li key={k} onClick={this.showCompanyDetail(k)}>
-                  <div className="companys">
-                    <img className="companyPic" src={v.image} alt="" />
-                    <div className="companyPro">
-                      <img
-                        alt=""
-                        className="companyLogo"
-                        src={v.image || require('src/assets/images/logo.jpg')}
-                      />
-                      <div className="companyContent">
-                        <span className="companyText">
-                          {v.user.nick_name ? v.user.nick_name : ''}
-                        </span>
-                        <span className="companyText">
-                          {v.title ? v.title : ''}
-                        </span>
-                        <span className="companyText">
-                          热招职位: <b className="position">前端开发</b>
-                        </span>
-                      </div>
-                      <div className="clearfix" />
+      <ul ref="companyList" className="companyList">
+        {!_.isEmpty(list) &&
+          list.map((v, k) => {
+            return (
+              <li key={k} onClick={this.showCompanyDetail(k)}>
+                <div className="companys">
+                  <img className="companyPic" src={v.image} alt="" />
+                  <div className="companyPro">
+                    <img
+                      alt=""
+                      className="companyLogo"
+                      src={v.image || require('src/assets/images/logo.jpg')}
+                    />
+                    <div className="companyContent">
+                      <span className="companyText">{v.user.nick_name}</span>
+                      <span className="companyText">{v.title}</span>
+                      <span className="companyText">
+                        热招职位: <b className="position">前端开发</b>
+                      </span>
                     </div>
+                    <div className="clearfix" />
                   </div>
-                </li>
-              )
-            })}
-        </ul>
-        {/* <CompanyDetail /> */}
-      </div>
+                </div>
+              </li>
+            )
+          })}
+      </ul>
     )
   }
 }

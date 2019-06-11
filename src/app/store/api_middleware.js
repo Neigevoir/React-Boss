@@ -1,4 +1,3 @@
-import 'whatwg-fetch'
 import { stringify } from 'qs'
 
 const getHeaders = action => {
