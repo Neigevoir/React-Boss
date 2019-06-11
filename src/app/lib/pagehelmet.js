@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
-import { pure } from 'recompose'
 
 const PageHelmet = ({ title, link }) => (
   <Helmet>
@@ -14,4 +13,4 @@ PageHelmet.propTypes = {
   link: PropTypes.string.isRequired
 }
 
-export default pure(PageHelmet)
+export default PageHelmet

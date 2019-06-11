@@ -3,8 +3,13 @@
   "plugins": [
     "transform-object-entries",
     "transform-do-expressions",
-    "transform-decorators-legacy",
-    "syntax-dynamic-import"
+    "syntax-dynamic-import",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ]
   ],
   "env": {
     "test": {
