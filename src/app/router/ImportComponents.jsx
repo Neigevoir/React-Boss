@@ -1,23 +1,13 @@
-import asyncComponent from './AsyncComponent'
+import { lazy } from 'react'
 
-export const AsyncPosition = asyncComponent(() =>
-  import('src/app/containers/position')
-)
-export const AsyncCompany = asyncComponent(() =>
-  import('src/app/containers/company')
-)
-export const AsyncNotice = asyncComponent(() =>
-  import('src/app/containers/notice')
-)
-export const AsyncLogin = asyncComponent(() =>
-  import('src/app/containers/login')
-)
-export const AsyncPassword = asyncComponent(() =>
+export const AsyncPosition = lazy(() => import('src/app/containers/position'))
+export const AsyncCompany = lazy(() => import('src/app/containers/company'))
+export const AsyncNotice = lazy(() => import('src/app/containers/notice'))
+export const AsyncLogin = lazy(() => import('src/app/containers/login'))
+export const AsyncPassword = lazy(() =>
   import('src/app/containers/login/password.js')
 )
-export const AsyncUser = asyncComponent(() =>
-  import('src/app/containers/user/index.js')
-)
-export const AsyncCompanyDetail = asyncComponent(() =>
+export const AsyncUser = lazy(() => import('src/app/containers/user/index.js'))
+export const AsyncCompanyDetail = lazy(() =>
   import('src/app/containers/company/detail.js')
 )
