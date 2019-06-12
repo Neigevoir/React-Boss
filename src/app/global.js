@@ -47,8 +47,10 @@ const host = window.location.host
 _global.currentEnv = host.includes('wechat-dev')
   ? 'dev'
   : host.includes('wechat-staging')
-    ? 'staging'
-    : host.includes('wechat') ? 'prod' : 'dev'
+  ? 'staging'
+  : host.includes('wechat')
+  ? 'prod'
+  : 'dev'
 
 //questionnaire address
 _global.questionnaireAddress = {

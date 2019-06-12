@@ -98,7 +98,7 @@ export default class Login extends React.Component {
                 placeholder="6-25位字母、数字或下划线"
                 required=""
                 pattern="^\d{6}$"
-                maxLength="6"
+                // maxLength="6"
                 onChange={this.changePassword}
               />
             </li>
