@@ -1,7 +1,7 @@
 module.exports = {
   proxy: {
     '/app/*': {
-      target: 'http://localhost:8888',
+      target: 'http://www.ih5.cn',
       changeOrigin: true,
       // host:'localhost:3000',
       secure: false
