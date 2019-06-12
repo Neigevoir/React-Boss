@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Suspense } from 'react'
 import Header from 'src/app/components/header'
 import Footer from 'src/app/components/footer'
 import Loading from 'src/app/components/loading'
@@ -10,7 +10,7 @@ import 'src/assets/styles/all.scss'
 import 'src/assets/styles/index/index.scss'
 
 @withRouter
-export default class App extends PureComponent {
+export default class Routers extends PureComponent {
   componentDidMount() {
     const token = localStorage.getItem('token')
     if (_.isEmpty(token)) {
@@ -51,8 +51,7 @@ export default class App extends PureComponent {
 
   render() {
     return (
-      // <StrictMode>
-      <div id="test">
+      <Suspense fallback={<div />}>
         <Header />
         <Switch>
           <Route exact path="/" component={AsyncComponents.AsyncPosition} />
@@ -69,8 +68,7 @@ export default class App extends PureComponent {
         </Switch>
         <Footer pathname={this.props.location.pathname} />
         <Loading />
-      </div>
-      // </StrictMode>
+      </Suspense>
     )
   }
 }

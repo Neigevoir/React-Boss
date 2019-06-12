@@ -76,7 +76,7 @@ export default class Login extends React.Component {
       <div className="passwordLogin">
         <div className="paslogin">
           <div className="loginTitle">
-            <a onClick={this.handleGoback}>返回</a>
+            <span onClick={this.handleGoback}>返回</span>
           </div>
           <img src={require('src/assets/images/passwordBg.jpg')} alt="" />
           <ul className="loginBtnList">

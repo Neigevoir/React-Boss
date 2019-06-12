@@ -2,7 +2,7 @@ import { configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import _ from 'lodash'
 import React from 'react'
-import dateFns from 'date-fns'
+
 configure({
   adapter: new Adapter()
 })
@@ -50,4 +50,3 @@ global.sessionStorage = sessionStorageMock
  */
 global._ = _
 global.React = React
-global.dateFns = dateFns
