@@ -1,5 +1,6 @@
 const http = require('http')
 const url = require('url')
+const port = require('../src/server_port.js')
 // const querystring = require('querystring') //操作参数模块
 
 function start(route, handle) {
@@ -17,8 +18,8 @@ function start(route, handle) {
     response.end()
   }
 
-  http.createServer(onRequest).listen(8888)
-  console.log('Server has started.')
+  http.createServer(onRequest).listen(port)
+  console.log('Server has started, Port:' + port)
 }
 
 exports.start = start
