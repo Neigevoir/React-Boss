@@ -100,6 +100,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "server": "node server/index.js",
     "prettier": "prettier --single-quote --no-semi --print-width 80 --write 'src/app/**/*.{js,jsx,css,scss,json}'",
     "precommit": "lint-staged",
     "analyze": "source-map-explorer build/static/js/*",

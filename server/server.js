@@ -1,16 +1,19 @@
-var http = require('http')
-var url = require('url')
+const http = require('http')
+const url = require('url')
+// const querystring = require('querystring') //操作参数模块
 
 function start(route, handle) {
   function onRequest(request, response) {
-    var pathname = url.parse(request.url).pathname
-    console.log('Request for ' + pathname + ' received.')
+    const pathname = url.parse(request.url).pathname
+    console.log('收到请求.')
     response.writeHead(200, {
-      'Content-Type': 'text/plain',
-      'Access-Control-Allow-Origin': '*'
+      'Content-Type': 'application/json',
+      charset: 'utf-8',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS'
     })
-    var content = route(handle, pathname)
-    response.write(content)
+    const content = route(handle, pathname)
+    response.write(JSON.stringify(content))
     response.end()
   }
 

@@ -17,7 +17,7 @@ io.on('connection', socket => {
     })
   }
   socket.on('message', message => {
-    if (message == 'success') {
+    if (message === 'success') {
       socket.emit('message', '那你很棒哦')
     }
     socket.emit('message', message)
