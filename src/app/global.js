@@ -1,3 +1,5 @@
+const port = require('../server_port.js')
+
 let _global = undefined
 
 if (typeof global !== 'undefined') _global = global
@@ -17,5 +19,7 @@ if (!window.requestAnimationFrame) {
 }
 
 _global.__Url__ = 'http://www.ih5.cn'
+
+_global.ServerApi = `https://localhost:${port}/`
 
 export default _global
