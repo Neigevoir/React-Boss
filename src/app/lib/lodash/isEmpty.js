@@ -1,20 +1,18 @@
-import isArray from './isArray'
 import isObject from './isObject'
-import isString from './isString'
 
-function isEmpty(data) {
+export default function isEmpty(value) {
   let isEmpty = true
-  if (isArray(data) || isString(data)) {
-    isEmpty = data.length === 0
-  } else if (isObject(data)) {
-    let objLength = 0
-    for (let key in data) {
-      objLength += data[key] ? 1 : 0
+  if (!value) {
+    return isEmpty
+  }
+  if (isObject(value)) {
+    for (let key in value) {
+      if (value[key]) {
+        isEmpty = false
+      }
     }
-    isEmpty = objLength === 0
   } else {
+    isEmpty = value.length === 0
   }
   return isEmpty
 }
-
-export default isEmpty

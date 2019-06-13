@@ -1,3 +1,9 @@
+// NOTE：Lodash
+// import _ from 'lodash'
+
+// NOTE：Neigevoir
+import lodash from 'src/app/lib/lodash'
+
 const port = require('../server_port.js')
 
 let _global = undefined
@@ -21,5 +27,7 @@ if (!window.requestAnimationFrame) {
 _global.__Url__ = 'http://www.ih5.cn'
 
 _global.ServerApi = `https://localhost:${port}/`
+
+_global._ = lodash
 
 export default _global

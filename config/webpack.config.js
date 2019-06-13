@@ -530,8 +530,8 @@ module.exports = function(webpackEnv) {
     },
     plugins: [
       new webpack.ProvidePlugin({
-        React: 'react',
-        _: 'lodash'
+        React: 'react'
+        // _: 'lodash'
       }),
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
