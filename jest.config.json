@@ -41,7 +41,6 @@
   "globals": {
     "React": true,
     "wx": true,
-    "_": true,
-    "__webpack_public_path__": true
+    "_": true
   }
 }

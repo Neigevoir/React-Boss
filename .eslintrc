@@ -8,8 +8,7 @@
   "globals": {
     "React": true,
     "_": true,
-    "wx": true,
-    "__webpack_public_path__": true
+    "wx": true
   },
   "plugins": ["jsx-a11y", "prettier", "react"],
   "rules": {
