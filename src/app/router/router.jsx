@@ -1,4 +1,4 @@
-import React, { PureComponent, Suspense } from 'react'
+import { Suspense, useEffect, useRef } from 'react'
 import Header from 'src/app/components/header'
 import Footer from 'src/app/components/footer'
 import Loading from 'src/app/components/loading'
@@ -9,26 +9,32 @@ import Store from 'src/app/store/store.js'
 import 'src/assets/styles/all.scss'
 import 'src/assets/styles/index/index.scss'
 
-@withRouter
-export default class Routers extends PureComponent {
-  componentDidMount() {
-    const token = localStorage.getItem('token')
-    if (_.isEmpty(token)) {
-      this.props.history.replace('/password')
+export default withRouter(Routers)
+function Routers(props) {
+  const { history } = props
+
+  useEffect(() => {
+    if (_.isEmpty(localStorage.getItem('token'))) {
+      history.replace('/password')
     } else {
-      Store.dispatch(Actions.user.getLoginInfo(this.getInfoSuccess))
+      Store.dispatch(Actions.user.getLoginInfo(getInfoSuccess))
     }
-  }
+  }, [])
 
-  componentDidUpdate(prevProps, prevState) {
-    this.scrollPosition(prevProps, this.props)
-  }
+  // NOTE:获取上一个Props
+  const prevPropsRef = useRef()
+  const prevProps = prevPropsRef.current
+  useEffect(() => {
+    prevPropsRef.current = props
+    scrollPosition(prevProps, props)
+  }, [props.location.pathname])
 
-  getInfoSuccess = () => {
-    // this.props.history.replace('/position')
-  }
+  const getInfoSuccess = () => history.replace('/position')
 
-  scrollPosition = (preState, nextState) => {
+  const scrollPosition = (preState, nextState) => {
+    if (_.isEmpty(preState) || _.isEmpty(nextState)) {
+      return null
+    }
     //storage current scroll position
     const preStoragePos = !window.SCROLL_ELEMENT
       ? document.documentElement.scrollTop || document.body.scrollTop
@@ -49,26 +55,24 @@ export default class Routers extends PureComponent {
     }
   }
 
-  render() {
-    return (
-      <Suspense fallback={<div />}>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={AsyncComponents.AsyncPosition} />
-          <Route path="/position" component={AsyncComponents.AsyncPosition} />
-          <Route path="/company" component={AsyncComponents.AsyncCompany} />
-          <Route
-            path="/company_detail"
-            component={AsyncComponents.AsyncCompanyDetail}
-          />
-          <Route path="/notice" component={AsyncComponents.AsyncNotice} />
-          <Route path="/login" component={AsyncComponents.AsyncLogin} />
-          <Route path="/password" component={AsyncComponents.AsyncPassword} />
-          <Route path="/user" component={AsyncComponents.AsyncUser} />
-        </Switch>
-        <Footer pathname={this.props.location.pathname} />
-        <Loading />
-      </Suspense>
-    )
-  }
+  return (
+    <Suspense fallback={<div />}>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={AsyncComponents.AsyncPosition} />
+        <Route path="/position" component={AsyncComponents.AsyncPosition} />
+        <Route path="/company" component={AsyncComponents.AsyncCompany} />
+        <Route
+          path="/company_detail"
+          component={AsyncComponents.AsyncCompanyDetail}
+        />
+        <Route path="/notice" component={AsyncComponents.AsyncNotice} />
+        <Route path="/login" component={AsyncComponents.AsyncLogin} />
+        <Route path="/password" component={AsyncComponents.AsyncPassword} />
+        <Route path="/user" component={AsyncComponents.AsyncUser} />
+      </Switch>
+      <Footer pathname={props.location.pathname} />
+      <Loading />
+    </Suspense>
+  )
 }

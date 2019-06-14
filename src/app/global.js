@@ -1,8 +1,5 @@
-// NOTE：Lodash
-// import _ from 'lodash'
-
-// NOTE：Neigevoir
-import lodash from 'src/app/lib/lodash'
+// import _ from 'lodash' // NOTE：Lodash
+import _ from 'src/app/lib/lodash' // NOTE：Neigevoir
 
 const port = require('../server_port.js')
 
@@ -19,15 +16,13 @@ if (!Date.now) {
 _global.ENV = 'development'
 
 if (!window.requestAnimationFrame) {
-  _global.requestAnimationFrame = function(fn) {
-    setTimeout(fn, 17)
-  }
+  _global.requestAnimationFrame = fn => setTimeout(fn, 17)
 }
 
 _global.__Url__ = 'http://www.ih5.cn'
 
 _global.ServerApi = `https://localhost:${port}/`
 
-_global._ = lodash
+_global._ = _
 
 export default _global
