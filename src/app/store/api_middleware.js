@@ -2,7 +2,7 @@ import { stringify } from 'qs'
 
 const getHeaders = action => {
   let headers = {
-    Authorization: `Bearer { ${localStorage.getItem('token')} }`, // ih5 need auth
+    // Authorization: `Bearer { ${localStorage.getItem('token')} }`, // ih5 need auth
     Accept: 'application/json', // needed for request.format.json?
     'Content-Type': 'application/json',
     'X-REQUESTED-WITH': 'XMLHttpRequest' // needed for request.xhr? which sidesteps mobylette
@@ -123,11 +123,10 @@ export default ({ dispatch }) => next => action => {
     return
   }
 
-  let credentials = 'same-origin' //cookie只能同域发送，不能跨域发送
+  const credentials = 'same-origin' //cookie只能同域发送，不能跨域发送
   // let credentials = 'include'; //既可以同域发送，也可以跨域发送
 
-  let headers = getHeaders(action)
-
+  const headers = getHeaders(action)
   fetch(url, {
     method,
     body,

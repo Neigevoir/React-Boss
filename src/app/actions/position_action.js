@@ -6,11 +6,15 @@ const setFilters = filters => ({
   filters
 })
 
-const getLinePosition = (data, listType) => {
-  return dispatch => {
-    return api.getLinePosition(data).then(res => {
-      dispatch({ type: constant.GET_LINEPOSITION, res, listType })
-    })
+const getLinePosition = (data, success, error) => {
+  return {
+    type: 'API:GetLinePosition',
+    API: true,
+    method: 'POST',
+    url: 'http://localhost:8888/api/position/list',
+    data,
+    success: success,
+    error: error
   }
 }
 

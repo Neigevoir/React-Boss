@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
@@ -14,68 +14,45 @@ function getState(state, props) {
   }
 }
 
-@connect(getState)
-@withRouter
-export default class Position extends React.PureComponent {
-  constructor(props) {
-    super(props)
-    this.navSlide = React.createRef()
-  }
-
-  componentDidMount() {
-    this.props.dispatch(
-      Actions.position.getLinePosition(this.props.filters, 'recommend')
+export default connect(getState)(withRouter(Position))
+function Position(props) {
+  useEffect(() => {
+    props.dispatch(
+      Actions.position.getLinePosition({ test: 1 }, (dispatch, res) => {
+        console.log(res)
+      })
     )
-    this.props.dispatch(
+    props.dispatch(
       Actions.common.changeHeader({
         title: '职位',
         leftBtn: '广告',
-        handleLeft: this.gotoNotice,
-        rightBtn: '搜索',
-        handleRight: this.showSelectModal
+        handleLeft: gotoNotice,
+        rightBtn: '搜索'
+        // handleRight: this.showSelectModal
       })
     )
-  }
+  }, [])
 
-  gotoNotice = () => {
-    this.props.history.push('/notice')
-  }
+  const gotoNotice = () => props.history.push('/notice')
 
-  onScroll = () => {
-    if (window.pageYOffset === 0) {
-      console.log('已经到顶了！')
-    }
-  }
-
-  getPositionList = state => () => {
-    const { filters } = this.props
+  const getPositionList = state => () => {
+    const { filters } = props
     const filter = { ...filters, type: state }
-    this.props.dispatch(Actions.position.setFilters(filter))
-    this.props.dispatch(Actions.position.getLinePosition(filter, state))
+    props.dispatch(Actions.position.setFilters(filter))
+    props.dispatch(Actions.position.getLinePosition(filter, state))
   }
 
-  SearchShow = () => {
-    this.refs.Search.SearchShow()
-  }
-
-  showSelectModal = e => {
-    this.refs.SelectModal.changeType(e.target.innerHTML)
-    this.refs.SelectModal.show()
-  }
-
-  render() {
-    const { list, listType, filters, dispatch } = this.props
-    const listData = !_.isEmpty(list) ? [...list] : []
-    return (
-      <div className="positionBody">
-        <PositionNav listType={listType} handleClick={this.getPositionList} />
-        <PositionList
-          dispatch={dispatch}
-          filters={filters}
-          listData={listData.reverse()}
-          listType={listType}
-        />
-      </div>
-    )
-  }
+  const { list, listType, filters, dispatch } = props
+  const listData = !_.isEmpty(list) ? [...list] : []
+  return (
+    <div className="positionBody">
+      <PositionNav listType={listType} handleClick={getPositionList} />
+      <PositionList
+        dispatch={dispatch}
+        filters={filters}
+        listData={listData.reverse()}
+        listType={listType}
+      />
+    </div>
+  )
 }

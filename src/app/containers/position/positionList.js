@@ -1,6 +1,6 @@
 import React from 'react'
 import Actions from 'src/app/actions/actions'
-import Tips from '../../components/tips/index'
+// import Tips from '../../components/tips/index'
 import ListBox from './components/list_box'
 
 export default class PositionList extends React.Component {
@@ -183,7 +183,7 @@ export default class PositionList extends React.Component {
     const { listData } = this.props
     return (
       <div ref={this.body} className="positionListBody">
-        <Tips />
+        {/* <Tips /> */}
         <div ref={this.position} className="positionList">
           <ul className="positionUl">
             {!_.isEmpty(listData) &&

@@ -1,9 +1,4 @@
-const server = require('./server')
-const position = require('./api/position')
-const router = require('./router')
+process.env.BABEL_ENV = 'development'
+process.env.NODE_ENV = 'development'
 
-const handle = {}
-handle['/'] = position.start
-handle['/position'] = position.start
-
-server.start(router.route, handle)
+require('./server')
