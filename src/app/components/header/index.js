@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 function getState(state) {
   return {
-    ...state.header
+    ...state.common.header
   }
 }
 @connect(getState)

@@ -1,20 +1,20 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Actions from 'src/app/actions/actions'
 import WithoutFooter from 'src/app/components/HOC/without_footer'
 
 function getState(state) {
-  const { list } = state.notice
   return {
-    list
+    list: state.notice.list
   }
 }
-@connect(getState)
-@WithoutFooter
-export default class Notice extends React.PureComponent {
-  componentDidMount() {
-    const { list, history, dispatch } = this.props
-    if (_.isEmpty(list)) {
+
+export default connect(getState)(WithoutFooter(Notice))
+function Notice(props) {
+  const { history, dispatch } = props
+
+  useEffect(() => {
+    if (_.isEmpty(props.list)) {
       dispatch(
         Actions.notice.getNotice({
           offset: '0',
@@ -31,9 +31,9 @@ export default class Notice extends React.PureComponent {
         handleRight: () => {}
       })
     )
-  }
+  }, [])
 
-  getNoticeDay = date => {
+  const getNoticeDay = date => {
     const nowDate = new Date().getTime(),
       creatDate = date * 1000
     if (nowDate - 7 * 86400000 < creatDate) {
@@ -47,30 +47,28 @@ export default class Notice extends React.PureComponent {
     }
   }
 
-  render() {
-    const { list } = this.props
-    return (
-      <div className="noticeBody">
-        <ul>
-          {list &&
-            list.map((v, i) => {
-              return (
-                <li key={i} className="noticeContent">
-                  <div ref="view" className="noticeview">
-                    <div ref="content">
-                      <h4>{v.title}</h4>
-                      <p dangerouslySetInnerHTML={{ __html: v.message }} />
-                      <h5 className="checkContent">
-                        管理员发表于
-                        <b>{this.getNoticeDay(v.created_at)}</b>
-                      </h5>
-                    </div>
+  const { list } = props
+  return (
+    <div className="noticeBody">
+      <ul>
+        {list &&
+          list.map((v, i) => {
+            return (
+              <li key={i} className="noticeContent">
+                <div ref="view" className="noticeview">
+                  <div ref="content">
+                    <h4>{v.title}</h4>
+                    <p dangerouslySetInnerHTML={{ __html: v.message }} />
+                    <h5 className="checkContent">
+                      管理员发表于
+                      <b>{getNoticeDay(v.created_at)}</b>
+                    </h5>
                   </div>
-                </li>
-              )
-            })}
-        </ul>
-      </div>
-    )
-  }
+                </div>
+              </li>
+            )
+          })}
+      </ul>
+    </div>
+  )
 }

@@ -2,6 +2,7 @@ import { Suspense, useEffect, useRef } from 'react'
 import Header from 'src/app/components/header'
 import Footer from 'src/app/components/footer'
 import Loading from 'src/app/components/loading'
+import Tips from 'src/app/components/tips'
 import Actions from 'src/app/actions/actions'
 import * as AsyncComponents from 'src/app/router/ImportComponents'
 import { Route, Switch, withRouter } from 'react-router-dom'
@@ -17,7 +18,7 @@ function Routers(props) {
     if (_.isEmpty(localStorage.getItem('token'))) {
       history.replace('/password')
     } else {
-      Store.dispatch(Actions.user.getLoginInfo(getInfoSuccess))
+      // Store.dispatch(Actions.user.getLoginInfo(getInfoSuccess))
     }
   }, [])
 
@@ -73,6 +74,7 @@ function Routers(props) {
       </Switch>
       <Footer pathname={props.location.pathname} />
       <Loading />
+      <Tips />
     </Suspense>
   )
 }

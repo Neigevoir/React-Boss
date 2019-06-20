@@ -1,14 +1,13 @@
 import api from '../api/informationApi'
-import FetchAction from './fetch_action'
 import constant from '../constants/information'
 
 const getPrivateMessageList = (data, informationType) => {
   return dispatch => {
-    dispatch(FetchAction.FetchPosts())
-    return api.getPrivateMessageList(data).then(res => {
-      dispatch(FetchAction.DidPosts())
-      dispatch({ type: constant.GET_PRIVATEMESSAGELIST, res, informationType })
-    })
+    // dispatch(FetchAction.FetchPosts())
+    // return api.getPrivateMessageList(data).then(res => {
+    //   dispatch(FetchAction.DidPosts())
+    //   dispatch({ type: constant.GET_PRIVATEMESSAGELIST, res, informationType })
+    // })
   }
 }
 

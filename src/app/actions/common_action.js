@@ -1,20 +1,43 @@
-const changeHeader = header => ({
-  type: 'HEADER:SET_HEADER',
-  header
+const changeHeader = filter => {
+  console.log(filter)
+  return {
+    type: 'HEADER:SET_HEADER',
+    data: filter
+  }
+}
+
+const enableFooter = () => {
+  return {
+    type: 'NAV:FOOTER:ENABLE'
+  }
+}
+
+const disableFooter = () => {
+  return {
+    type: 'NAV:FOOTER:DISABLE'
+  }
+}
+
+const changeLoading = loading => ({
+  type: 'LOADING:SET_LOADING',
+  loading
 })
 
-const changeFooter = footer => ({
-  type: 'FOOTER:SET_FOOTER',
+const changeTips = footer => ({
+  type: 'TIPS:SET_TIPS',
   footer
 })
 
-const changeLoading = footer => ({
-  type: 'FOOTER:SET_LOADING',
+const resetTips = footer => ({
+  type: 'TIPS:RESET_TIPS',
   footer
 })
 
 export default {
   changeHeader,
-  changeFooter,
-  changeLoading
+  enableFooter,
+  disableFooter,
+  changeLoading,
+  changeTips,
+  resetTips
 }

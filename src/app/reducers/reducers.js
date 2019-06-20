@@ -9,6 +9,7 @@ import notice from './notice_reducer'
 import header from './header_reducer'
 import footer from './footer_reducer'
 import customer from './customer_reducer'
+import common from './common_reducer'
 
 export default {
   position,
@@ -22,5 +23,6 @@ export default {
     name: customer
   }),
   header,
-  footer
+  footer,
+  common
 }

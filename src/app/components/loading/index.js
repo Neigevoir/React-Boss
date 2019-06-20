@@ -1,9 +1,7 @@
 import { connect } from 'react-redux'
 
 function getState(state) {
-  return {
-    ...state.loading
-  }
+  return { ...state.loading }
 }
 export default connect(getState)(Loading)
 function Loading(props) {

@@ -6,7 +6,9 @@ export default function withoutHeader(WrappedComponent) {
     useEffect(() => {
       const { dispatch } = props
       dispatch(Actions.common.changeHeader({ isShow: false }))
-      return () => dispatch(Actions.common.changeHeader({ isShow: true }))
+      return () => {
+        dispatch(Actions.common.changeHeader({ isShow: true }))
+      }
     }, [])
     return <WrappedComponent {...props} />
   }
