@@ -5,7 +5,7 @@ const ignoredFiles = require('react-dev-utils/ignoredFiles')
 const paths = require('./paths')
 const fs = require('fs')
 // NOTE：使用HTTPS
-process.env.HTTPS = true
+process.env.HTTPS = false
 // NOTE: proxy配置
 const proxyConfig = require('./proxyConfig')
 

@@ -11,5 +11,6 @@ router.post('/', function(req, res) {
 
 router.use('/position', require('./position'))
 router.use('/company', require('./company'))
+router.use('/ajaxTest', require('./ajaxTest'))
 
 module.exports = router

@@ -12,6 +12,12 @@ export default connect(mapStateToProps)(Tips)
 function Tips(props) {
   let timer = null
 
+  const setTime = timer => {
+    timer = setTimeout(() => {
+      props.dispatch(Actions.common.resetTips())
+    }, timer * 1000)
+  }
+
   useEffect(() => {
     if (props.isShow) {
       timer && clearTimeout(timer)
@@ -19,12 +25,6 @@ function Tips(props) {
     }
     return () => timer && clearTimeout(timer)
   }, [props.isShow])
-
-  const setTime = timer => {
-    timer = setTimeout(() => {
-      props.dispatch(Actions.common.resetTips())
-    }, timer * 1000)
-  }
 
   return (
     <div className={`${props.isShow ? 'tips' : 'hidden'}`}>
