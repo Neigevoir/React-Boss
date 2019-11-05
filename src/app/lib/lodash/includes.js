@@ -2,7 +2,7 @@ import isArray from './isArray'
 import isObject from './isObject'
 import isString from './isString'
 
-function includes(data, item, index) {
+export default function includes(data, item, index) {
   let hasItem = false
   if (isArray(data)) {
     if (!!index && data[index] === item) {
@@ -31,5 +31,3 @@ function includes(data, item, index) {
   }
   return hasItem
 }
-
-export default includes

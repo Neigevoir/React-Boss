@@ -15,7 +15,7 @@ function User(props) {
       Actions.common.changeHeader({
         title: '我的',
         leftBtn: '广告',
-        handleLeft: this.gotoNotice,
+        handleLeft: gotoNotice,
         rightBtn: '设置',
         handleRight: () => {}
       })
@@ -27,21 +27,21 @@ function User(props) {
 
   const gotoNotice = () => props.history.push('/notice')
 
-  const _initialize = () => {
-    this.refs.userAvator.style.width = window.screen.availWidth + 'px'
-    this.refs.userAvator.style.height = window.screen.availWidth * 0.625 + 'px'
-    let srcollY = window.screen.availWidth * 0.625 - 50
-    window.addEventListener('scroll', changeOpacity(srcollY))
-  }
+  // const _initialize = () => {
+  //   this.refs.userAvator.style.width = window.screen.availWidth + 'px'
+  //   this.refs.userAvator.style.height = window.screen.availWidth * 0.625 + 'px'
+  //   let srcollY = window.screen.availWidth * 0.625 - 50
+  //   window.addEventListener('scroll', changeOpacity(srcollY))
+  // }
 
   const changeOpacity = srcollY => () => {
-    if (this.refs.header)
-      this.refs.header.addOpacity(parseFloat(window.pageYOffset / srcollY))
+    // if (this.refs.header)
+    //   this.refs.header.addOpacity(parseFloat(window.pageYOffset / srcollY))
   }
 
-  const showSettings = () => {
-    this.refs.Settings.showState()
-  }
+  // const showSettings = () => {
+  //   this.refs.Settings.showState()
+  // }
 
   const { customer } = props
   return (

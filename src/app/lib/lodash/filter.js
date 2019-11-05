@@ -1,6 +1,6 @@
 import isArray from './isArray'
 
-function filter(data, callback = () => {}) {
+export default function filter(data, callback = () => {}) {
   if (isArray(data)) {
     let result = []
     for (let key = 0; key < data.length; key++) {
@@ -11,5 +11,3 @@ function filter(data, callback = () => {}) {
     return result
   }
 }
-
-export default filter

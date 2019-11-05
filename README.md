@@ -1,2 +1,3 @@
 # React-Boss
-模仿Boss直聘
+
+项目只使用React Hooks

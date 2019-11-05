@@ -12,7 +12,7 @@ const history = createBrowserHistory()
 
 export default function App() {
   useEffect(() => {
-    // fetch('http://localhost:8888/api/position/list', {
+    // fetch(`${ServerApi}/api/position/list`, {
     //   method: 'POST',
     //   headers: {
     //     Accept: 'application/json', // needed for request.format.json?
