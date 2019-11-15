@@ -28,9 +28,7 @@ app.all('*', (req, res, next) => {
 app.use('/api', api)
 
 app.use('/', function(err, req, res, next) {
-  res.status(500).send({
-    error: 'Something Wrong!'
-  })
+  res.status(500).send({ error: 'Something Wrong!' })
   next()
 })
 

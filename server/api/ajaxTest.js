@@ -1,25 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-const parseQueryString = url => {
-  if (!url) {
-    return null
-  }
-  let obj = {}
-  const paraString = url.substring(url.indexOf('?') + 1, url.length).split('&')
-  for (let i in paraString) {
-    if (paraString[i].indexOf('url=') !== -1) {
-      const urlValue = paraString[i].split('url=')[1]
-      const urlKey = paraString[i].split('=')[0]
-      obj[urlKey] = urlValue
-    } else {
-      const keyValue = paraString[i].split('=')
-      obj[keyValue[0]] = keyValue[1]
-    }
-  }
-  return obj
-}
-
 const data = { id: '1', name: '有数据咯！' }
 // middleware that is specific to this router
 // router.use(function timeLog(req, res, next) {
