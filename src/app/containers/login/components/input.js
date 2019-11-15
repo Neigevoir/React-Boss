@@ -1,33 +1,24 @@
-export default class Input extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: props.defaultValue || ''
-    }
+import { useState } from 'react'
+
+export default function Input(props) {
+  const [value, setValue] = useState(props.defaultValue || '')
+
+  const handleChange = e => {
+    const { value } = e.target
+    props.onChange && props.onChange(value)
+    setValue(value)
   }
 
-  handleChange = e => {
-    const { onChange } = this.props,
-      { value } = e.target
-    onChange && onChange(value)
-    this.setState({
-      value
-    })
-  }
+  const lookCode = () => {}
 
-  render() {
-    return (
-      <div className="codeBtn">
-        <span className="btnLogo">
-          <img alt="" src={require('src/assets/images/phone.png')} />
-        </span>
-        <input
-          {...this.props}
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
-        <span className="getCode" onClick={this.lookCode}>
-          {/* <img
+  return (
+    <div className="codeBtn">
+      <span className="btnLogo">
+        <img alt="" src={require('src/assets/images/phone.png')} />
+      </span>
+      <input {...props} value={value} onChange={handleChange} />
+      <span className="getCode" onClick={lookCode}>
+        {/* <img
         alt=""
         src={
           this.state.isShowPas
@@ -35,10 +26,9 @@ export default class Input extends React.Component {
             : require('src/assets/images/eye.png')
         }
       /> */}
-        </span>
-      </div>
-    )
-  }
+      </span>
+    </div>
+  )
 }
 
 Input.defaultProps = {
