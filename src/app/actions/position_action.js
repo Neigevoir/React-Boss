@@ -11,7 +11,7 @@ const getLinePosition = (data, success, error) => {
     type: 'API:GetLinePosition',
     API: true,
     method: 'POST',
-    url: 'http://localhost:8888/api/position/list',
+    url: '/api/position/list',
     data,
     success: success,
     error: error

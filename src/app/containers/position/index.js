@@ -5,7 +5,7 @@ import Actions from 'src/app/actions/actions'
 import PositionList from './positionList'
 import PositionNav from 'src/app/containers/position/components/nav.js'
 
-function getState(state, props) {
+function getState(state) {
   const { list, filters, listType } = state.position
   return {
     list,
@@ -17,11 +17,11 @@ function getState(state, props) {
 export default connect(getState)(withRouter(Position))
 function Position(props) {
   useEffect(() => {
-    props.dispatch(
-      Actions.position.getLinePosition({ test: 1 }, (dispatch, res) => {
-        console.log(res)
-      })
-    )
+    // props.dispatch(
+    //   Actions.position.getLinePosition({ test: 1 }, (dispatch, res) => {
+    //     console.log(res)
+    //   })
+    // )
     props.dispatch(
       Actions.common.changeHeader({
         title: '职位',

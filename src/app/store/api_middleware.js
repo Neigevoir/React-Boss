@@ -127,7 +127,7 @@ export default ({ dispatch }) => next => action => {
   // let credentials = 'include'; //既可以同域发送，也可以跨域发送
 
   const headers = getHeaders(action)
-  fetch(url, {
+  fetch(global.ServerApi + url, {
     method,
     body,
     headers,
