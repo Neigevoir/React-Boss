@@ -1,33 +1,29 @@
 import { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Actions from 'src/app/actions/actions'
-import withoutFooter from 'src/app/components/HOC/without_footer'
+import useHideFooter from 'src/app/hooks/useHideFooter'
 import './index.scss'
-// import '../../../styles/information/information.less'
 
-function getState(state, props) {
-  const { index } = props.history.location.state,
-    { list } = state.company
-  return {
-    company: list[index]
-  }
-}
+export default function CompanyDetail(props) {
+  useHideFooter()
 
-export default connect(getState)(withoutFooter(CompanyDetail))
-function CompanyDetail(props) {
+  const { location, goBack } = props.history
+  const company = useSelector(state => {
+    return state.company.list[location.state.index]
+  })
+
   useEffect(() => {
     props.dispatch(
       Actions.common.changeHeader({
         title: '公司',
         leftBtn: '返回',
-        handleLeft: props.history.goBack,
+        handleLeft: goBack,
         rightBtn: '',
         handleRight: () => {}
       })
     )
   }, [])
 
-  const { company } = props
   if (_.isEmpty(company)) return null
   return (
     <div className="InfoDetail">

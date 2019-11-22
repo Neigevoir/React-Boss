@@ -1,7 +1,6 @@
 .navList {
   background-color: #f8f8f8;
   li {
-    /*display: inline-block;*/
     background-color: #fff;
     margin-top: 15px;
   }
@@ -15,12 +14,10 @@
 }
 .SetttingsBody {
   height: 100%;
-  // transform: translateX(@windowWidth);
   background-color: #f8f8f8;
 }
 .userBody {
   overflow-y: auto;
-  // height: @windowHeight;
 }
 .userTop {
   position: relative;
@@ -45,7 +42,6 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      float: left;
       margin: 0 15px;
     }
   }
@@ -56,7 +52,6 @@
   span {
     display: inline-block;
     width: 100%;
-    float: left;
     line-height: 21px;
     font-size: 1.2em;
   }
@@ -79,7 +74,6 @@
 }
 .userOpreation {
   width: 50%;
-  float: left;
   display: inline-block;
   text-align: center;
   img {

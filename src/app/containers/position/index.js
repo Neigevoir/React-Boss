@@ -1,28 +1,25 @@
 import { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
 import PositionList from './positionList'
 import PositionNav from 'src/app/containers/position/components/nav.js'
 
-function getState(state) {
-  const { list, filters, listType } = state.position
-  return {
-    list,
-    filters,
-    listType
-  }
-}
+export default function Position(props) {
+  const list = useSelector(state => state.position.list)
+  const filters = useSelector(state => state.position.filters)
+  const listType = useSelector(state => state.position.listType)
 
-export default connect(getState)(withRouter(Position))
-function Position(props) {
+  const history = useHistory()
+  const dispatch = useDispatch()
+
   useEffect(() => {
     // props.dispatch(
     //   Actions.position.getLinePosition({ test: 1 }, (dispatch, res) => {
     //     console.log(res)
     //   })
     // )
-    props.dispatch(
+    dispatch(
       Actions.common.changeHeader({
         title: '职位',
         leftBtn: '广告',
@@ -33,16 +30,14 @@ function Position(props) {
     )
   }, [])
 
-  const gotoNotice = () => props.history.push('/notice')
+  const gotoNotice = () => history.push('/notice')
 
   const getPositionList = state => () => {
-    const { filters } = props
     const filter = { ...filters, type: state }
-    props.dispatch(Actions.position.setFilters(filter))
-    props.dispatch(Actions.position.getLinePosition(filter, state))
+    dispatch(Actions.position.setFilters(filter))
+    dispatch(Actions.position.getLinePosition(filter, state))
   }
 
-  const { list, listType, filters, dispatch } = props
   const listData = !_.isEmpty(list) ? [...list] : []
   return (
     <div className="positionBody">

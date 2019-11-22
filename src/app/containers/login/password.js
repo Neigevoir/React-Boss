@@ -1,16 +1,18 @@
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useState } from 'react'
-import { withRouter } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
 import Input from './components/input'
-import withoutHeader from 'src/app/components/HOC/without_header'
-import withoutFooter from 'src/app/components/HOC/without_footer'
+import useHideFooter from 'src/app/hooks/useHideFooter'
+import useHideHeader from 'src/app/hooks/useHideHeader'
 import './index.scss'
 
-export default connect()(withRouter(withoutHeader(withoutFooter(Login))))
+export default function Login() {
+  useHideHeader()
+  useHideFooter()
 
-function Login(props) {
-  const { history, dispatch } = props
+  const dispatch = useDispatch()
+  const history = useHistory()
 
   const [tel, setTel] = useState(null)
 
