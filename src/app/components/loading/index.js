@@ -1,12 +1,9 @@
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-function getState(state) {
-  return { ...state.loading }
-}
-export default connect(getState)(Loading)
-function Loading(props) {
+export default function Loading() {
+  const isShow = useSelector(state => state.common.loading)
   return (
-    <div className={props.isShow ? 'loading animated fadeIn8' : 'hidden'}>
+    <div className={isShow ? 'loading animated fadeIn8' : 'hidden'}>
       <div className="loader-middle">
         <div className="loader">Loading...</div>
       </div>

@@ -1,35 +1,28 @@
-import { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useEffect, useRef } from 'react'
 import Actions from 'src/app/actions/actions'
+import { useDispatch, useSelector } from 'react-redux'
 import './index.scss'
 
-function mapStateToProps(state) {
-  return { ...state.common.tips }
-}
-
-export default connect(mapStateToProps)(Tips)
-
-function Tips(props) {
-  let timer = null
-
-  const setTime = timer => {
-    timer = setTimeout(() => {
-      props.dispatch(Actions.common.resetTips())
-    }, timer * 1000)
-  }
+export default function Tips() {
+  const timer = useRef(null)
+  const dispatch = useDispatch()
+  const tips = useSelector(state => state.common.tips)
+  const { time, isShow, image, content } = tips
 
   useEffect(() => {
-    if (props.isShow) {
-      timer && clearTimeout(timer)
-      setTime(props.timer)
+    if (tips.isShow) {
+      timer.current && clearTimeout(timer.current)
+      timer.current = setTimeout(() => {
+        dispatch(Actions.common.resetTips())
+      }, time * 1000)
     }
-    return () => timer && clearTimeout(timer)
-  }, [props.isShow])
+    return () => timer.current && clearTimeout(timer.current)
+  }, [isShow, time])
 
   return (
-    <div className={`${props.isShow ? 'tips' : 'hidden'}`}>
-      {props.image && <img src={props.image} alt="" />}
-      <span className="alert-content">{props.content}</span>
+    <div className={`${isShow ? 'tips' : 'hidden'}`}>
+      {image && <img src={image} alt="" />}
+      <span className="alert-content">{content}</span>
     </div>
   )
 }

@@ -5,7 +5,8 @@ const deviceType = () => {
     isiOS = !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
     isIphoneX =
       /iphone/gi.test(navigator.userAgent) &&
-      (window.screen.height === 812 && window.screen.width === 375)
+      window.screen.height === 812 &&
+      window.screen.width === 375
   return {
     isAndroid,
     isiOS,

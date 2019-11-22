@@ -8,7 +8,7 @@ const initialState = {
     handleRight: () => {},
     opacity: 1
   },
-  showFooter: false,
+  footer: true,
   toast: {
     isShow: false,
     content: '',
@@ -19,7 +19,7 @@ const initialState = {
   tips: {
     isShow: false,
     content: '',
-    timer: 3,
+    time: 3,
     image: ''
   },
   loading: false
@@ -35,6 +35,10 @@ function reducer(state = initialState, action) {
       return { ...state, header: { ...state.header, ...action.data } }
     case 'TIPS:SET_TIPS':
       return { ...state, ...action.response.data }
+    case 'NAV:FOOTER:ENABLE':
+      return { ...state, footer: true }
+    case 'NAV:FOOTER:DISABLE':
+      return { ...state, footer: false }
     case 'TIPS:RESET_TIPS':
       return { ...state, tips: initialState.tips }
     default:

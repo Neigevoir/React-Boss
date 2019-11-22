@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "date-fns": "^2.8.0",
+    "darkmode-js": "1.5.3",
     "history": "^4.10.1",
     "lodash": "^4.17.15",
     "react": "^16.12.0",

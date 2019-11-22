@@ -9,5 +9,5 @@ export const AsyncPassword = lazy(() =>
 )
 export const AsyncUser = lazy(() => import('src/app/containers/user'))
 export const AsyncCompanyDetail = lazy(() =>
-  import('src/app/containers/company/detail.js')
+  import('src/app/containers/company_detail')
 )

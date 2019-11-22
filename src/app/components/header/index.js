@@ -1,11 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-function getState(state) {
-  return { ...state.common.header }
-}
-export default connect(getState)(Header)
-function Header(props) {
+export default function Header(props) {
+  const header = useSelector(state => state.common.header)
   const {
     leftBtn,
     handleLeft,
@@ -14,7 +11,7 @@ function Header(props) {
     rightBtn,
     isShow,
     opacity
-  } = props
+  } = header
   return (
     <div
       style={{
