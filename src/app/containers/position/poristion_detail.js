@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
 
-function PositionDetail(props) {
+export default function PositionDetail(props) {
   const [type, setType] = useState('hidden')
   const [data, setData] = useState(null)
   const [focus, setFocus] = useState(0)
 
-  const { location } = props.history
+  const location = useLocation()
 
   const position = useSelector(state => {
     return state.position.list[location.state.index]
@@ -97,4 +97,3 @@ function PositionDetail(props) {
     </div>
   )
 }
-export default withRouter(PositionDetail)
