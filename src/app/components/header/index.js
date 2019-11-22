@@ -14,9 +14,7 @@ export default function Header(props) {
   } = header
   return (
     <div
-      style={{
-        backgroundColor: `rgba(83,202,189,${opacity})`
-      }}
+      style={{ backgroundColor: `rgba(83,202,189,${opacity})` }}
       className={isShow ? 'title' : 'hidden'}
     >
       <span className="notice" onClick={handleLeft}>

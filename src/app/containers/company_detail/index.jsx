@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Actions from 'src/app/actions/actions'
-import withoutFooter from 'src/app/components/HOC/without_footer'
+import useHideFooter from 'src/app/hooks/useHideFooter.js'
 // import './index.scss'
 // import '../../../styles/information/information.less'
 
 function CompanyDetail(props) {
+  useHideFooter()
+
   const dispatch = useDispatch()
   const { location, goBack } = props.history
   const company = useSelector(state => {
@@ -57,4 +59,4 @@ function CompanyDetail(props) {
   )
 }
 
-export default withoutFooter(CompanyDetail)
+export default CompanyDetail

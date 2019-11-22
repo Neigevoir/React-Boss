@@ -15,12 +15,7 @@ function Notice(props) {
 
   useEffect(() => {
     if (_.isEmpty(props.list)) {
-      dispatch(
-        Actions.notice.getNotice({
-          offset: '0',
-          num: '99'
-        })
-      )
+      dispatch(Actions.notice.getNotice({ offset: '0', num: '99' }))
     }
     dispatch(
       Actions.common.changeHeader({

@@ -1,19 +1,15 @@
 import { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import withoutFooter from 'src/app/components/HOC/without_footer'
-import withoutHeader from 'src/app/components/HOC/without_header'
+import useHideHeader from 'src/app/hooks/useHideHeader.js'
+import useHideFooter from 'src/app/hooks/useHideFooter.js'
 import Actions from 'src/app/actions/actions'
 // import PasLogin from './pasLogin'
 // import UserAction from '../../action/userAction'
 
 import './index.scss'
 
-function getState(state, props) {
-  // const { list, filters, listType } = state.customer
-  return {}
-}
-export default connect(getState)(withoutFooter(withoutHeader(Login)))
-function Login(props) {
+export default function Login(props) {
+  useHideHeader()
+  useHideFooter()
   const { dispatch } = props
   const [tel, setTel] = useState('')
   const [password, setPassword] = useState('')

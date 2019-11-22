@@ -46,11 +46,10 @@ function Information(props) {
 
   const getFollowing = res => {
     this.refs.loading.hidden()
-    function sortData(a, b) {
-      return b.message.created_at - a.message.created_at
-    }
     this.setState({
-      informationData: res.data.sort(sortData)
+      informationData: res.data.sort(
+        (a, b) => b.message.created_at - a.message.created_at
+      )
     })
   }
 

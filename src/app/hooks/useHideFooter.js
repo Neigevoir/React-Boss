@@ -1,14 +1,11 @@
 import Actions from 'src/app/actions/actions'
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
-export default function useHideFooter(WrappedComponent) {
-  return function DisabledFooterComponent(props) {
-    useEffect(() => {
-      const { dispatch } = props
-
-      dispatch(Actions.common.enableFooter())
-      return () => dispatch(Actions.common.disableFooter())
-    }, [])
-    return <WrappedComponent {...props} />
-  }
+export default function useHideFooter() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(Actions.common.disableFooter())
+    return () => dispatch(Actions.common.enableFooter())
+  }, [])
 }

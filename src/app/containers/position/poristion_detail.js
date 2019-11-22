@@ -1,21 +1,18 @@
 import { useState } from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
 
-function getState(state, props) {
-  const { list } = state.position,
-    { index } = props.history.location.state
-  return {
-    position: list[index]
-  }
-}
-
-export default connect(getState)(withRouter(PositionDetail))
 function PositionDetail(props) {
   const [type, setType] = useState('hidden')
   const [data, setData] = useState(null)
   const [focus, setFocus] = useState(0)
+
+  const { location } = props.history
+
+  const position = useSelector(state => {
+    return state.position.list[location.state.index]
+  })
 
   const PositionColloct = () => {
     if (data && !data.user.is_focus) {
@@ -43,7 +40,6 @@ function PositionDetail(props) {
     return Array.from(text).length > length ? text.substring(0, length) : text
   }
 
-  const { position } = this.state
   return (
     <div className="positionDetail">
       <div className="positionDetailBody">
@@ -101,3 +97,4 @@ function PositionDetail(props) {
     </div>
   )
 }
+export default withRouter(PositionDetail)
