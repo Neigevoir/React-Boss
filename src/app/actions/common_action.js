@@ -1,5 +1,4 @@
 const changeHeader = filter => {
-  console.log(filter)
   return {
     type: 'HEADER:SET_HEADER',
     data: filter

@@ -1,15 +1,11 @@
 import { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Actions from 'src/app/actions/actions'
 import './index.scss'
 
-function getState(state) {
-  return {
-    customer: state.customer
-  }
-}
-export default connect(getState)(User)
-function User(props) {
+export default function User(props) {
+  const customer = useSelector(state => state.customer)
+
   useEffect(() => {
     props.dispatch(
       Actions.common.changeHeader({
@@ -43,7 +39,6 @@ function User(props) {
   //   this.refs.Settings.showState()
   // }
 
-  const { customer } = props
   return (
     <div ref="body" className="userBody">
       <div className="userTop">
