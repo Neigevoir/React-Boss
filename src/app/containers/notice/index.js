@@ -9,6 +9,7 @@ export default function NoticeContainer(props) {
 
   const list = useSelector(state => state.notice.list)
   const dispatch = useDispatch()
+
   useEffect(() => {
     if (_.isEmpty(props.list)) {
       dispatch(Actions.notice.getNotice({ offset: '0', num: '99' }))

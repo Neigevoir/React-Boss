@@ -7,10 +7,11 @@ function InformationData(state = null, action) {
     case constant.GET_PRIVATEMESSAGELIST:
       return action.res
     case constant.GET_PERSONINFO:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         InformationData: action.res,
         InformationType: action.informationType
-      })
+      }
     case constant.GET_PRIVATEMESSAGEPAGE:
       return Object.assign({}, state, {
         InformationData: action.res,

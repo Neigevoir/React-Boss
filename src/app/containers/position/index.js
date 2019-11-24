@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
-import PositionList from './positionList'
-import PositionNav from 'src/app/containers/position/components/nav.js'
+import PositionList from 'src/app/containers/position/components/position_list'
+import PositionNav from 'src/app/containers/position/components/seletc_nav'
 
-export default function Position(props) {
+export default function Position() {
   const list = useSelector(state => state.position.list)
   const filters = useSelector(state => state.position.filters)
   const listType = useSelector(state => state.position.listType)
@@ -38,9 +38,9 @@ export default function Position(props) {
     dispatch(Actions.position.getLinePosition(filter, state))
   }
 
-  const listData = !_.isEmpty(list) ? [...list] : []
+  const listData = !_.isEmpty(list) ? [...list] : [{ id: 1 }]
   return (
-    <div className="positionBody">
+    <div className="position-container">
       <PositionNav listType={listType} handleClick={getPositionList} />
       <PositionList
         dispatch={dispatch}
