@@ -1,12 +1,12 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import Actions from 'src/app/actions/actions'
+// import Actions from 'src/app/actions/actions'
 
 export default function PositionDetail(props) {
-  const [type, setType] = useState('hidden')
-  const [data, setData] = useState(null)
-  const [focus, setFocus] = useState(0)
+  // const [type, setType] = useState('hidden')
+  // const [data, setData] = useState(null)
+  // const [focus, setFocus] = useState(0)
 
   const location = useLocation()
 
@@ -14,11 +14,11 @@ export default function PositionDetail(props) {
     return state.position.list[location.state.index]
   })
 
-  const PositionColloct = () => {
-    if (data && !data.user.is_focus) {
-      props.dispatch(Actions.user.getUserShow({ uid: data.uid }))
-    }
-  }
+  // const PositionColloct = () => {
+  //   if (data && !data.user.is_focus) {
+  //     props.dispatch(Actions.user.getUserShow({ uid: data.uid }))
+  //   }
+  // }
 
   const UserCommunication = () => {
     // this.refs.InfoDetail.setState(
@@ -32,13 +32,13 @@ export default function PositionDetail(props) {
     // )
   }
 
-  const getPositionData = data => {
-    props.dispatch(Actions.user.getUserShow({ nid: data.nid }))
-  }
+  // const getPositionData = data => {
+  //   props.dispatch(Actions.user.getUserShow({ nid: data.nid }))
+  // }
 
-  const getHandleText = (text, length = 5) => {
-    return Array.from(text).length > length ? text.substring(0, length) : text
-  }
+  // const getHandleText = (text, length = 5) => {
+  //   return Array.from(text).length > length ? text.substring(0, length) : text
+  // }
 
   return (
     <div className="positionDetail">
@@ -79,7 +79,7 @@ export default function PositionDetail(props) {
         <div className="positionDetailBottom">
           <span
             className="positionDetailBtn positionColloct"
-            onClick={PositionColloct}
+            // onClick={PositionColloct}
           >
             <img alt="" className="btnIcon" src={require('')} />
             {position.focus ? '已关注' : '+收藏'}

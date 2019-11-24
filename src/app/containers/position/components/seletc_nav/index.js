@@ -1,13 +1,6 @@
-import { useState } from 'react'
-import style from './index.scss'
+import './index.scss'
 
-export default function PositionNav({ listType, handleClick }) {
-  const [isShow, setIsShow] = useState(false)
-
-  const handleChange = () => setIsShow(isShow => !isShow)
-
-  const showSelectModal = () => {}
-
+export default function PositionNav() {
   return (
     <section className="select-nav-container">
       <div className="select-nav-box">

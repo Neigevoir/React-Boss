@@ -8,7 +8,7 @@ import { persistor } from 'src/app/store/store.js'
 import { PersistGate } from 'redux-persist/es/integration/react'
 // import WithErrorHandle from 'src/app/components/HOC/with_errorhandle/witherrorhandle'
 import { createBrowserHistory } from 'history'
-import Darkmode from 'darkmode-js'
+// import Darkmode from 'darkmode-js'
 
 // new Darkmode().showWidget()
 
