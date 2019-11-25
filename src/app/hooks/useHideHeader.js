@@ -7,5 +7,5 @@ export default function useHideHeader(WrappedComponent) {
   useEffect(() => {
     dispatch(Actions.common.changeHeader({ isShow: false }))
     return () => dispatch(Actions.common.changeHeader({ isShow: true }))
-  }, [])
+  }, [dispatch])
 }

@@ -7,5 +7,5 @@ export default function useHideFooter() {
   useEffect(() => {
     dispatch(Actions.common.disableFooter())
     return () => dispatch(Actions.common.enableFooter())
-  }, [])
+  }, [dispatch])
 }

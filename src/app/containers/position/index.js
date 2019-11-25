@@ -28,7 +28,7 @@ export default function Position() {
         // handleRight: this.showSelectModal
       })
     )
-  }, [])
+  }, [dispatch, gotoNotice])
 
   const gotoNotice = () => history.push('/notice')
 
