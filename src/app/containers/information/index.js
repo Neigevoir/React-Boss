@@ -1,36 +1,8 @@
 import { useEffect } from 'react'
-import { connect } from 'react-redux'
-
 import InformationAction from '../../actions/informationAction'
-
-import Loading from '../ui/loading'
 import Header from '../header/main'
 
-function selectState(state, type) {
-  switch (type) {
-    case 'InformationData':
-      if (state.InformationData) {
-        return state.InformationData.data
-      }
-      return null
-    case 'InformationType':
-      if (state.InformationType) return state.InformationType
-      return null
-    default:
-      return null
-  }
-}
-
-function select(state) {
-  return {
-    InformationData: selectState(state.InformationReducer, 'InformationData'),
-    InformationType: selectState(state.InformationReducer, 'InformationType')
-  }
-}
-
-export default connect(select)(Information)
-
-function Information(props) {
+export default function Information(props) {
   useEffect(() => {
     getPrivateMessageList()
     _initialize()
@@ -77,9 +49,6 @@ function Information(props) {
   return (
     <div>
       <Header title="消息" LeftBtn="广播" LeftBtnFunc={LeftBtnFunc} />
-      <Loading
-        type={InformationType === 'FETCHING_POSTING' ? 'block' : 'hidden'}
-      />
       <div className="Infomation" ref="Infomation">
         <ul className="InfoList">
           <div className="InfoTip">
