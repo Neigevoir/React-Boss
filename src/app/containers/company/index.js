@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
 // import CompanyDetail from './companyDetail'
 
@@ -19,9 +20,10 @@ export default function Company(props) {
     filters: state.company.filters
   }))
   const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
-    const gotoNotice = () => props.history.push('/notice')
+    const gotoNotice = () => history.push('/notice')
 
     dispatch(
       Actions.common.changeHeader({
@@ -86,36 +88,35 @@ export default function Company(props) {
   // }
 
   const showCompanyDetail = index => () => {
-    props.history.push({ pathname: '/company_detail', state: { index } })
+    history.push({ pathname: '/company_detail', state: { index } })
   }
 
   return (
     <ul className="companyList">
-      {!_.isEmpty(list) &&
-        list.map((v, k) => {
-          return (
-            <li key={k} onClick={showCompanyDetail(k)}>
-              <div className="companys">
-                <img className="companyPic" src={v.image} alt="" />
-                <div className="companyPro">
-                  <img
-                    alt=""
-                    className="companyLogo"
-                    src={v.image || require('src/assets/images/logo.jpg')}
-                  />
-                  <div className="companyContent">
-                    <span className="companyText">{v.user.nick_name}</span>
-                    <span className="companyText">{v.title}</span>
-                    <span className="companyText">
-                      热招职位: <b className="position">前端开发</b>
-                    </span>
-                  </div>
-                  <div className="clearfix" />
+      {_.map(list, (v, k) => {
+        return (
+          <li key={k} onClick={showCompanyDetail(k)}>
+            <div className="companys">
+              <img className="companyPic" src={v.image} alt="" />
+              <div className="companyPro">
+                <img
+                  alt=""
+                  className="companyLogo"
+                  src={v.image || require('src/assets/images/logo.jpg')}
+                />
+                <div className="companyContent">
+                  <span className="companyText">{v.user.nick_name}</span>
+                  <span className="companyText">{v.title}</span>
+                  <span className="companyText">
+                    热招职位: <b className="position">前端开发</b>
+                  </span>
                 </div>
+                <div className="clearfix" />
               </div>
-            </li>
-          )
-        })}
+            </div>
+          </li>
+        )
+      })}
     </ul>
   )
 }

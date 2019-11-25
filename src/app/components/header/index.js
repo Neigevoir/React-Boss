@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-export default function Header(props) {
+export default function Header() {
   const header = useSelector(state => state.common.header)
   const {
     leftBtn,

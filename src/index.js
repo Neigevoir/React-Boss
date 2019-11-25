@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import App from './app/desktop'
+import App from './app'
 import registerServiceWorker from './registerServiceWorker'
 import './app/global'
 

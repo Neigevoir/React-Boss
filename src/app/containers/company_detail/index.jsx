@@ -5,7 +5,7 @@ import useHideFooter from 'src/app/hooks/useHideFooter.js'
 // import './index.scss'
 // import '../../../styles/information/information.less'
 
-function CompanyDetail(props) {
+export default function CompanyDetail(props) {
   useHideFooter()
 
   const dispatch = useDispatch()
@@ -58,5 +58,3 @@ function CompanyDetail(props) {
     </div>
   )
 }
-
-export default CompanyDetail

@@ -11,7 +11,7 @@ export default function NoticeContainer(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (_.isEmpty(props.list)) {
+    if (_.isEmpty(list)) {
       dispatch(Actions.notice.getNotice({ offset: '0', num: '99' }))
     }
     dispatch(
@@ -27,11 +27,9 @@ export default function NoticeContainer(props) {
 
   return (
     <div className="noticeBody">
-      <ul>
-        {_.map(list, (v, i) => {
-          return <NoticeItem data={v} key={i} />
-        })}
-      </ul>
+      {_.map(list, (v, i) => {
+        return <NoticeItem data={v} key={i} />
+      })}
     </div>
   )
 }
