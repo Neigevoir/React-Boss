@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 import Actions from 'src/app/actions/actions'
 import useHideFooter from 'src/app/hooks/useHideFooter.js'
 // import './index.scss'
@@ -9,7 +10,8 @@ export default function CompanyDetail(props) {
   useHideFooter()
 
   const dispatch = useDispatch()
-  const { location, goBack } = props.history
+  const history = useHistory()
+  const { location, goBack } = history
   const company = useSelector(state => {
     return state.company.list[location.state.index]
   })
@@ -24,7 +26,7 @@ export default function CompanyDetail(props) {
         handleRight: () => {}
       })
     )
-  }, [])
+  }, [dispatch, goBack])
 
   if (_.isEmpty(company)) return null
   return (

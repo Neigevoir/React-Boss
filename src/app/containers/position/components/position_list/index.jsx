@@ -1,23 +1,20 @@
-import React from 'react'
+import { useEffect } from 'react'
 import Actions from 'src/app/actions/actions'
 // import Tips from '../../components/tips/index'
 import PositionItem from 'src/app/containers/position/components/position_item'
 
-export default class PositionList extends React.Component {
-  constructor(props) {
-    super(props)
-    this.filters = props.filters
-    this.PositionState = ['recommend', 'latest', 'class1']
-    this.position = React.createRef()
-    this.body = React.createRef()
-  }
+export default function PositionList(props) {
+  const filters = props.filters
+  const PositionState = ['recommend', 'latest', 'class1']
+  const position = React.createRef()
+  const body = React.createRef()
 
-  componentDidMount() {
+  useEffect(() => {
     // this.body.current.style.height = window.screen.availHeight - 85 + 'px' //用作overflow
     // this.addScroll()
-  }
+  }, [])
 
-  getSearchList = res => {
+  const getSearchList = res => {
     let newData = []
     Array.from(res.data).map((v, k) => {
       newData.push(v)
@@ -28,7 +25,7 @@ export default class PositionList extends React.Component {
     })
   }
 
-  onload = x => {
+  const onload = x => {
     let i
     this.PositionState.map((v, k) => {
       if (this.props.listType === v) i = k
@@ -45,7 +42,7 @@ export default class PositionList extends React.Component {
     this.position.current.style.webkitTransform = `translateX(0px)`
   }
 
-  getNewState = (num, width, type) => {
+  const getNewState = (num, width, type) => {
     const position = this.position.current
     position.setAttribute('class', 'positionList transition')
     if (type === 'x') {
@@ -73,7 +70,7 @@ export default class PositionList extends React.Component {
     }
   }
 
-  move = (num, type) => {
+  const move = (num, type) => {
     const position = this.position.current
     if (type === 'x') {
       if (num > 0) {
@@ -94,7 +91,7 @@ export default class PositionList extends React.Component {
     }
   }
 
-  addScroll = () => {
+  const addScroll = () => {
     let startX,
       moveX,
       endX,
@@ -154,7 +151,7 @@ export default class PositionList extends React.Component {
     })
   }
 
-  getLineData = state => {
+  const getLineData = state => {
     this.filters.num = 16
     this.filters.type = state
     this.props.dispatch(
@@ -163,11 +160,11 @@ export default class PositionList extends React.Component {
     // PositionAction.getLinePosition(this.getPositionFormData);
   }
 
-  getNowState = state => {
+  const getNowState = state => {
     this.getLineData(state)
   }
 
-  gotoPositionDetail = index => () => {
+  const gotoPositionDetail = index => () => {
     this.props.history.push({
       pathname: '/position_detail',
       state: {
@@ -176,24 +173,22 @@ export default class PositionList extends React.Component {
     })
   }
 
-  getHandleText = (text, length = 5) =>
+  const getHandleText = (text, length = 5) =>
     Array.from(text).length > length ? text.substring(0, length) : text
 
-  render() {
-    const { listData } = this.props
-    console.log(listData)
-    return (
-      <div ref={this.position} className="positionList">
-        {_.map(listData, (v, k) => {
-          return (
-            <PositionItem
-              key={k}
-              data={v}
-              handleClick={this.gotoPositionDetail(k)}
-            />
-          )
-        })}
-      </div>
-    )
-  }
+  const { listData } = props
+  console.log(listData)
+  return (
+    <div ref={this.position} className="positionList">
+      {_.map(listData, (v, k) => {
+        return (
+          <PositionItem
+            key={k}
+            data={v}
+            handleClick={this.gotoPositionDetail(k)}
+          />
+        )
+      })}
+    </div>
+  )
 }

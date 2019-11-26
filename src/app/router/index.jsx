@@ -6,7 +6,6 @@ import Tips from 'src/app/components/tips'
 import Actions from 'src/app/actions/actions'
 import * as AsyncComponents from 'src/app/router/ImportComponents'
 import { Route, Switch, useHistory } from 'react-router-dom'
-import Store from 'src/app/store/store.js'
 import 'src/assets/styles/all.scss'
 import 'src/assets/styles/index/index.scss'
 
@@ -19,7 +18,7 @@ export default function Routers(props) {
     } else {
       // Store.dispatch(Actions.user.getLoginInfo(getInfoSuccess))
     }
-  }, [])
+  }, [history])
 
   // NOTE:获取上一个Props
   const prevPropsRef = useRef()
@@ -27,7 +26,7 @@ export default function Routers(props) {
   useEffect(() => {
     prevPropsRef.current = props
     scrollPosition(prevProps, props)
-  }, [props.location.pathname])
+  }, [prevProps, props, props.location.pathname])
 
   const getInfoSuccess = () => history.replace('/position')
 

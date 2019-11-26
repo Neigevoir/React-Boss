@@ -23,14 +23,12 @@ export default function Position() {
       Actions.common.changeHeader({
         title: '职位',
         leftBtn: '广告',
-        handleLeft: gotoNotice,
+        handleLeft: () => history.push('/notice'),
         rightBtn: '搜索'
         // handleRight: this.showSelectModal
       })
     )
-  }, [dispatch, gotoNotice])
-
-  const gotoNotice = () => history.push('/notice')
+  }, [dispatch, history])
 
   const getPositionList = state => () => {
     const filter = { ...filters, type: state }
