@@ -6,7 +6,7 @@ const getUserLogin = (data, success) => {
     type: constant.GET_UserLogin,
     API: true,
     method: 'POST',
-    url: '/app/user/login',
+    url: '/api/login/login',
     data,
     success
   }

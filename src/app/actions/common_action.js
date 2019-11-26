@@ -22,14 +22,13 @@ const changeLoading = loading => ({
   loading
 })
 
-const changeTips = footer => ({
+const changeTips = tips => ({
   type: 'TIPS:SET_TIPS',
-  footer
+  tips
 })
 
 const resetTips = footer => ({
-  type: 'TIPS:RESET_TIPS',
-  footer
+  type: 'TIPS:RESET_TIPS'
 })
 
 export default {

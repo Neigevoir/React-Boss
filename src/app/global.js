@@ -22,7 +22,7 @@ if (!window.requestAnimationFrame) {
 _global.__Url__ = 'http://www.ih5.cn'
 
 // NOTE：如用本地Node则需要加上，如使用proxy那就设置''
-_global.ServerApi = `https://localhost:${port}`
+_global.ServerApi = `${window.location.protocol}//${window.location.hostname}:${port}`
 
 _global._ = _
 

@@ -14,11 +14,11 @@ export default function Login() {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const [tel, setTel] = useState(null)
+  const [phone, setpPhone] = useState(null)
 
   const [password, setPassword] = useState(null)
 
-  const changeTelephone = tel => setTel(tel)
+  const changeTelephone = tel => setpPhone(tel)
 
   const changePassword = pas => setPassword(pas)
 
@@ -27,9 +27,9 @@ export default function Login() {
   }
 
   const handleLogin = () => {
-    if (_.isEmpty(tel) && _.isEmpty(password)) {
+    if (_.isEmpty(phone) && _.isEmpty(password)) {
       setTips('手机号和密码不能为空')
-    } else if (_.isEmpty(tel)) {
+    } else if (_.isEmpty(phone)) {
       setTips('手机号不能为空')
     } else if (_.isEmpty(password)) {
       setTips('密码不能为空')
@@ -39,13 +39,13 @@ export default function Login() {
   }
 
   const getLogin = () => {
-    const data = { username: tel, password: password }
-    dispatch(Actions.user.getUserLogin(data, getLoginSuccess))
+    dispatch(Actions.user.getUserLogin({ phone, password }, getLoginSuccess))
   }
 
   const getLoginSuccess = (dispatch, res) => {
-    localStorage.setItem('token', res.token)
-    dispatch(Actions.user.getLoginInfo(() => history.replace('/position')))
+    console.log(res)
+    // localStorage.setItem('token', res.token)
+    // dispatch(Actions.user.getLoginInfo(() => history.replace('/position')))
   }
 
   return (

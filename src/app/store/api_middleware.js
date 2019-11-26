@@ -174,8 +174,7 @@ export default ({ dispatch }) => next => action => {
       // network error
       error(dispatch, action)
       complete(dispatch, action)
-      if (!e.match(/TypeError: Failed to fetch/)) {
-        console.error(e)
-      }
+
+      console.error(e)
     })
 }

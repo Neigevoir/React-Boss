@@ -25,7 +25,7 @@ const initialState = {
   loading: false
 }
 
-function reducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case 'LOADING:SET_LOADING':
       return { ...state, ...action.response.data }
@@ -34,7 +34,7 @@ function reducer(state = initialState, action) {
     case 'HEADER:SET_HEADER':
       return { ...state, header: { ...state.header, ...action.data } }
     case 'TIPS:SET_TIPS':
-      return { ...state, ...action.response.data }
+      return { ...state, tips: { ...state.tips, ...action.tips } }
     case 'NAV:FOOTER:ENABLE':
       return { ...state, footer: true }
     case 'NAV:FOOTER:DISABLE':
@@ -45,5 +45,3 @@ function reducer(state = initialState, action) {
       return state
   }
 }
-
-export default reducer

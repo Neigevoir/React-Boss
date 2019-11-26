@@ -9,7 +9,7 @@ export default function ListBox(props) {
   const { position = {} } = data
 
   const getHandleText = (text = '', length = 5) => {
-    return Array.from(text).length > length ? text.substring(0, length) : text
+    return text.length > length ? text.substring(0, length) : text
   }
 
   return (

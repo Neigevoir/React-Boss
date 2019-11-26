@@ -24,9 +24,9 @@ let userApi = {
   getUserLogin(data) {
     return Fetch({
       type: 'POST',
-      url: '/app/user/login',
+      url: '/api/login/login',
       data: {
-        username: data.username,
+        phone: data.username,
         password: data.password
       }
     })

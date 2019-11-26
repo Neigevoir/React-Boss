@@ -6,6 +6,7 @@ import Tips from 'src/app/components/tips'
 import Actions from 'src/app/actions/actions'
 import * as AsyncComponents from 'src/app/router/ImportComponents'
 import { Route, Switch, useHistory } from 'react-router-dom'
+import * as storage from 'src/app/lib/storage.js'
 import 'src/assets/styles/all.scss'
 import 'src/assets/styles/index/index.scss'
 
@@ -13,7 +14,7 @@ export default function Routers(props) {
   const history = useHistory()
 
   useEffect(() => {
-    if (_.isEmpty(localStorage.getItem('token'))) {
+    if (_.isEmpty(storage.get('token', localStorage))) {
       history.replace('/password')
     } else {
       // Store.dispatch(Actions.user.getLoginInfo(getInfoSuccess))
