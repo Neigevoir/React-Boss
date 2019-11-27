@@ -15,7 +15,7 @@ export default function Routers(props) {
 
   useEffect(() => {
     if (_.isEmpty(storage.get('token', localStorage))) {
-      history.replace('/password')
+      history.replace('/login')
     } else {
       // Store.dispatch(Actions.user.getLoginInfo(getInfoSuccess))
     }
@@ -68,7 +68,6 @@ export default function Routers(props) {
         />
         <Route path="/notice" component={AsyncComponents.AsyncNotice} />
         <Route path="/login" component={AsyncComponents.AsyncLogin} />
-        <Route path="/password" component={AsyncComponents.AsyncPassword} />
         <Route path="/user" component={AsyncComponents.AsyncUser} />
       </Switch>
       <Footer pathname={props.location.pathname} />

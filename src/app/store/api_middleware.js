@@ -27,7 +27,7 @@ const success = (dispatch, action, data) => {
   })
 
   if (typeof action.success === 'function') {
-    action.success(dispatch, data, action.data)
+    action.success(data, action.data)
   }
 }
 
@@ -67,7 +67,7 @@ const error = (dispatch, action, data) => {
   }
 
   if (typeof action.error === 'function') {
-    action.error(dispatch, data, action.data)
+    action.error(data, action.data)
   }
 }
 
@@ -79,7 +79,7 @@ const complete = (dispatch, action, data) => {
   })
 
   if (typeof action.complete === 'function') {
-    action.complete(dispatch, data, action.data)
+    action.complete(data, action.data)
   }
 }
 

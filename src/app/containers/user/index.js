@@ -1,17 +1,20 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 import Actions from 'src/app/actions/actions'
 import './index.scss'
 
 export default function User(props) {
   const customer = useSelector(state => state.customer)
+  const history = useHistory()
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    props.dispatch(
+    dispatch(
       Actions.common.changeHeader({
         title: '我的',
         leftBtn: '广告',
-        handleLeft: gotoNotice,
+        handleLeft: () => history.push('/notice'),
         rightBtn: '设置',
         handleRight: () => {}
       })
@@ -19,9 +22,7 @@ export default function User(props) {
     return () => {
       window.removeEventListener('scroll', changeOpacity)
     }
-  }, [])
-
-  const gotoNotice = () => props.history.push('/notice')
+  }, [dispatch, history])
 
   // const _initialize = () => {
   //   this.refs.userAvator.style.width = window.screen.availWidth + 'px'

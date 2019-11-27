@@ -10,14 +10,14 @@ export default function Tips() {
   const { time, isShow, image, content } = tips
 
   useEffect(() => {
-    if (tips.isShow) {
+    if (isShow) {
       timer.current && clearTimeout(timer.current)
       timer.current = setTimeout(() => {
         dispatch(Actions.common.resetTips())
       }, time * 1000)
     }
     return () => timer.current && clearTimeout(timer.current)
-  }, [isShow, time])
+  }, [dispatch, isShow, time])
 
   return (
     <div className={`${isShow ? 'tips' : 'hidden'}`}>

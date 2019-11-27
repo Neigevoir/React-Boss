@@ -1,7 +1,11 @@
-.login {
-  z-index: 5;
-  width: 100%;
-  position: relative;
+@import 'src/assets/styles/flex_box.scss';
+
+.login-container {
+  .login-title {
+    font-size: 24px;
+    color: #242424;
+    letter-spacing: 0.6px;
+  }
   footer {
     position: absolute;
     bottom: 0px;

@@ -21,7 +21,7 @@ router.post('/login', (req, res) => {
       error: '请输入正确的密码！'
     }
   } else {
-    if (!token) {
+    if (token) {
       resData = {
         error: '请勿重复登录！'
       }
@@ -65,6 +65,7 @@ router.post('/getUserInfo', (req, res) => {
   let resData = null
   if (!token) {
     resData = {
+      data: null,
       error: '请先登录！'
     }
   } else {
