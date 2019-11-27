@@ -1,6 +1,6 @@
 {
-  "name": "wechat",
-  "version": "0.1.0",
+  "name": "React-Boss",
+  "version": "0.1.5",
   "private": true,
   "dependencies": {
     "date-fns": "^2.8.1",
