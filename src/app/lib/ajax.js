@@ -1,124 +1,95 @@
-import { stringify } from 'qs'
-
-function getResponseResult(res) {
-  let result = null
-  if (res) {
-    if (res.responseType === 'text') {
-      result = res.responseText
-    } else if (res.responseType === 'document') {
-      result = res.responseXML
-    } else {
-      result = res.response
-    }
-  }
-  return result
-}
-
-function handleData(params) {
-  let data = null
-  if (params) {
-    if (params.method === 'POST') {
-      data = JSON.stringify(params.data)
-    }
-  }
-  return data
-}
-
-function addScriptTag(src) {
-  const script = document.createElement('script')
-  script.setAttribute('type', 'text/javascript')
-  script.src = src
-  document.body.appendChild(script)
+const defaultOptions = {
+  time: 5000,
+  jsonpCallback: 'callback',
+  jsonpCallbackFunction: null
 }
 
 function generateCallbackFunction() {
   return `jsonp_${Date.now()}_${Math.ceil(Math.random() * 100000)}`
 }
 
-export default function Ajax(params) {
-  if (
-    Object.prototype.toString.call(params) !== '[object Object]' ||
-    !params['url']
-  ) {
-    return null
-  }
+const handleTimeOut = (timeout, res) => timeout && timeout(res)
 
-  const jsonpCallback = generateCallbackFunction()
-  if (params.dataType === 'jsonp') {
-    const url = `${params.url}?${stringify({
-      ...params.data,
-      callback: jsonpCallback
-    })}`
-    global[jsonpCallback] = params.success
+const handleError = (error, res) => error && error(res)
 
-    addScriptTag(url)
-    return null
-  }
+const handleSuccess = (success, res) => success && success(res)
 
-  const http = new XMLHttpRequest()
-
-  if (params.method === 'GET') {
-    http.open(
-      params.method,
-      `${params.url}?${stringify(params.data)}`,
-      params.Async || true
-    )
-  } else if (params.method === 'POST') {
-    http.open(params.method, params.url, params.Async || true)
+function handleData(data, isNotParams) {
+  if (isNotParams) {
+    return data
   } else {
-    console.log('没有做其他Type的请求！')
+    return JSON.stringify(data)
   }
+}
 
-  http.timeout = params.Async && params.timeout ? params.timeout : 30
+function jsonToUrl(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
 
-  http.responseType = params.dataType || 'json'
+// NOTE:成功后需要清理生成的script等
+function clearJsonp(callbackFunction, scriptId, timeoutId) {
+  timeoutId && clearTimeout(timeoutId)
+  try {
+    delete window[callbackFunction]
+  } catch (e) {
+    window[callbackFunction] = undefined
+  }
+  const script = document.getElementById(scriptId)
+  script && document.getElementsByTagName('head')[0].removeChild(script)
+}
 
-  http.withCredentials = params.withCredentials || false
+export default function fetchJsonp(params) {
+  const {
+    url,
+    data,
+    success,
+    error,
+    jsonpCallbackFunction,
+    jsonpCallback = defaultOptions.jsonpCallback,
+    charset,
+    isNotParams,
+    time = defaultOptions.time,
+    timeout
+  } = params
 
-  // NOTE:设置请求头
-  for (const key in params.header) {
-    if (params.header.hasOwnProperty(key)) {
-      http.setRequestHeader(key, params.header[key])
+  let timeoutId
+
+  return new Promise((resolve, reject) => {
+    const callbackFunction = jsonpCallbackFunction || generateCallbackFunction()
+    const scriptId = `${jsonpCallback}_${callbackFunction}`
+    const paramsUrl = jsonToUrl(handleData(data, isNotParams))
+    const jsonUrl = `${global.apiUrl +
+      url}?${jsonpCallback}=${callbackFunction}&${paramsUrl}`
+
+    window[callbackFunction] = data => {
+      handleSuccess(success, data)
+      clearJsonp(callbackFunction, scriptId, timeoutId)
+      resolve(data)
     }
-  }
 
-  http.onreadystatechange = function(e) {
-    const { readyState, status } = e.target
-    if (readyState === 4) {
-      // NOTE:不对全部状态码处理，只为处理200和304
-      if ((status >= 200 && status < 300) || status === 304) {
-        if (typeof params.success === 'function') {
-          console.log(e.target)
-          const result = getResponseResult(e.target)
-          params.success(result, e.target)
-        }
-      } else {
-        if (typeof params.error === 'function') {
-          params.error(e.target)
-        }
-      }
+    // NOTE：超时处理
+    timeoutId = setTimeout(() => {
+      reject(new Error(`JSONP request to ${url} timed out`))
+      handleTimeOut(timeout)
+      clearJsonp(callbackFunction, scriptId, timeoutId)
+    }, time)
+
+    // NOTE：增加Script标签发起请求
+    const jsonpScript = document.createElement('script')
+    jsonpScript.setAttribute('src', jsonUrl)
+    if (charset) {
+      jsonpScript.setAttribute('charset', charset)
     }
-  }
+    jsonpScript.id = scriptId
+    document.getElementsByTagName('head')[0].appendChild(jsonpScript)
 
-  // 请求结束
-  http.addEventListener('loadend', e => {
-    if (typeof params.complete === 'function') {
-      const result = getResponseResult(e.target)
-      params.complete(result, e.target)
+    // Caught if got 404/500
+    jsonpScript.onerror = () => {
+      reject(new Error(`JSONP request to ${url} failed`))
+      handleError(error)
+      clearJsonp(callbackFunction, scriptId, timeoutId)
     }
   })
-  // 请求出错
-  http.addEventListener('error', e => {
-    if (typeof params.error === 'function') {
-      params.error(e.target)
-    }
-  })
-  // 请求超时
-  http.addEventListener('timeout', e => {
-    if (typeof params.error === 'function') {
-      params.error(e.target)
-    }
-  })
-
-  http.send(handleData(params))
 }
