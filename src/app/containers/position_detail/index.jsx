@@ -36,9 +36,9 @@ export default function PositionDetail(props) {
   //   props.dispatch(Actions.user.getUserShow({ nid: data.nid }))
   // }
 
-  // const getHandleText = (text, length = 5) => {
-  //   return Array.from(text).length > length ? text.substring(0, length) : text
-  // }
+  const getHandleText = (text, length = 5) => {
+    return Array.from(text).length > length ? text.substring(0, length) : text
+  }
 
   return (
     <div className="positionDetail">
@@ -55,8 +55,8 @@ export default function PositionDetail(props) {
                 <img alt="" className="avator" src={position.user.picture} />
                 <div className="company_pro">
                   <span className="company_text">
-                    {this.getHandleText(position.user.nick_name)}|
-                    {this.getHandleText(position.title)}| CEO
+                    {getHandleText(position.user.nick_name)}|
+                    {getHandleText(position.title)}| CEO
                   </span>
                 </div>
                 <div className="clearfix" />

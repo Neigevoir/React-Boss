@@ -10,17 +10,23 @@ app.use(bodyParser.json())
 
 const isValidTokenUrls = ['/api/login/login']
 
+const validHeaders = {
+  'Access-Control-Allow-Headers':
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+  'Access-Control-Allow-Credentials': 'true',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
+  'X-Powered-By': 'Node',
+  'Content-Type': 'application/json;charset=utf-8',
+  'Cache-Control': 'no-cache8'
+}
+
 const setValidHeader = res => {
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-  )
-  res.header('Access-Control-Allow-Credentials', 'true')
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS')
-  res.header('X-Powered-By', 'Node')
-  res.header('Content-Type', 'application/json;charset=utf-8')
-  res.header('Cache-Control', 'no-cache')
+  for (const key in validHeaders) {
+    if (validHeaders.hasOwnProperty(key)) {
+      res.header(key, validHeaders[key])
+    }
+  }
 }
 
 app.all('*', (req, res, next) => {
