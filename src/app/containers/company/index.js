@@ -35,7 +35,7 @@ export default function Company(props) {
       })
     )
     dispatch(Actions.company.getCompanyLineList(filters))
-  }, [])
+  }, [dispatch, filters, history])
 
   // const initialize = () => {
   //   this.refs.companyList.style.height = ScrollHeight.current //用作overflow

@@ -1,0 +1,14 @@
+@import 'src/assets/styles/flex_box.scss';
+
+.password-input-container {
+  border-bottom: 1px solid #e2e2e2;
+  margin-top: 8px;
+  .password-input {
+    border: none;
+    height: 44px;
+    &::-webkit-input-placeholder {
+      color: #ccc;
+      font-size: 14px;
+    }
+  }
+}

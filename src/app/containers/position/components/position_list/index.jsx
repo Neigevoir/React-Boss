@@ -179,14 +179,10 @@ export default function PositionList(props) {
   const { listData } = props
   console.log(listData)
   return (
-    <div ref={this.position} className="positionList">
+    <div className="positionList">
       {_.map(listData, (v, k) => {
         return (
-          <PositionItem
-            key={k}
-            data={v}
-            handleClick={this.gotoPositionDetail(k)}
-          />
+          <PositionItem key={k} data={v} handleClick={gotoPositionDetail(k)} />
         )
       })}
     </div>

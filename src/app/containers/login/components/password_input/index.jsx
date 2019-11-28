@@ -1,8 +1,11 @@
+import './index.scss'
+
 export default function PasswordInput(props) {
   const { changePassword } = props
   return (
-    <div>
+    <div className="password-input-container">
       <input
+        className="password-input"
         type="password"
         placeholder="请输入密码"
         required=""

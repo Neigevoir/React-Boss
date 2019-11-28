@@ -1,0 +1,20 @@
+@import 'src/assets/styles/flex_box.scss';
+
+.phone-input-container {
+  border-bottom: 1px solid #e2e2e2;
+  margin-top: 25px;
+  .area-select {
+    border: none;
+    width: 12%;
+    font-size: 14px;
+    background-color: #fff;
+  }
+  .phone-input {
+    border: none;
+    height: 44px;
+    &::-webkit-input-placeholder {
+      color: #ccc;
+      font-size: 14px;
+    }
+  }
+}

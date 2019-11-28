@@ -1,48 +1,44 @@
-import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useMemo } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './index.scss'
 
 const footer = [
   {
     title: '职位',
-    link: 'position',
-    active: ['/']
+    link: '/position',
+    active: ['/', '/postion']
   },
   {
     title: '公司',
-    link: 'company'
+    link: '/company',
+    active: ['/company']
   },
   {
     title: '消息',
-    link: 'information'
+    link: '/information'
   },
   {
     title: '我的',
-    link: 'user'
+    link: '/user'
   }
 ]
 
 export default function Footer(props) {
-  const [pathname, setPathname] = useState(props.pathname)
+  const { pathname } = useLocation()
   const isShow = useSelector(state => state.common.footer)
-
-  useEffect(() => {
-    setPathname(props.pathname)
-  }, [props.pathname])
-
+  const url = useMemo(() => pathname, [pathname])
   return (
     <ul className={isShow ? 'navigation' : 'hidden'}>
       {_.map(footer, (v, k) => {
-        const link = `/${v.link}`
-        const isActive = pathname === v.link || _.includes(v.active, pathname)
+        const isActive = _.includes(v.active || v.link, url)
         return (
           <NavLink
             key={k}
             className={`link ${isActive ? 'active' : ''}`}
-            to={link}
+            to={v.link}
           >
-            <img alt="" src={require(`src/assets/images/${v.link}.png`)} />
+            <img alt="" src={require(`src/assets/images${v.link}.png`)} />
             <span>{v.title}</span>
           </NavLink>
         )

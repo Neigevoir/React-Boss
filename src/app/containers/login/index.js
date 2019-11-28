@@ -59,21 +59,29 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <h5 className="login-title">账号登录</h5>
-      <ul className="loginBtnList">
-        <PhoneInput changeTelephone={changeTelephone} />
-        <PasswordInput changePassword={changePassword} />
-        <li className="voice">
-          <u>忘记密码</u>
-        </li>
-        <li>
-          <button className="loginBtn" onClick={handleLogin}>
-            登录
-          </button>
-        </li>
-      </ul>
-      <footer>
-        <span className="loginFullFooter">用户协议</span>
+      <div>
+        <h5 className="login-title">账号登录</h5>
+        <ul className="login-input-container">
+          <PhoneInput changeTelephone={changeTelephone} />
+          <PasswordInput changePassword={changePassword} />
+          <div className="login-btn-container">
+            <button className="login-btn" onClick={handleLogin}>
+              登录
+            </button>
+          </div>
+        </ul>
+        <div className="other-btn-container">
+          <span>短信登录</span>
+          <span className="forget-password">忘记密码?</span>
+        </div>
+      </div>
+      <footer className="wechat-login-container">
+        <span>微信登录</span>
+        <img
+          className="wechat-login-icon"
+          alt=""
+          src="https://www.easyicon.net/api/resizeApi.php?id=1230528&size=48"
+        />
       </footer>
     </div>
   )
