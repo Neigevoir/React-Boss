@@ -33,7 +33,7 @@ const getLoginInfo = (success, error) => {
     type: 'API:LOGININFO:GET',
     API: true,
     method: 'POST',
-    url: '/app/user/logininfo',
+    url: '/api/login/getUserInfo',
     success,
     error
   }

@@ -21,6 +21,9 @@
       width: 100%;
       border-radius: 4px;
       padding: 12px 0px;
+      &:disabled {
+        background-color: #e2e2e2;
+      }
     }
   }
   .other-btn-container {

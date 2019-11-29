@@ -1,11 +1,13 @@
 import { stringify } from 'qs'
+import * as storage from 'src/app/lib/storage.js'
 
 const getHeaders = action => {
   let headers = {
     // Authorization: `Bearer { ${localStorage.getItem('token')} }`, // ih5 need auth
     Accept: 'application/json', // needed for request.format.json?
     'Content-Type': 'application/json',
-    'X-REQUESTED-WITH': 'XMLHttpRequest' // needed for request.xhr? which sidesteps mobylette
+    'X-REQUESTED-WITH': 'XMLHttpRequest', // needed for request.xhr? which sidesteps mobylette,
+    token: storage.get('token', localStorage)
   }
 
   if (action.useFormUrlEncoding) {
@@ -127,6 +129,7 @@ export default ({ dispatch }) => next => action => {
   // let credentials = 'include'; //既可以同域发送，也可以跨域发送
 
   const headers = getHeaders(action)
+  console.log(headers)
   fetch(global.ServerApi + url, {
     method,
     body,

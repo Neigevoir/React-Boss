@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useState, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
@@ -6,55 +6,59 @@ import useHideFooter from 'src/app/hooks/useHideFooter'
 import useHideHeader from 'src/app/hooks/useHideHeader'
 import PasswordInput from 'src/app/containers/login/components/password_input'
 import PhoneInput from 'src/app/containers/login/components/phone_input'
+import * as storage from 'src/app/lib/storage.js'
 import './index.scss'
 
 export default function Login() {
   useHideHeader()
   useHideFooter()
 
-  const phone = useRef('')
-  const password = useRef('')
+  const [phone, setPhone] = useState(null)
+  const [password, setPassword] = useState(null)
 
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const changeTelephone = tel => (phone.current = tel)
+  const changeTelephone = tel => setPhone(tel)
 
-  const changePassword = pas => (password.current = pas)
+  const changePassword = pas => setPassword(pas)
 
   const setTips = content => {
     dispatch(Actions.common.changeTips({ isShow: true, content }))
   }
 
+  const submitTipText = useMemo(() => {
+    let text = ''
+    if (_.isEmpty(phone) && _.isEmpty(password)) {
+      text = '手机号和密码不能为空'
+    } else if (_.isEmpty(phone)) {
+      text = '手机号不能为空'
+    } else if (_.isEmpty(password)) {
+      text = '密码不能为空'
+    }
+    return text
+  }, [phone, password])
+
   const handleLogin = () => {
-    if (_.isEmpty(phone.current) && _.isEmpty(password.current)) {
-      setTips('手机号和密码不能为空')
-    } else if (_.isEmpty(phone.current)) {
-      setTips('手机号不能为空')
-    } else if (_.isEmpty(password.current)) {
-      setTips('密码不能为空')
-    } else {
+    if (_.isEmpty(submitTipText)) {
       getLogin()
+    } else {
+      setTips(submitTipText)
     }
   }
 
   const getLogin = () => {
-    dispatch(
-      Actions.user.getUserLogin(
-        { phone: phone.current, password: password.current },
-        getLoginSuccess
-      )
-    )
+    dispatch(Actions.user.getUserLogin({ phone, password }, getLoginSuccess))
   }
 
   const getLoginSuccess = res => {
-    if (res.error) {
+    if (res.token) {
+      console.log(res.token)
+      storage.set('token', res.token, localStorage)
+      dispatch(Actions.user.getLoginInfo(() => history.replace('/position')))
+    } else {
       setTips(res.error)
-      return null
     }
-    console.log(res.token)
-    // localStorage.setItem('token', res.token)
-    // dispatch(Actions.user.getLoginInfo(() => history.replace('/position')))
   }
 
   return (
@@ -65,7 +69,11 @@ export default function Login() {
           <PhoneInput changeTelephone={changeTelephone} />
           <PasswordInput changePassword={changePassword} />
           <div className="login-btn-container">
-            <button className="login-btn" onClick={handleLogin}>
+            <button
+              className="login-btn"
+              disabled={!_.isEmpty(submitTipText)}
+              onClick={handleLogin}
+            >
               登录
             </button>
           </div>

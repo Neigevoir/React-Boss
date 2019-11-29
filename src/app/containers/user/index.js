@@ -41,11 +41,10 @@ export default function User(props) {
   // }
 
   return (
-    <div ref="body" className="userBody">
+    <div className="userBody">
       <div className="userTop">
         <img
           alt=""
-          ref="userAvator"
           className="userAvator"
           src={require('src/assets/images/beaut.jpg')}
         />

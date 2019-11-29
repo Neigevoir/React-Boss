@@ -12,7 +12,7 @@ const isValidTokenUrls = ['/api/login/login']
 
 const validHeaders = {
   'Access-Control-Allow-Headers':
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization, token',
   'Access-Control-Allow-Credentials': 'true',
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'PUT,POST,GET,DELETE,OPTIONS',
@@ -35,7 +35,7 @@ app.all('*', (req, res, next) => {
   if (isValidTokenUrls.includes(req.url)) {
     setValidHeader(res)
   } else {
-    if (!token) {
+    if (!token && req.method !== 'OPTIONS') {
       res.status(500).send({ error: 'Something Wrong!' })
     } else {
       setValidHeader(res)

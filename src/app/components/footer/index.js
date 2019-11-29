@@ -11,8 +11,7 @@ const footer = [
   },
   {
     title: '公司',
-    link: '/company',
-    active: ['/company']
+    link: '/company'
   },
   {
     title: '消息',
@@ -31,11 +30,12 @@ export default function Footer(props) {
   return (
     <ul className={isShow ? 'navigation' : 'hidden'}>
       {_.map(footer, (v, k) => {
-        const isActive = _.includes(v.active || v.link, url)
         return (
           <NavLink
             key={k}
-            className={`link ${isActive ? 'active' : ''}`}
+            className={`link ${
+              _.includes(v.active || v.link, url) ? 'active' : ''
+            }`}
             to={v.link}
           >
             <img alt="" src={require(`src/assets/images${v.link}.png`)} />

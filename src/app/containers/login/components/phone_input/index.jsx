@@ -3,7 +3,10 @@ import './index.scss'
 const areaCodes = ['+86', '+10']
 
 export default function PhoneInput(props) {
-  const { changeTelephone } = props
+  const handleChange = e => {
+    props.changeTelephone(e.currentTarget.value)
+  }
+
   return (
     <div className="phone-input-container">
       <select className="area-select">
@@ -19,7 +22,7 @@ export default function PhoneInput(props) {
         required=""
         pattern="^1[34578]\d{9}$"
         maxLength="11"
-        onChange={changeTelephone}
+        onChange={handleChange}
       />
     </div>
   )

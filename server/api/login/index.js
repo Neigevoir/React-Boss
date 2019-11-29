@@ -63,7 +63,7 @@ router.post('/changepsd', (req, res) => {
 
 router.post('/getUserInfo', (req, res) => {
   let resData = null
-  if (!token) {
+  if (!token && !req.headers.token) {
     resData = {
       data: null,
       error: '请先登录！'

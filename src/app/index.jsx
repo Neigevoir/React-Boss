@@ -49,8 +49,6 @@ export default function App() {
     //       })
     //   }
     // })
-    global.AvailWidth = window.screen.availWidth
-    global.AvailHeight = window.screen.availWidth
   }, [])
 
   return (
