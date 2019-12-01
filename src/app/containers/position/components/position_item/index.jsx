@@ -14,34 +14,26 @@ export default function ListBox(props) {
 
   return (
     <div className="position-content" onClick={handleClick}>
-      <div className="positionTitle">
-        前端工程师
-        <b className="money">8K-50k</b>
+      <div className="position-title">
+        <span>前端工程师</span>
+        <span className="money">8K-50k</span>
       </div>
-      <div className="positionTitle">
-        <h3 className="positionName">前端工程师</h3>
-        <h4 className="positionPay">
-          <b className="money">8K-50k</b>
-          <b>深圳</b>
-          <b>3-5年</b>
-          <b>本科</b>
-        </h4>
+      <div className="company-info">
+        <span>腾讯科技</span>
+        <span className="scale">D轮</span>
       </div>
-      <div className="positionCompany">
-        <div>
-          <img
-            className="avator"
-            src={position.image || require('src/assets/images/logo.jpg')}
-            alt=""
-          />
-          <div className="company_pro clearfix">
-            <span className="company_text">
-              {getHandleText(_.get(data, 'position.user.name', ''))} |
-              {getHandleText(position.title)} | CEO
-            </span>
-            <span className="company_text">{position.play_count} 人以上</span>
-          </div>
-        </div>
+      <div className="position-info">
+        <span className="text-box">深圳</span>
+        <span className="text-box">3-5年</span>
+        <span className="text-box">本科</span>
+      </div>
+      <div className="hr-info">
+        <img
+          className="hr-avator"
+          src={position.image || require('src/assets/images/logo.jpg')}
+          alt=""
+        />
+        <span className="hr-name">马云.董事长</span>
       </div>
     </div>
   )

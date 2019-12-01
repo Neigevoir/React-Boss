@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Actions from 'src/app/actions/actions'
-// import Tips from '../../components/tips/index'
 import PositionItem from 'src/app/containers/position/components/position_item'
+import './index.scss'
 
 export default function PositionList(props) {
   const filters = props.filters
@@ -179,7 +179,7 @@ export default function PositionList(props) {
   const { listData } = props
   console.log(listData)
   return (
-    <div className="positionList">
+    <div className="position-list">
       {_.map(listData, (v, k) => {
         return (
           <PositionItem key={k} data={v} handleClick={gotoPositionDetail(k)} />

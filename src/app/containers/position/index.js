@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
 import PositionList from 'src/app/containers/position/components/position_list'
 import PositionNav from 'src/app/containers/position/components/seletc_nav'
+import './index.scss'
 
 export default function Position() {
   const list = useSelector(state => state.position.list)
@@ -36,7 +37,7 @@ export default function Position() {
     dispatch(Actions.position.getLinePosition(filter, state))
   }
 
-  const listData = !_.isEmpty(list) ? [...list] : [{ id: 1 }]
+  const listData = !_.isEmpty(list) ? [...list] : [{ id: 1 }, { id: 2 }]
   return (
     <div className="position-container">
       <PositionNav listType={listType} handleClick={getPositionList} />

@@ -3,4 +3,47 @@
 .position-content {
   background-color: #fff;
   padding: 10px 20px;
+  margin-bottom: 6px;
+  .position-title {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    .money {
+      color: #53cabd;
+      font-size: 17px;
+    }
+  }
+  .company-info {
+    font-size: 13px;
+    margin-top: 5px;
+    .scale {
+      margin-left: 10px;
+    }
+  }
+  .position-info {
+    margin-top: 12px;
+    font-size: 12px;
+    .text-box {
+      background-color: #f7f8f9;
+      padding: 5px 10px;
+      margin-left: 8px;
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
+  .hr-info {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    margin-top: 18px;
+    .hr-avator {
+      width: 28px;
+      border-radius: 50%;
+    }
+    .hr-name {
+      margin-left: 6px;
+    }
+  }
 }

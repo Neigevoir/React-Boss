@@ -53,7 +53,6 @@ export default function Login() {
 
   const getLoginSuccess = res => {
     if (res.token) {
-      console.log(res.token)
       storage.set('token', res.token, localStorage)
       dispatch(Actions.user.getLoginInfo(() => history.replace('/position')))
     } else {

@@ -7,7 +7,7 @@ const footer = [
   {
     title: '职位',
     link: '/position',
-    active: ['/', '/postion']
+    active: '/'
   },
   {
     title: '公司',
@@ -23,19 +23,17 @@ const footer = [
   }
 ]
 
-export default function Footer(props) {
+export default function Footer() {
   const { pathname } = useLocation()
   const isShow = useSelector(state => state.common.footer)
   const url = useMemo(() => pathname, [pathname])
   return (
-    <ul className={isShow ? 'navigation' : 'hidden'}>
+    <div className={isShow ? 'navigation' : 'hidden'}>
       {_.map(footer, (v, k) => {
         return (
           <NavLink
             key={k}
-            className={`link ${
-              _.includes(v.active || v.link, url) ? 'active' : ''
-            }`}
+            className={`link ${url === (v.active || v.link) ? 'active' : ''}`}
             to={v.link}
           >
             <img alt="" src={require(`src/assets/images${v.link}.png`)} />
@@ -43,6 +41,6 @@ export default function Footer(props) {
           </NavLink>
         )
       })}
-    </ul>
+    </div>
   )
 }
