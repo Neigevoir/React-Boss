@@ -1,4 +1,6 @@
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 import Actions from 'src/app/actions/actions'
 import PositionItem from 'src/app/containers/position/components/position_item'
 import './index.scss'
@@ -8,6 +10,9 @@ export default function PositionList(props) {
   const PositionState = ['recommend', 'latest', 'class1']
   const position = React.createRef()
   const body = React.createRef()
+
+  const history = useHistory()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // this.body.current.style.height = window.screen.availHeight - 85 + 'px' //用作overflow
@@ -143,7 +148,7 @@ export default function PositionList(props) {
       } else {
         if (Math.abs(moveY) > parseInt(global.AvailHeight - 135, 10) * 0.25) {
           this.filters.num += 16
-          this.props.dispatch(
+          dispatch(
             Actions.position.getLinePosition(this.filters, this.props.listType)
           )
         }
@@ -165,7 +170,7 @@ export default function PositionList(props) {
   }
 
   const gotoPositionDetail = index => () => {
-    this.props.history.push({
+    history.push({
       pathname: '/position_detail',
       state: {
         index

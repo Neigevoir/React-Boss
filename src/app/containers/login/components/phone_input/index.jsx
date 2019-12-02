@@ -3,9 +3,7 @@ import './index.scss'
 const areaCodes = ['+86', '+10']
 
 export default function PhoneInput(props) {
-  const handleChange = e => {
-    props.changeTelephone(e.currentTarget.value)
-  }
+  const handleChange = e => props.changeTelephone(e.currentTarget.value)
 
   return (
     <div className="phone-input-container">

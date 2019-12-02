@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+// const Token = require('./token')
 const userInfoData = { id: '1', name: 'Neigevoir', age: 25, sex: 'men' }
 
 let userLoginData = {
@@ -8,6 +9,17 @@ let userLoginData = {
 }
 
 let token = null
+
+const randomString = () =>
+  Math.random()
+    .toString(36)
+    .substring(7)
+    .split('')
+    .join('.')
+
+const createToken = () => {
+  return new Date().getTime() + '&' + randomString()
+}
 
 router.post('/login', (req, res) => {
   const { phone, password } = req.body
@@ -26,13 +38,7 @@ router.post('/login', (req, res) => {
         error: '请勿重复登录！'
       }
     } else {
-      const randomString = () =>
-        Math.random()
-          .toString(36)
-          .substring(7)
-          .split('')
-          .join('.')
-      token = randomString()
+      token = createToken()
       resData = {
         token
       }

@@ -6,12 +6,6 @@ export default function ListBox(props) {
     return null
   }
 
-  const { position = {} } = data
-
-  const getHandleText = (text = '', length = 5) => {
-    return text.length > length ? text.substring(0, length) : text
-  }
-
   return (
     <div className="position-content" onClick={handleClick}>
       <div className="position-title">
@@ -30,7 +24,7 @@ export default function ListBox(props) {
       <div className="hr-info">
         <img
           className="hr-avator"
-          src={position.image || require('src/assets/images/logo.jpg')}
+          src={require('src/assets/images/logo.jpg')}
           alt=""
         />
         <span className="hr-name">马云.董事长</span>

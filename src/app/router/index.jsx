@@ -6,7 +6,7 @@ import Loading from 'src/app/components/loading'
 import Tips from 'src/app/components/tips'
 import Actions from 'src/app/actions/actions'
 import AsyncRouters from 'src/app/router/AsyncRouters'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import useRouterScroll from 'src/app/hooks/useRouterScroll.js'
 import * as storage from 'src/app/lib/storage.js'
 import 'src/assets/styles/all.scss'
@@ -17,6 +17,7 @@ export default function Routers(props) {
 
   const dispatch = useDispatch()
   const history = useHistory()
+  const location = useLocation()
 
   const getInfoSuccess = useCallback(() => history.replace('/position'), [
     history
@@ -34,7 +35,7 @@ export default function Routers(props) {
     <Suspense fallback={<div />}>
       <Header />
       <AsyncRouters />
-      <Footer pathname={props.location.pathname} />
+      <Footer pathname={location} />
       <Loading />
       <Tips />
     </Suspense>

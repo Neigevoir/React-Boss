@@ -1,9 +1,7 @@
 import './index.scss'
 
 export default function PasswordInput(props) {
-  const handleChange = e => {
-    props.changePassword(e.currentTarget.value)
-  }
+  const handleChange = e => props.changePassword(e.currentTarget.value)
   return (
     <div className="password-input-container">
       <input

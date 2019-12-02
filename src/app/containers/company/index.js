@@ -13,13 +13,11 @@ export default function Company(props) {
   const history = useHistory()
 
   useEffect(() => {
-    const gotoNotice = () => history.push('/notice')
-
     dispatch(
       Actions.common.changeHeader({
         title: '公司',
         leftBtn: '广告',
-        handleLeft: gotoNotice,
+        handleLeft: () => history.push('/notice'),
         rightBtn: '',
         handleRight: () => {}
       })
