@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
-// import CompanyDetail from './companyDetail'
+import './index.scss'
 
-export default function Company(props) {
+export default function Company() {
   const { list, filters } = useSelector(state => ({
     list: state.company.list,
     filters: state.company.filters
@@ -30,31 +30,43 @@ export default function Company(props) {
   }
 
   return (
-    <ul className="companyList">
+    <div className="company-container">
       {_.map(list, (v, k) => {
         return (
-          <li key={k} onClick={showCompanyDetail(k)}>
-            <div className="companys">
-              <img className="companyPic" src={v.image} alt="" />
-              <div className="companyPro">
-                <img
-                  alt=""
-                  className="companyLogo"
-                  src={v.image || require('src/assets/images/logo.jpg')}
-                />
-                <div className="companyContent">
-                  <span className="companyText">{v.user.nick_name}</span>
-                  <span className="companyText">{v.title}</span>
-                  <span className="companyText">
-                    热招职位: <b className="position">前端开发</b>
-                  </span>
-                </div>
-                <div className="clearfix" />
+          <div
+            key={k}
+            className="conpany-list-item"
+            onClick={showCompanyDetail(k)}
+          >
+            <div className="logo-box">
+              <img className="company-logo" src={v.image} alt="" />
+            </div>
+            <div className="company-info-box">
+              {/* <div className="companyContent">
+                <span className="companyText">{v.user.nick_name}</span>
+                <span className="companyText">{v.title}</span>
+                <span className="companyText">
+                  热招职位: <b className="position">前端开发</b>
+                </span>
+              </div> */}
+              <div className="company-title">前端工程师</div>
+              <div className="company-introduce">
+                <span className="intro-item">腾讯科技</span>
+                <span className="intro-item">D轮</span>
+              </div>
+              <div className="company-info">
+                <span className="text-box">深圳</span>
+                <span className="text-box">3-5年</span>
+                <span className="text-box">本科</span>
+              </div>
+              <div className="company-position">
+                <span>热招：前端开发工程师等岗位 </span>
+                <span>></span>
               </div>
             </div>
-          </li>
+          </div>
         )
       })}
-    </ul>
+    </div>
   )
 }

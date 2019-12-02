@@ -9,7 +9,7 @@ const initialState = {
     like: 0,
     type: 'recommend'
   },
-  listType: 'recommend',
+  sort: 'recommend',
   list: []
 }
 

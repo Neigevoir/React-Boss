@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useCallback } from 'react'
+import { Suspense, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Header from 'src/app/components/header'
 import Footer from 'src/app/components/footer'
@@ -6,36 +6,32 @@ import Loading from 'src/app/components/loading'
 import Tips from 'src/app/components/tips'
 import Actions from 'src/app/actions/actions'
 import AsyncRouters from 'src/app/router/AsyncRouters'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import useRouterScroll from 'src/app/hooks/useRouterScroll.js'
 import * as storage from 'src/app/lib/storage.js'
 import 'src/assets/styles/all.scss'
 import 'src/assets/styles/index/index.scss'
 
-export default function Routers(props) {
+export default function Routers() {
   useRouterScroll()
 
   const dispatch = useDispatch()
   const history = useHistory()
-  const location = useLocation()
-
-  const getInfoSuccess = useCallback(() => history.replace('/position'), [
-    history
-  ])
 
   useEffect(() => {
     if (_.isEmpty(storage.get('token', localStorage))) {
       history.replace('/login')
     } else {
-      dispatch(Actions.user.getLoginInfo(getInfoSuccess))
+      // const getInfoSuccess = () => history.replace('/position')
+      dispatch(Actions.user.getLoginInfo())
     }
-  }, [dispatch, getInfoSuccess, history])
+  }, [dispatch, history])
 
   return (
     <Suspense fallback={<div />}>
       <Header />
       <AsyncRouters />
-      <Footer pathname={location} />
+      <Footer />
       <Loading />
       <Tips />
     </Suspense>

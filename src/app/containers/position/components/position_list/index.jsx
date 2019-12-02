@@ -178,9 +178,6 @@ export default function PositionList(props) {
     })
   }
 
-  const getHandleText = (text, length = 5) =>
-    Array.from(text).length > length ? text.substring(0, length) : text
-
   const { listData } = props
   console.log(listData)
   return (
