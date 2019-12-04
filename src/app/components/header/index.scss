@@ -1,0 +1,13 @@
+@import 'src/assets/styles/flex_box.scss';
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(83, 202, 189, 1);
+  height: 50px;
+  line-height: 50px;
+  color: #fff;
+  padding: 0px 16px;
+  font-size: 15px;
+}

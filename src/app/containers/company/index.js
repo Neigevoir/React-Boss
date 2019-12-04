@@ -15,11 +15,8 @@ export default function Company() {
   useEffect(() => {
     dispatch(
       Actions.common.changeHeader({
-        title: '公司',
-        leftBtn: '广告',
-        handleLeft: () => history.push('/notice'),
-        rightBtn: '',
-        handleRight: () => {}
+        leftBtn: () => <span>公司</span>,
+        rightBtn: ''
       })
     )
     dispatch(Actions.company.getCompanyLineList(filters))
@@ -61,7 +58,7 @@ export default function Company() {
               </div>
               <div className="company-position">
                 <span>热招：前端开发工程师等岗位 </span>
-                <span>></span>
+                <span className="icon">></span>
               </div>
             </div>
           </div>
