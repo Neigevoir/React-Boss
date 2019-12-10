@@ -6,6 +6,10 @@ import PositionList from 'src/app/containers/position/components/position_list'
 import PositionNav from 'src/app/containers/position/components/seletc_nav'
 import './index.scss'
 
+function Title() {
+  return <span className="header-left">移动Web前端</span>
+}
+
 export default function Position() {
   const list = useSelector(state => state.position.list)
   const filters = useSelector(state => state.position.filters)
@@ -22,11 +26,9 @@ export default function Position() {
     // )
     dispatch(
       Actions.common.changeHeader({
-        title: '职位',
-        leftBtn: '广告',
-        handleLeft: () => history.push('/notice'),
+        title: '',
+        leftBtn: () => <Title />,
         rightBtn: '搜索'
-        // handleRight: this.showSelectModal
       })
     )
   }, [dispatch, history])

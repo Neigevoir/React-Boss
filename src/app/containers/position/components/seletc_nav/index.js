@@ -3,7 +3,8 @@ import './index.scss'
 
 const sortItems = {
   recommend: '推荐',
-  newest: '最新'
+  newest: '最新',
+  nearby: '附近'
 }
 
 export default function PositionNav() {

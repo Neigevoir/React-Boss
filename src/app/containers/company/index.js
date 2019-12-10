@@ -4,6 +4,10 @@ import { useHistory } from 'react-router-dom'
 import Actions from 'src/app/actions/actions'
 import './index.scss'
 
+function Title() {
+  return <span className="header-left">公司</span>
+}
+
 export default function Company() {
   const { list, filters } = useSelector(state => ({
     list: state.company.list,
@@ -15,7 +19,7 @@ export default function Company() {
   useEffect(() => {
     dispatch(
       Actions.common.changeHeader({
-        leftBtn: () => <span>公司</span>,
+        leftBtn: () => <Title />,
         rightBtn: ''
       })
     )
