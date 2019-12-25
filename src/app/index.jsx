@@ -8,6 +8,7 @@ import { persistor } from 'src/app/store/store.js'
 import { PersistGate } from 'redux-persist/es/integration/react'
 // import WithErrorHandle from 'src/app/components/HOC/with_errorhandle/witherrorhandle'
 import { createBrowserHistory } from 'history'
+import ErrorBoundary from 'src/app/containers/errors'
 // import Darkmode from 'darkmode-js'
 
 // new Darkmode().showWidget()
@@ -18,7 +19,7 @@ window.resizeEvent = () => {
   window.dispatchEvent(event)
 }
 
-export default function App() {
+function App() {
   useEffect(() => {
     // fetch(`${ServerApi}/api/position/list`, {
     //   method: 'POST',
@@ -61,3 +62,5 @@ export default function App() {
     </Provider>
   )
 }
+
+export default ErrorBoundary(App)

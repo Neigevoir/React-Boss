@@ -21,8 +21,7 @@ export default function NoticeContainer() {
         title: '广告',
         leftBtn: '返回',
         handleLeft: history.goBack,
-        rightBtn: '',
-        handleRight: () => {}
+        rightBtn: ''
       })
     )
   }, [dispatch, list, history.goBack])
