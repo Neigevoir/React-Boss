@@ -10,7 +10,7 @@ function Title() {
   return <span className="header-left">移动Web前端</span>
 }
 
-export default function Position() {
+export default function Position(props) {
   const list = useSelector(state => state.position.list)
   const filters = useSelector(state => state.position.filters)
   const listType = useSelector(state => state.position.listType)
@@ -19,11 +19,7 @@ export default function Position() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // props.dispatch(
-    //   Actions.position.getLinePosition({ test: 1 }, (dispatch, res) => {
-    //     console.log(res)
-    //   })
-    // )
+    dispatch(Actions.position.getLinePosition())
     dispatch(
       Actions.common.changeHeader({
         title: '',
@@ -39,7 +35,8 @@ export default function Position() {
     dispatch(Actions.position.getLinePosition(filter, state))
   }
 
-  const listData = !_.isEmpty(list) ? [...list] : [{ id: 1 }, { id: 2 }]
+  const listData = list
+
   return (
     <div className="position-container">
       <PositionNav listType={listType} handleClick={getPositionList} />

@@ -8,7 +8,7 @@ const setFilters = filters => ({
 
 const getLinePosition = (data, success, error) => {
   return {
-    type: 'API:GetLinePosition',
+    type: constant.GET_LINEPOSITION,
     API: true,
     method: 'POST',
     url: '/api/position/list',

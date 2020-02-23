@@ -1,25 +1,27 @@
 import './index.scss'
 export default function ListBox(props) {
-  const { data, handleClick } = props
+  const { item, handleClick } = props
 
-  if (!data) {
+  if (!item) {
     return null
   }
+
+  const { title, conpany, hr, time, education, area, scale, money } = item.data
 
   return (
     <div className="position-content" onClick={handleClick}>
       <div className="position-title">
-        <span>前端工程师</span>
-        <span className="money">8K-50k</span>
+        <span>{title}</span>
+        <span className="money">{money}k</span>
       </div>
       <div className="company-info">
-        <span>腾讯科技</span>
-        <span className="scale">D轮</span>
+        <span>{conpany}</span>
+        <span className="scale">{scale}轮</span>
       </div>
       <div className="position-info">
-        <span className="text-box">深圳</span>
-        <span className="text-box">3-5年</span>
-        <span className="text-box">本科</span>
+        <span className="text-box">{area}</span>
+        <span className="text-box">{time}年</span>
+        <span className="text-box">{education}</span>
       </div>
       <div className="hr-info">
         <img
@@ -27,7 +29,7 @@ export default function ListBox(props) {
           src={require('src/assets/images/logo.jpg')}
           alt=""
         />
-        <span className="hr-name">马云.董事长</span>
+        <span className="hr-name">{hr}</span>
       </div>
     </div>
   )

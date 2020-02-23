@@ -17,10 +17,7 @@ const handleList = (state, action) => {
   return {
     filters: state.filters,
     listType: action.listType,
-    list:
-      state.filters.type === action.usertype
-        ? [...state.list, ...action.res.data]
-        : action.res.data
+    list: action.response
   }
 }
 
@@ -30,7 +27,7 @@ const handleFilters = (state, action) => {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case constant.GET_LINEPOSITION:
+    case `${constant.GET_LINEPOSITION}:SUCCESS`:
       return handleList(state, action)
     case constant.GET_SEARCHLIST:
       return handleList(state, action)

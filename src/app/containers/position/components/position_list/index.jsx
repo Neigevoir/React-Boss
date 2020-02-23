@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import Actions from 'src/app/actions/actions'
-import PositionItem from 'src/app/containers/position/components/position_item'
+import { useVirtualList } from '@umijs/hooks'
+import PositionItem from 'src/app/containers/position/components/position_item/index.tsx'
 import './index.scss'
 
 export default function PositionList(props) {
@@ -179,12 +180,15 @@ export default function PositionList(props) {
   }
 
   const { listData } = props
-  console.log(listData)
+  const { list, containerProps, wrapperProps } = useVirtualList(listData, {
+    overscan: 10,
+    itemHeight: 143
+  })
   return (
     <div className="position-list">
-      {_.map(listData, (v, k) => {
+      {_.map(list, (v, k) => {
         return (
-          <PositionItem key={k} data={v} handleClick={gotoPositionDetail(k)} />
+          <PositionItem key={k} item={v} handleClick={gotoPositionDetail(k)} />
         )
       })}
     </div>

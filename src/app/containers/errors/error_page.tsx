@@ -1,6 +1,14 @@
-import './index.scss'
+// import './index.scss'
 
-export default function WrongPage(props) {
+interface WrongPageProps {
+  errorHandle: () => void
+  errorInfo: {
+    name: string
+    message: string
+  }
+}
+
+export default function WrongPage(props: WrongPageProps) {
   return (
     <div className="wrong-page">
       <div className="wrong-img" onClick={props.errorHandle} />{' '}

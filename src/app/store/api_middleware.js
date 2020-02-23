@@ -129,7 +129,6 @@ export default ({ dispatch }) => next => action => {
   // let credentials = 'include'; //既可以同域发送，也可以跨域发送
 
   const headers = getHeaders(action)
-  console.log(headers)
   fetch(global.ServerApi + url, {
     method,
     body,
@@ -142,6 +141,7 @@ export default ({ dispatch }) => next => action => {
         response
           .json()
           .then(data => {
+            console.log(data)
             // body is json
             const isError = data.errors // errors key is present in GraphQL response
             isError
@@ -162,6 +162,7 @@ export default ({ dispatch }) => next => action => {
         response
           .json()
           .then(data => {
+            console.log(data)
             // body is json
             error(dispatch, action, data)
             complete(dispatch, action, data)
