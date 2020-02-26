@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import './index.scss'
 
-function renderChild(Child) {
+function renderChild(Child: any) {
   if (typeof Child === 'function') {
     return Child()
   }
@@ -14,8 +14,20 @@ function renderChild(Child) {
   return <Child />
 }
 
+interface HeaderState {
+  common: {
+    header: {
+      leftBtn: string
+      title: string
+      rightBtn: string
+      isShow: boolean
+      opacity: string
+    }
+  }
+}
+
 export default function Header() {
-  const header = useSelector(state => state.common.header)
+  const header = useSelector((state: HeaderState) => state.common.header)
   const { leftBtn, title, rightBtn, isShow, opacity } = header
   return (
     <div

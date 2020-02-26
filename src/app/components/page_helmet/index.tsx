@@ -1,6 +1,11 @@
 import { useEffect } from 'react'
 
-export default function PageHelmet(props) {
+interface PageHelmetProps {
+  title: string
+  link: string
+}
+
+export default function PageHelmet(props: PageHelmetProps) {
   useEffect(() => {
     document.title = props.title || 'Neigevoir'
     const link = props.link || window.location.pathname
