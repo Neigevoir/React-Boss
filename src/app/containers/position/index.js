@@ -19,7 +19,14 @@ export default function Position(props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(Actions.position.getLinePosition())
+    dispatch(
+      Actions.position.getLinePosition({
+        filter: {
+          page: 1,
+          pageSize: 20
+        }
+      })
+    )
     dispatch(
       Actions.common.changeHeader({
         title: '',

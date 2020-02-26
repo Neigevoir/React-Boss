@@ -1,29 +1,27 @@
 const express = require('express')
 const router = express.Router()
-const data = [
-  {
-    title: '前端工程师',
-    hr: '陈老师',
-    company: '腾讯科技',
-    companyicon: '',
-    scale: 'D',
-    area: '深圳',
-    time: '3-5',
-    education: '本科',
-    money: '10-20'
-  },
-  {
-    title: '后端工程师',
-    hr: '孙老师',
-    company: '莱尔托特',
-    companyicon: '',
-    scale: 'A',
-    area: '深圳',
-    time: '1-3',
-    education: '本科',
-    money: '15-25'
+
+const positionData = require('../data/position')
+const utils = require('../data/utils')
+
+function getDatas(num = 10) {
+  let datas = []
+  for (let index = 0; index < num; index++) {
+    datas.push({
+      title: utils.getData(positionData.title),
+      hr: utils.getData(positionData.hr),
+      company: utils.getData(positionData.company),
+      companyicon: '',
+      scale: utils.getData(positionData.scale),
+      area: utils.getData(positionData.area),
+      time: utils.getData(positionData.time),
+      education: utils.getData(positionData.education),
+      money: utils.getData(positionData.money)
+    })
   }
-]
+  return datas
+}
+
 // middleware that is specific to this router
 // router.use(function timeLog(req, res, next) {
 //   console.log('Time: ', Date.now())
@@ -31,23 +29,29 @@ const data = [
 // })
 
 router.get('/', (req, res) => {
+  const data = getDatas()
   res.send(data)
 })
 router.post('/', (req, res) => {
+  const data = getDatas()
   res.send(data)
 })
 // define the home page route
 router.get('/list', (req, res) => {
+  const data = getDatas()
   res.send(data)
 })
 router.post('/list', (req, res) => {
   // NOTE:可以通过req的各种信息做相对应处理
-  console.log(typeof req.body)
   console.log(req.body)
+  const { filter } = req.body
+  const data = getDatas(filter.pageSize)
+
   res.send(data)
 })
 // define the about route
 router.post('/search', (req, res) => {
+  const data = getDatas()
   res.send(data)
 })
 

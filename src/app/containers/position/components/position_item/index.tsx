@@ -12,15 +12,15 @@ export default function ListBox(props) {
     <div className="position-content" onClick={handleClick}>
       <div className="position-title">
         <span>{title}</span>
-        <span className="money">{money}k</span>
+        <span className="money">{money}</span>
       </div>
       <div className="company-info">
         <span>{conpany}</span>
-        <span className="scale">{scale}轮</span>
+        <span className="scale">{scale}</span>
       </div>
       <div className="position-info">
         <span className="text-box">{area}</span>
-        <span className="text-box">{time}年</span>
+        <span className="text-box">{time}</span>
         <span className="text-box">{education}</span>
       </div>
       <div className="hr-info">

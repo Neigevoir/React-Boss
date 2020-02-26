@@ -2,6 +2,11 @@ import { useEffect, useState, useMemo, useCallback } from 'react'
 import useSize from './useSize'
 import { _slicedToArray } from './utils'
 
+// scrollTop
+// itemHeight
+// overscan
+// clientHeight
+
 export default (function(list, options) {
   let _useSize = useSize(),
     _useSize2 = _slicedToArray(_useSize, 2),

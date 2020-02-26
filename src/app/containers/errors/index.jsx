@@ -1,4 +1,4 @@
-import WrongPage from './error_page.tsx'
+import WrongPage from './error_page'
 
 export default function ErrorBoundary(WrappedComponent) {
   return function WithErrorHandler(props) {

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import Actions from 'src/app/actions/actions'
 import { useVirtualList } from '@umijs/hooks'
-import PositionItem from 'src/app/containers/position/components/position_item/index.tsx'
+import PositionItem from 'src/app/containers/position/components/position_item'
 import './index.scss'
 
 export default function PositionList(props) {
