@@ -1,7 +1,12 @@
 const express = require('express')
 const router = express.Router()
 // const Token = require('./token')
-const userInfoData = { id: '1', name: 'Neigevoir', age: 25, sex: 'men' }
+const userInfoData = {
+  id: '1',
+  name: 'Neigevoir',
+  age: 25,
+  sex: 'men'
+}
 
 let userLoginData = {
   phone: '13828477648',

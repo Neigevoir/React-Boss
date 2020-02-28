@@ -1,4 +1,4 @@
-import _ from 'lodash' // NOTE：Lodash
+import * as _ from 'lodash' // NOTE：Lodash
 // import _ from 'src/app/lib/lodash' // NOTE：Neigevoir
 
 const port = require('../server_port.js')

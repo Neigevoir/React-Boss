@@ -5,7 +5,7 @@ export default function Information(props) {
     // getPrivateMessageList()
   }, [])
 
-  const { InformationData, InformationType } = props
+  const { InformationData } = props
   return (
     <div className="Infomation" ref="Infomation">
       <ul className="InfoList">

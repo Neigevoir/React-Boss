@@ -13,7 +13,7 @@ function savePreScroll(prePathname, preSearch) {
   sessionStorage.setItem(prePathname + preSearch, preStoragePos)
 }
 
-function scrollNextPostion(pathname, search) {
+export function scrollPostion(pathname, search) {
   if (window.SCROLL_ELEMENT) {
     const nextStoragePos = Number(sessionStorage.getItem(pathname + search))
     document[window.SCROLL_ELEMENT].scrollTop = nextStoragePos || 0
@@ -28,6 +28,6 @@ export default function useRouterScroll() {
 
   useEffect(() => {
     savePreScroll(prePathname, preSearch)
-    scrollNextPostion(pathname, search)
+    scrollPostion(pathname, search)
   }, [pathname, search, prePathname, preSearch])
 }

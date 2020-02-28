@@ -4,7 +4,8 @@ const router = express.Router()
 const positionData = require('../data/position')
 const utils = require('../data/utils')
 
-function getDatas(num = 10) {
+function getDatas(options) {
+  const num = options.pageSize || 10
   let datas = []
   for (let index = 0; index < num; index++) {
     datas.push({
@@ -13,7 +14,7 @@ function getDatas(num = 10) {
       company: utils.getData(positionData.company),
       companyicon: '',
       scale: utils.getData(positionData.scale),
-      area: utils.getData(positionData.area),
+      area: options.area || utils.getData(positionData.area),
       time: utils.getData(positionData.time),
       education: utils.getData(positionData.education),
       money: utils.getData(positionData.money)
@@ -45,7 +46,7 @@ router.post('/list', (req, res) => {
   // NOTE:可以通过req的各种信息做相对应处理
   console.log(req.body)
   const { filter } = req.body
-  const data = getDatas(filter.pageSize)
+  const data = getDatas(filter)
 
   res.send(data)
 })

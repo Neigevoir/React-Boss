@@ -29,15 +29,15 @@ export default function Footer() {
   const url = useMemo(() => pathname, [pathname])
   return (
     <div className={isShow ? 'navigation' : 'hidden'}>
-      {_.map(footer, (v, k) => {
+      {_.map(footer, ({ link, title, active }, k) => {
         return (
           <NavLink
             key={k}
-            className={`link ${url === (v.active || v.link) ? 'active' : ''}`}
-            to={v.link}
+            className={`link ${url === (active || link) ? 'active' : ''}`}
+            to={link}
           >
-            <img alt="" src={require(`src/assets/images${v.link}.png`)} />
-            <span>{v.title}</span>
+            <img alt="" src={require(`src/assets/images${link}.png`)} />
+            <span>{title}</span>
           </NavLink>
         )
       })}

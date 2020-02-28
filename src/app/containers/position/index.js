@@ -21,9 +21,10 @@ export default function Position(props) {
   useEffect(() => {
     dispatch(
       Actions.position.getLinePosition({
+        page: 1,
+        pageSize: 20,
         filter: {
-          page: 1,
-          pageSize: 20
+          area: '深圳'
         }
       })
     )
