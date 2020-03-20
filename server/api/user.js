@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const data = { id: '1', name: 'zhangSan1', age: 30, sex: 'men' }
+const data = { id: '1', name: 'Neigevoir', age: 26, sex: 'men' }
 // middleware that is specific to this router
 // router.use(function timeLog(req, res, next) {
 //   console.log('Time: ', Date.now())
